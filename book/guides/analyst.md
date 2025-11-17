@@ -2,7 +2,7 @@
 
 Volunteer analysts operate the heart of i4g. This guide covers how to access the dashboard, triage cases, and maintain audit-ready notes.
 
-![Analyst dashboard placeholder](../assets/screenshots/analyst-dashboard-placeholder.svg)
+![Analyst dashboard placeholder](../assets/screenshots/analyst-dashboard.png)
 
 > _Replace this placeholder with a Streamlit capture showing the case queue, masked PII, and annotation panel._
 

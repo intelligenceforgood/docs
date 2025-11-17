@@ -1,6 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="960" height="540" viewBox="0 0 960 540">
-  <rect width="960" height="540" fill="#001219"/>
-  <rect x="40" y="40" width="880" height="460" fill="#0a9396" fill-opacity="0.08" stroke="#94d2bd" stroke-width="4" stroke-dasharray="14 10"/>
-  <text x="480" y="220" text-anchor="middle" fill="#e9d8a6" font-family="Helvetica, Arial, sans-serif" font-size="32">Analyst Dashboard Screenshot</text>
-  <text x="480" y="280" text-anchor="middle" fill="#ee9b00" font-family="Helvetica, Arial, sans-serif" font-size="18">Capture Streamlit queue view with masked PII</text>
-</svg>
