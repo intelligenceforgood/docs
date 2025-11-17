@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="540" viewBox="0 0 960 540">
+  <rect width="960" height="540" fill="#0d1b2a"/>
+  <rect x="40" y="40" width="880" height="460" fill="#1b263b" stroke="#778da9" stroke-width="4" stroke-dasharray="16 12"/>
+  <text x="480" y="220" text-anchor="middle" fill="#e0e1dd" font-family="Helvetica, Arial, sans-serif" font-size="32">User Intake Screenshot</text>
+  <text x="480" y="280" text-anchor="middle" fill="#e0e1dd" font-family="Helvetica, Arial, sans-serif" font-size="18">Replace with latest capture from user submission flow</text>
+</svg>

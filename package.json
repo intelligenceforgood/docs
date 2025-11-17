@@ -1,0 +1,16 @@
+{
+  "name": "i4g-docs",
+  "version": "0.1.0",
+  "private": true,
+  "license": "MIT",
+  "scripts": {
+    "dev": "honkit serve book",
+    "build": "honkit build book dist",
+    "lint": "markdownlint \"book/**/*.md\""
+  },
+  "devDependencies": {
+    "honkit": "^4.0.0",
+    "markdownlint-cli": "^0.39.0",
+    "honkit-plugin-mermaid": "^0.1.4"
+  }
+}
