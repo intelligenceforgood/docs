@@ -4,8 +4,6 @@ Volunteer analysts operate the heart of i4g. This guide covers how to access the
 
 ![Analyst dashboard placeholder](../assets/screenshots/analyst-dashboard.png)
 
-> _Replace this placeholder with a Streamlit capture showing the case queue, masked PII, and annotation panel._
-
 ## Access Requirements
 
 - Provisioned Google account (university, nonprofit, or personal) added to the `analyst` IAM group.
