@@ -7,10 +7,12 @@ We welcome contributions that improve clarity, accessibility, and accuracy of th
 1. Review open items in [Roadmap → Open Questions](roadmap/open-questions.md) or backlog issues in the GitHub repository.
 2. Create a feature branch (`docs/<short-description>`) and make focused changes.
 3. Run the local checks:
+
    ```bash
    npm run lint
    npm run build
    ```
+
 4. Open a pull request summarizing the changes and linking to the source material (e.g., PRDs, Terraform modules).
 5. After merge, trigger GitBook Git Sync to publish updates.
 

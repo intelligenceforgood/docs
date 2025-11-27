@@ -6,8 +6,8 @@ Infrastructure is managed through the [`infra`](../../infra) repository using Te
 
 | Service | Purpose | Repository Source | Service Account |
 | --- | --- | --- | --- |
-| `fastapi-gateway` | API surface for ingestion, report generation, and admin tooling | `proto/src/i4g/api` | `sa-fastapi` |
-| `streamlit-analyst-ui` | Analyst review dashboard with masked PII | `proto/src/i4g/streamlit_app` | `sa-streamlit` |
+| `fastapi-gateway` | API surface for ingestion, report generation, and admin tooling | `proto/src/i4g/api` | `sa-app` |
+| `streamlit-analyst-ui` | Analyst review dashboard with masked PII | `proto/src/i4g/streamlit_app` | `sa-app` |
 | `weekly-azure-refresh` | Imports Azure SQL/Search snapshots into Firestore & Vertex AI Search | `proto/scripts/migration/run_weekly_refresh.py` | `sa-ingest` |
 | `generate-reports` | Batch report export (planned for production) | `proto/scripts/reports` | `sa-report` |
 

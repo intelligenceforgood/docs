@@ -8,7 +8,8 @@ Personas guide how i4g prioritizes features and documentation. They originate fr
 - Needs reassurance, clarity, and a safe way to submit evidence.
 - Shares data voluntarily; expects PII protection and empathetic communication.
 
-**Journey Highlights**
+### Journey Highlights — User
+
 1. Lands on the user intake experience via public education campaigns.
 2. Uploads chat logs, screenshots, receipts, or voice notes.
 3. Receives confirmation, optional chatbot guidance, and a case ID for follow-up.
@@ -20,7 +21,8 @@ Personas guide how i4g prioritizes features and documentation. They originate fr
 - Works exclusively in the Streamlit dashboard; never sees raw PII.
 - Needs structured workflows, audit trails, and recognition for service hours.
 
-**Journey Highlights**
+### Journey Highlights — Analyst
+
 1. Authenticates via Google Identity Platform (future IAM improvements flagged).
 2. Reviews assigned cases with masked PII and evidence summaries.
 3. Annotates findings, classifies scam type, and escalates when thresholds are met.
@@ -32,7 +34,8 @@ Personas guide how i4g prioritizes features and documentation. They originate fr
 - Requires standardized, admissible documentation with clear provenance.
 - Engages once reports are ready or subpoenas require deeper data access.
 
-**Journey Highlights**
+### Journey Highlights — Law Enforcement
+
 1. Receives a digitally signed PDF report from the user or analyst liaison.
 2. Validates authenticity (hash/signature) before onboarding the case internally.
 3. Requests supplementary evidence via secure channels if needed.

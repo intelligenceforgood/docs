@@ -16,6 +16,7 @@
   * [Weekly Azure Refresh](operations/weekly-refresh.md)
   * [Secrets & Credentials](operations/secrets.md)
   * [Monitoring & Logging](operations/observability.md)
+* [Configuration](config/settings.md)
 * [API Guide](api/README.md)
   * [Authentication](api/authentication.md)
   * [Sample Workflows](api/sample-requests.md)

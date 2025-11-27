@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "honkit serve book",
     "build": "honkit build book dist",
-    "lint": "markdownlint \"book/**/*.md\""
+    "lint": "node --no-deprecation node_modules/.bin/markdownlint \"book/**/*.md\""
   },
   "devDependencies": {
     "honkit": "^4.0.0",

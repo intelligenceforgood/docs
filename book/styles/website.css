@@ -1,0 +1,42 @@
+/* Ensure wide configuration tables stay readable on narrow viewports. */
+.table-scroll-wrapper {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  max-width: 100%;
+  margin-bottom: 1.5rem;
+}
+
+.table-scroll-wrapper table {
+  border-collapse: collapse;
+  min-width: 960px;
+}
+
+.table-scroll-wrapper th,
+.table-scroll-wrapper td,
+.table-scroll-wrapper code {
+  white-space: nowrap;
+}
+
+.table-column-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.85rem;
+  margin-bottom: 0.5rem;
+}
+
+.table-column-controls__label {
+  font-weight: 600;
+}
+
+.table-column-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  cursor: pointer;
+}
+
+.table-column-toggle input {
+  margin: 0;
+}

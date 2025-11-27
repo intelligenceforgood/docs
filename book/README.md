@@ -12,3 +12,5 @@ Key goals for the documentation space:
 - Share the roadmap, active research questions, and avenues for community contribution.
 
 Use the navigation menu to explore topic-specific sections. Each page links back to the originating design notes or terraform modules in the engineering repositories so contributors can cross-reference the source of truth.
+
+Need the up-to-date runtime and environment variable catalog? Jump to the [Configuration reference](config/settings.md) for the auto-generated manifest plus the required local smoke command.

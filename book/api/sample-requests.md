@@ -21,7 +21,7 @@ Content-Type: application/json
 }
 ```
 
-_Response_
+### Response (Submit Evidence)
 
 ```json
 {
@@ -54,7 +54,7 @@ Authorization: Bearer <leo_token>
 Accept: application/pdf
 ```
 
-_Response_
+### Response (Report Download)
 
 - `200 OK` with PDF payload.
 - Headers include `X-I4G-Report-Hash` for signature verification.
