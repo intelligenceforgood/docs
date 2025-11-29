@@ -28,7 +28,7 @@ This catalog is assembled by `proto/scripts/export_settings_manifest.py` directl
 | account_list | `account_list.enabled` | `I4G_ACCOUNT_LIST__ENABLED`<br />`ACCOUNT_LIST_ENABLED`<br />`ACCOUNT_LIST__ENABLED` | `bool` | `True` | Account list extraction configuration. |
 | account_list | `account_list.header_name` | `I4G_ACCOUNT_LIST__HEADER_NAME`<br />`ACCOUNT_LIST_HEADER_NAME`<br />`ACCOUNT_LIST__HEADER_NAME` | `str` | `X-ACCOUNTLIST-KEY` | Account list extraction configuration. |
 | account_list | `account_list.max_top_k` | `I4G_ACCOUNT_LIST__MAX_TOP_K`<br />`ACCOUNT_LIST_MAX_TOP_K`<br />`ACCOUNT_LIST__MAX_TOP_K` | `int` | `250` | Account list extraction configuration. |
-| account_list | `account_list.require_api_key` | `I4G_ACCOUNT_LIST__REQUIRE_API_KEY`<br />`ACCOUNT_LIST_REQUIRE_API_KEY`<br />`ACCOUNT_LIST__REQUIRE_API_KEY` | `bool` | `True` | Account list extraction configuration. |
+| account_list | `account_list.require_api_key` | `I4G_ACCOUNT_LIST__REQUIRE_API_KEY`<br />`ACCOUNT_LIST_REQUIRE_API_KEY`<br />`ACCOUNT_LIST__REQUIRE_API_KEY` | `bool` | `True` | Account list extraction configuration (analyst `X-API-KEY` tokens also satisfy the guard when enabled). |
 | api | `api.base_url` | `I4G_API__BASE_URL`<br />`API_URL`<br />`API__BASE_URL` | `str` | `http://127.0.0.1:8000` | API endpoint configuration shared by CLI + dashboards. |
 | api | `api.key` | `I4G_API__KEY`<br />`API_KEY`<br />`API__KEY` | `str` | `dev-analyst-token` | API endpoint configuration shared by CLI + dashboards. |
 | data_dir | `data_dir` | `I4G_DATA_DIR` | `Path` | `/Users/jerry/Work/project/i4g/data` | Top-level configuration model with nested sections for each subsystem. |

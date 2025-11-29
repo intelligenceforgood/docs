@@ -13,7 +13,7 @@ Milestone tracking ensures the volunteer team and partners share the same expect
 ## Recent Highlights (Nov 2025)
 
 - Provisioned static egress for Cloud Run jobs; awaiting Azure firewall finalization.
-- Added Discovery Engine editor role to ingestion job (Terraform apply pending in production).
+- Added Discovery editor role to ingestion job (Terraform apply pending in production).
 - Drafted comprehensive user guides and operational runbooks for the documentation site.
 
 ## Upcoming

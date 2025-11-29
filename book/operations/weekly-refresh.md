@@ -37,7 +37,7 @@ Use `proto/scripts/infra/add_azure_secrets.py` to rotate these values.
 
 - **Firewall Denied (`42000`):** Azure SQL hasn’t allowed the static IP yet. Request firewall rule update and retry.
 - **Login Timeout (`HYT00`):** Connector configured correctly but Azure unreachable—check VPC connector health and NAT logs (`resource.type="nat_gateway"`).
-- **Discovery Engine Permission Denied:** Ensure the ingestion service account has `roles/discoveryengine.editor` in the target project.
+- **Discovery Permission Denied:** Ensure the ingestion service account has `roles/discoveryengine.editor` in the target project.
 
 ## Run Manually
 
