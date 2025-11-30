@@ -1,4 +1,4 @@
-generated_at: '2025-11-29T23:24:46.973693+00:00'
+generated_at: '2025-11-30T20:25:13.392744+00:00'
 fields:
 - path: account_list.api_key
   section: account_list
@@ -391,6 +391,102 @@ fields:
   - LOG_LEVEL
   - RUNTIME__LOG_LEVEL
   description: Process-level runtime controls.
+- path: search.classification_presets
+  section: search
+  type: list[str]
+  default: []
+  env_vars:
+  - I4G_SEARCH__CLASSIFICATION_PRESETS
+  - SEARCH_CLASSIFICATION_PRESETS
+  - SEARCH__CLASSIFICATION_PRESETS
+  description: Hybrid search tuning parameters and schema presets.
+- path: search.dataset_presets
+  section: search
+  type: list[str]
+  default: []
+  env_vars:
+  - I4G_SEARCH__DATASET_PRESETS
+  - SEARCH_DATASET_PRESETS
+  - SEARCH__DATASET_PRESETS
+  description: Hybrid search tuning parameters and schema presets.
+- path: search.default_limit
+  section: search
+  type: int
+  default: 25
+  env_vars:
+  - I4G_SEARCH__DEFAULT_LIMIT
+  - SEARCH_DEFAULT_LIMIT
+  - SEARCH__DEFAULT_LIMIT
+  description: Hybrid search tuning parameters and schema presets.
+- path: search.indicator_types
+  section: search
+  type: list[str]
+  default:
+  - bank_account
+  - crypto_wallet
+  - email
+  - phone
+  - ip_address
+  - asn
+  - browser_agent
+  - url
+  - merchant
+  env_vars:
+  - I4G_SEARCH__INDICATOR_TYPES
+  - SEARCH_INDICATOR_TYPES
+  - SEARCH__INDICATOR_TYPES
+  description: Hybrid search tuning parameters and schema presets.
+- path: search.loss_buckets
+  section: search
+  type: list[str]
+  default:
+  - <10k
+  - 10k-50k
+  - '>50k'
+  env_vars:
+  - I4G_SEARCH__LOSS_BUCKETS
+  - SEARCH_LOSS_BUCKETS
+  - SEARCH__LOSS_BUCKETS
+  description: Hybrid search tuning parameters and schema presets.
+- path: search.schema_cache_ttl_seconds
+  section: search
+  type: int
+  default: 300
+  env_vars:
+  - I4G_SEARCH__SCHEMA_CACHE_TTL_SECONDS
+  - SEARCH_SCHEMA_CACHE_TTL
+  - SEARCH__SCHEMA_CACHE_TTL
+  description: Hybrid search tuning parameters and schema presets.
+- path: search.semantic_weight
+  section: search
+  type: float
+  default: 0.65
+  env_vars:
+  - I4G_SEARCH__SEMANTIC_WEIGHT
+  - SEARCH_SEMANTIC_WEIGHT
+  - SEARCH__SEMANTIC_WEIGHT
+  description: Hybrid search tuning parameters and schema presets.
+- path: search.structured_weight
+  section: search
+  type: float
+  default: 0.35
+  env_vars:
+  - I4G_SEARCH__STRUCTURED_WEIGHT
+  - SEARCH_STRUCTURED_WEIGHT
+  - SEARCH__STRUCTURED_WEIGHT
+  description: Hybrid search tuning parameters and schema presets.
+- path: search.time_presets
+  section: search
+  type: list[str]
+  default:
+  - 7d
+  - 30d
+  - 90d
+  env_vars:
+  - I4G_SEARCH__TIME_PRESETS
+  - SEARCH_TIME_PRESETS
+  - SEARCH__TIME_PRESETS
+  description: Hybrid search tuning parameters and schema presets.
 - path: secrets.local_env_file
   section: secrets
   type: Path | NoneType
