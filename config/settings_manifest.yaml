@@ -1,4 +1,4 @@
-generated_at: '2025-11-30T23:04:11.998285+00:00'
+generated_at: '2025-12-01T21:34:15.082098+00:00'
 source: src/i4g/settings/config.py
 env_prefix: I4G_
 fields:
@@ -163,6 +163,28 @@ fields:
   - IDENTITY_PROVIDER
   - IDENTITY__PROVIDER
   description: Identity provider wiring for auth-enabled services.
+- path: ingestion.batch_limit
+  section: ingestion
+  type: int
+  default: 0
+  env_vars:
+  - I4G_INGESTION__BATCH_LIMIT
+  - INGEST_BATCH_LIMIT
+  - INGEST__BATCH_LIMIT
+  - INGESTION_BATCH_LIMIT
+  - INGESTION__BATCH_LIMIT
+  description: Scheduler + job configuration for ingestion workflows.
+- path: ingestion.dataset_path
+  section: ingestion
+  type: Path
+  default: /Users/jerry/Work/project/i4g/data/retrieval_poc/cases.jsonl
+  env_vars:
+  - I4G_INGESTION__DATASET_PATH
+  - INGEST_JSONL_PATH
+  - INGEST__JSONL_PATH
+  - INGESTION_JSONL_PATH
+  - INGESTION__JSONL_PATH
+  description: Scheduler + job configuration for ingestion workflows.
 - path: ingestion.default_dataset
   section: ingestion
   type: str
@@ -191,6 +213,17 @@ fields:
   - I4G_INGESTION__DEFAULT_SERVICE_ACCOUNT
   - INGESTION_SERVICE_ACCOUNT
   - INGESTION__SERVICE_ACCOUNT
+  description: Scheduler + job configuration for ingestion workflows.
+- path: ingestion.dry_run
+  section: ingestion
+  type: bool
+  default: false
+  env_vars:
+  - I4G_INGESTION__DRY_RUN
+  - INGEST_DRY_RUN
+  - INGEST__DRY_RUN
+  - INGESTION_DRY_RUN
+  - INGESTION__DRY_RUN
   description: Scheduler + job configuration for ingestion workflows.
 - path: ingestion.enable_firestore
   section: ingestion
@@ -266,6 +299,17 @@ fields:
   - INGEST__MAX_RETRIES
   - INGESTION_MAX_RETRIES
   - INGESTION__MAX_RETRIES
+  description: Scheduler + job configuration for ingestion workflows.
+- path: ingestion.reset_vector
+  section: ingestion
+  type: bool
+  default: false
+  env_vars:
+  - I4G_INGESTION__RESET_VECTOR
+  - INGEST_RESET_VECTOR
+  - INGEST__RESET_VECTOR
+  - INGESTION_RESET_VECTOR
+  - INGESTION__RESET_VECTOR
   description: Scheduler + job configuration for ingestion workflows.
 - path: ingestion.retry_delay_seconds
   section: ingestion
@@ -358,6 +402,42 @@ fields:
   - I4G_OBSERVABILITY__OTLP_ENDPOINT
   - OBS_OTLP_ENDPOINT
   - OBSERVABILITY__OTLP_ENDPOINT
+  description: Logging, tracing, and metrics configuration.
+- path: observability.service_name
+  section: observability
+  type: str
+  default: i4g-backend
+  env_vars:
+  - I4G_OBSERVABILITY__SERVICE_NAME
+  - OBS_SERVICE_NAME
+  - OBSERVABILITY__SERVICE_NAME
+  description: Logging, tracing, and metrics configuration.
+- path: observability.statsd_host
+  section: observability
+  type: str | NoneType
+  default: null
+  env_vars:
+  - I4G_OBSERVABILITY__STATSD_HOST
+  - OBS_STATSD_HOST
+  - OBSERVABILITY__STATSD_HOST
+  description: Logging, tracing, and metrics configuration.
+- path: observability.statsd_port
+  section: observability
+  type: int
+  default: 8125
+  env_vars:
+  - I4G_OBSERVABILITY__STATSD_PORT
+  - OBS_STATSD_PORT
+  - OBSERVABILITY__STATSD_PORT
+  description: Logging, tracing, and metrics configuration.
+- path: observability.statsd_prefix
+  section: observability
+  type: str
+  default: i4g
+  env_vars:
+  - I4G_OBSERVABILITY__STATSD_PREFIX
+  - OBS_STATSD_PREFIX
+  - OBSERVABILITY__STATSD_PREFIX
   description: Logging, tracing, and metrics configuration.
 - path: observability.structured_logging
   section: observability
