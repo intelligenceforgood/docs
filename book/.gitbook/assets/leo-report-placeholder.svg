@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="540" viewBox="0 0 960 540">
+  <rect width="960" height="540" fill="#161a1d"/>
+  <rect x="40" y="40" width="880" height="460" fill="#343a40" stroke="#adb5bd" stroke-width="4" stroke-dasharray="12 8"/>
+  <text x="480" y="220" text-anchor="middle" fill="#f8f9fa" font-family="Helvetica, Arial, sans-serif" font-size="32">Law Enforcement Report Screenshot</text>
+  <text x="480" y="280" text-anchor="middle" fill="#ced4da" font-family="Helvetica, Arial, sans-serif" font-size="18">Insert signed PDF summary viewer with evidence manifest</text>
+</svg>

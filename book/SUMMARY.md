@@ -1,11 +1,11 @@
-# Summary
+# Table of contents
 
 * [Welcome](README.md)
 * [Platform Overview](overview/platform-overview.md)
   * [Personas & Journeys](overview/personas.md)
   * [Use Cases](overview/use-cases.md)
 * [User Guides](guides/README.md)
-  * [User Guide](guides/user.md)
+  * [User Guide](guides/user-guide.md)
   * [Analyst Guide](guides/analyst.md)
   * [Law Enforcement Guide](guides/law-enforcement.md)
 * [Architecture](architecture/README.md)

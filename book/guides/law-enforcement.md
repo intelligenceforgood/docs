@@ -2,7 +2,7 @@
 
 The i4g program delivers digitally signed, evidence-rich reports that streamline intake for law enforcement agencies. This guide explains how to interpret reports, verify authenticity, and request additional data.
 
-![Law enforcement report placeholder](../assets/screenshots/leo-report-placeholder.svg)
+![Law enforcement report placeholder](../.gitbook/assets/leo-report-placeholder.svg)
 
 > _Replace with a screenshot of the PDF report viewer highlighting key sections (timeline, entity table, evidence manifest)._
 
@@ -19,9 +19,9 @@ Each report follows a standardized template derived from the production PRD:
 
 ## Authenticity & Chain of Custody
 
-- Reports include a SHA-256 signature generated at export time. Verify using the hash listed on the cover sheet.
-- Each evidence file contains embedded metadata referencing the case ID and export timestamp.
-- Access to raw PII or unredacted media requires a subpoena or mutual aid agreement. Contact `leo@intelligenceforgood.org` with the Case ID.
+* Reports include a SHA-256 signature generated at export time. Verify using the hash listed on the cover sheet.
+* Each evidence file contains embedded metadata referencing the case ID and export timestamp.
+* Access to raw PII or unredacted media requires a subpoena or mutual aid agreement. Contact `leo@intelligenceforgood.org` with the Case ID.
 
 ## Requesting Additional Information
 
@@ -34,14 +34,14 @@ Each report follows a standardized template derived from the production PRD:
 
 Your feedback helps improve the system:
 
-- Report sections that require more detail or different formatting.
-- Additional entities or metrics that would support your investigative process.
-- Outcomes (arrests, funds recovered) tied to i4g reporting.
+* Report sections that require more detail or different formatting.
+* Additional entities or metrics that would support your investigative process.
+* Outcomes (arrests, funds recovered) tied to i4g reporting.
 
 ## Data Handling Expectations
 
-- Treat all shared artifacts as confidential and for official use only.
-- Do not forward reports to third parties without consent from Intelligence for Good or the user.
-- Notify the liaison immediately if you detect compromised credentials, phishing attempts, or other operational risks involving the shared data.
+* Treat all shared artifacts as confidential and for official use only.
+* Do not forward reports to third parties without consent from Intelligence for Good or the user.
+* Notify the liaison immediately if you detect compromised credentials, phishing attempts, or other operational risks involving the shared data.
 
 i4g is a volunteer-led nonprofit initiative. We appreciate your partnership in bringing scammers to justice and protecting vulnerable communities.
