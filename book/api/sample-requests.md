@@ -1,11 +1,12 @@
 # Sample Workflows
 
-The following examples illustrate how trusted clients interact with the FastAPI gateway. Replace placeholder URLs with the final custom domains once DNS is provisioned.
+The following examples illustrate how trusted clients interact with the FastAPI gateway at
+`https://api.intelligenceforgood.org`.
 
 ## Submit Evidence (User)
 
 ```http
-POST https://fastapi-gateway-y5jge5w2cq-uc.a.run.app/api/v1/cases
+POST https://api.intelligenceforgood.org/intakes
 Authorization: Bearer <id_token>
 Content-Type: application/json
 
@@ -34,7 +35,7 @@ Content-Type: application/json
 ## Analyst Decision
 
 ```http
-PATCH https://fastapi-gateway-y5jge5w2cq-uc.a.run.app/api/v1/cases/case_1234
+POST https://api.intelligenceforgood.org/reviews/case_1234/decision
 Authorization: Bearer <analyst_token>
 Content-Type: application/json
 
@@ -49,7 +50,7 @@ Content-Type: application/json
 ## Report Download (Law Enforcement)
 
 ```http
-GET https://fastapi-gateway-y5jge5w2cq-uc.a.run.app/api/v1/reports/case_1234
+GET https://api.intelligenceforgood.org/reports/case_1234
 Authorization: Bearer <leo_token>
 Accept: application/pdf
 ```
