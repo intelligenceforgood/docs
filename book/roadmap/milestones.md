@@ -1,6 +1,6 @@
 # Milestones
 
-Milestone tracking ensures the volunteer team and partners share the same expectations. The table below summarizes the current plan (see [`proto/docs/prd_production.md`](../../proto/docs/prd_production.md) for full detail).
+Milestone tracking ensures the volunteer team and partners share the same expectations. The table below summarizes the current plan (see [`planning/prd_production.md`](../../planning/prd_production.md) for full detail).
 
 | Phase | Goal | Target Window | Status | Key Deliverables |
 | --- | --- | --- | --- | --- |

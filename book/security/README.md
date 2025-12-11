@@ -35,4 +35,4 @@ Protecting sensitive user information is a foundational requirement. This sectio
 - Integrate secrets rotation alerts into operations runbooks.
 - Add periodic penetration testing / vulnerability scanning (seek nonprofit grants or partnerships).
 
-Refer to [`proto/docs/prd_production.md`](../../proto/docs/prd_production.md) and `planning/migration_runbook.md` for detailed security requirements and procedures.
+Refer to [`planning/prd_production.md`](../../planning/prd_production.md) and `planning/migration_runbook.md` for detailed security requirements and procedures.

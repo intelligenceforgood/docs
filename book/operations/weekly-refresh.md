@@ -24,7 +24,7 @@ The job consumes three secrets from Secret Manager:
 | `AZURE_STORAGE_CONNECTION_STRING` | `azure-storage-connection-string` | Access to blob exports |
 | `AZURE_SEARCH_ADMIN_KEY` | `azure-search-admin-key` | Admin key for Cognitive Search exports |
 
-Use `proto/scripts/infra/add_azure_secrets.py` to rotate these values.
+Use `core/scripts/infra/add_azure_secrets.py` to rotate these values.
 
 ## Execution Flow
 

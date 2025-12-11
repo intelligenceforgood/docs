@@ -1,6 +1,6 @@
 # Authentication
 
-API access is tightly controlled because the platform processes highly sensitive PII. **The canonical IAM plan now lives in `proto/docs/iam.md`;** this page only captures API-specific notes and examples.
+API access is tightly controlled because the platform processes highly sensitive PII. **The canonical IAM plan now lives in `core/docs/iam.md`;** this page only captures API-specific notes and examples.
 
 ## Current State
 

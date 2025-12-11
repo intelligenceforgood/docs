@@ -114,7 +114,7 @@ fields:
 - path: data_dir
   section: data_dir
   type: Path
-  default: /Users/jerry/Work/project/i4g/proto/data
+  default: /Users/jerry/Work/project/i4g/core/data
   env_vars:
   - I4G_DATA_DIR
   description: Top-level configuration model with nested sections for each subsystem.
@@ -187,7 +187,7 @@ fields:
 - path: ingestion.dataset_path
   section: ingestion
   type: Path
-  default: /Users/jerry/Work/project/i4g/proto/data/retrieval_poc/cases.jsonl
+  default: /Users/jerry/Work/project/i4g/core/data/retrieval_poc/cases.jsonl
   env_vars:
   - I4G_INGESTION__DATASET_PATH
   - INGEST_JSONL_PATH
@@ -470,7 +470,7 @@ fields:
 - path: project_root
   section: project_root
   type: Path
-  default: /Users/jerry/Work/project/i4g/proto
+  default: /Users/jerry/Work/project/i4g/core
   env_vars:
   - I4G_PROJECT_ROOT
   - PROJECT_ROOT
@@ -731,7 +731,7 @@ fields:
 - path: storage.evidence_local_dir
   section: storage
   type: Path
-  default: /Users/jerry/Work/project/i4g/proto/data/evidence
+  default: /Users/jerry/Work/project/i4g/core/data/evidence
   env_vars:
   - I4G_STORAGE__EVIDENCE_LOCAL_DIR
   - STORAGE_EVIDENCE_LOCAL_DIR
@@ -765,7 +765,7 @@ fields:
 - path: storage.sqlite_path
   section: storage
   type: Path
-  default: /Users/jerry/Work/project/i4g/proto/data/i4g_store.db
+  default: /Users/jerry/Work/project/i4g/core/data/i4g_store.db
   env_vars:
   - I4G_STORAGE__SQLITE_PATH
   description: Structured + blob storage configuration.
@@ -817,7 +817,7 @@ fields:
 - path: vector.chroma_dir
   section: vector
   type: Path
-  default: /Users/jerry/Work/project/i4g/proto/data/chroma_store
+  default: /Users/jerry/Work/project/i4g/core/data/chroma_store
   env_vars:
   - I4G_VECTOR__CHROMA_DIR
   description: Vector store configuration supporting multiple backends.
@@ -842,7 +842,7 @@ fields:
 - path: vector.faiss_dir
   section: vector
   type: Path
-  default: /Users/jerry/Work/project/i4g/proto/data/faiss_store
+  default: /Users/jerry/Work/project/i4g/core/data/faiss_store
   env_vars:
   - I4G_VECTOR__FAISS_DIR
   - VECTOR_FAISS_DIR

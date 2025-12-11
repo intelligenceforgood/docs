@@ -42,4 +42,4 @@ Both environments are provisioned via Terraform (see `infra/environments/*`). Ea
 - ⚙️ MVP hardening in progress (Cloud Run deployment, OAuth, PII vault).
 - 🗺️ Partnership readiness and volunteer scaling planned for the next milestone cycle.
 
-For a detailed requirements breakdown see [`proto/docs/prd_production.md`](../../proto/docs/prd_production.md) in the main workspace.
+For a detailed requirements breakdown see [`core/docs/prd_production.md`](../../core/docs/prd_production.md) in the main workspace.

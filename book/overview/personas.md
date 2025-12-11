@@ -47,4 +47,4 @@ Personas guide how i4g prioritizes features and documentation. They originate fr
 - **Product & Research Contributors:** Iterate on detection pipelines, evaluate new scams, and update documentation.
 - **Partner Organizations:** Universities, nonprofits, or government agencies that participate in pilots.
 
-> Reference: [`proto/docs/prd_production.md#user-personas`](../../proto/docs/prd_production.md#user-personas) for the full persona matrix and acceptance criteria.
+> Reference: [`planning/prd_production.md#user-personas`](../../planning/prd_production.md#user-personas) for the full persona matrix and acceptance criteria.

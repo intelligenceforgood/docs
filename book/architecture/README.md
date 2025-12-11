@@ -6,4 +6,4 @@ The i4g platform is built on a modular, cloud-native stack that balances rapid i
 - [Data Pipelines](data-pipeline.md) follows evidence from ingestion through reporting.
 - [Infrastructure & Deployment](infra.md) covers Terraform modules, Cloud Run services, and network configuration.
 
-Refer to the `infra` repository for the authoritative Terraform code and the `proto` repository for application services and migration scripts.
+Refer to the `infra` repository for the authoritative Terraform code and the `core` repository for application services and migration scripts.

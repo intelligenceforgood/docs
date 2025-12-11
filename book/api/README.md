@@ -5,4 +5,4 @@ The FastAPI gateway exposes endpoints for ingestion, case management, and report
 - [Authentication](authentication.md) – describes IAM gating, tokens, and future plans.
 - [Sample Workflows](sample-requests.md) – provides request/response examples for common tasks.
 
-> **Sensitive operations:** Keep API documentation general enough for public reference. Detailed parameter lists and schemas remain in the private developer docs within the `proto` repo (`docs/api_reference.md`, forthcoming).
+> **Sensitive operations:** Keep API documentation general enough for public reference. Detailed parameter lists and schemas remain in the private developer docs within the `core` repo (`docs/api_reference.md`, forthcoming).

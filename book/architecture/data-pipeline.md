@@ -46,6 +46,6 @@ This page traces how data flows through i4g from ingestion to law enforcement re
 ## 8. Historical Backfills
 
 - Until upstream systems migrate fully, a **weekly Cloud Run job** imports Azure SQL/Search exports.
-- Ingestion scripts under `proto/scripts/migration` manage schema alignment and ensure idempotent loads.
+- Ingestion scripts under `core/scripts/migration` manage schema alignment and ensure idempotent loads.
 
-Refer to [`proto/scripts/migration/azure_sql_to_firestore.py`](../../proto/scripts/migration/azure_sql_to_firestore.py) and [`infra/environments/dev/main.tf`](../../infra/environments/dev/main.tf) for the authoritative implementations of these flows.
+Refer to [`core/scripts/migration/azure_sql_to_firestore.py`](../../core/scripts/migration/azure_sql_to_firestore.py) and [`infra/environments/dev/main.tf`](../../infra/environments/dev/main.tf) for the authoritative implementations of these flows.

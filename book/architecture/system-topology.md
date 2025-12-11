@@ -40,7 +40,7 @@ graph TD
   AzureSearch --> WeeklyJob --> Firestore
 ```
 
-> _Diagram source: summarize architecture from [`proto/docs/prd_production.md`](../../proto/docs/prd_production.md) and `infra/environments` Terraform modules. Update with Draw.io or Figma export when visual design is available._
+> _Diagram source: summarize architecture from [`core/docs/prd_production.md`](../../core/docs/prd_production.md) and `infra/environments` Terraform modules. Update with Draw.io or Figma export when visual design is available._
 
 ## Component Highlights
 

@@ -14,7 +14,7 @@ Safeguarding credentials is critical for a platform that handles sensitive user 
 ## Rotation Workflow
 
 1. Retrieve fresh credentials from Azure administrators.
-2. Run `python proto/scripts/infra/add_azure_secrets.py --project <project_id>` to populate Secret Manager.
+2. Run `python core/scripts/infra/add_azure_secrets.py --project <project_id>` to populate Secret Manager.
 3. Confirm Cloud Run revision picks up new secret versions (Cloud Run caches values until next execution or deploy).
 4. Document the rotation in `planning/change_log.md` with date, operator, and reason.
 

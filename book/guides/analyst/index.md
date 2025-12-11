@@ -57,6 +57,6 @@ audit-ready notes.
 
 * **Urgent safety issues** (self-harm threats, stalking): notify the program administrator immediately.
 * **Potential law enforcement action**: flag with `@leo-liaison` in the secure channel; provide context and recommended next steps.
-* **Tooling issues** (timeouts, UI bugs): open a ticket in the GitHub `proto` repo with reproduction steps and screenshots.
+* **Tooling issues** (timeouts, UI bugs): open a ticket in the GitHub `core` repo with reproduction steps and screenshots.
 
 Thank you for volunteering—your work directly strengthens our ability to protect vulnerable communities.

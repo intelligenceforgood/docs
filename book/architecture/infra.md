@@ -6,10 +6,10 @@ Infrastructure is managed through the [`infra`](../../infra) repository using Te
 
 | Service | Purpose | Repository Source | Service Account |
 | --- | --- | --- | --- |
-| `fastapi-gateway` | API surface for ingestion, report generation, and admin tooling | `proto/src/i4g/api` | `sa-app` |
-| `streamlit-analyst-ui` | Analyst review dashboard with masked PII | `proto/src/i4g/streamlit_app` | `sa-app` |
-| `weekly-azure-refresh` | Imports Azure SQL/Search snapshots into Firestore & Vertex AI Search | `proto/scripts/migration/run_weekly_refresh.py` | `sa-ingest` |
-| `generate-reports` | Batch report export (planned for production) | `proto/scripts/reports` | `sa-report` |
+| `fastapi-gateway` | API surface for ingestion, report generation, and admin tooling | `core/src/i4g/api` | `sa-app` |
+| `streamlit-analyst-ui` | Analyst review dashboard with masked PII | `core/src/i4g/streamlit_app` | `sa-app` |
+| `weekly-azure-refresh` | Imports Azure SQL/Search snapshots into Firestore & Vertex AI Search | `core/scripts/migration/run_weekly_refresh.py` | `sa-ingest` |
+| `generate-reports` | Batch report export (planned for production) | `core/src/i4g/worker/jobs/report.py` | `sa-report` |
 
 Each service references container images stored in Artifact Registry (`us-central1-docker.pkg.dev/i4g-dev/applications/*`).
 

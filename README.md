@@ -49,7 +49,7 @@ The GitBook space is already connected to this repository. After merging changes
 
 - Branch from `main` and keep PRs focused (one topic per PR when possible).
 - Include screenshot placeholders or actual captures when documenting UI updates.
-- Reference source material from `proto`, `infra`, and `planning` as needed; cite file paths so future contributors can trace the origin.
+- Reference source material from `core`, `infra`, and `planning` as needed; cite file paths so future contributors can trace the origin.
 - Ensure sensitive data (PII, secrets) never appears in docs or screenshots.
 
 ## Testing & Deployment
@@ -62,6 +62,6 @@ Once tests pass and the PR is merged, trigger Git Sync in GitBook to deploy the 
 
 ## Related Repositories
 
-- [`intelligenceforgood/proto`](../proto) – primary source for product and technical documentation during MVP.
+- [`intelligenceforgood/core`](../core) – primary source for product and technical documentation during MVP.
 - [`intelligenceforgood/infra`](../infra) – Terraform and Cloud Run configuration details referenced throughout the docs.
 - [`intelligenceforgood/planning`](../planning) – Change logs, migration runbooks, and roadmap inputs.

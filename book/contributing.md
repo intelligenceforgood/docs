@@ -20,7 +20,7 @@ We welcome contributions that improve clarity, accessibility, and accuracy of th
 
 - Use inclusive, plain language. Avoid jargon unless defined.
 - Favor short paragraphs, bulleted lists, and callout blocks for readability.
-- Reference workspace files with relative paths (e.g., `proto/docs/prd_production.md`).
+- Reference workspace files with relative paths (e.g., `core/docs/prd_production.md`).
 - Keep dates ISO-formatted (YYYY-MM-DD) and time zones explicit (UTC unless otherwise stated).
 
 ## Visuals & Assets
