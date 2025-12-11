@@ -32,13 +32,13 @@ audit-ready notes.
 
 ## Where to go next
 
-- Search tab usage, chips, and saved searches: [Search Guide](search.md)
-- Discovery tab basics and when to use it: [Discovery Guide](discovery.md)
-- Evidence Dossiers workflow: [Dossiers Guide](dossiers.md)
+* Search tab usage, chips, and saved searches: [Search Guide](search.md)
+* Discovery tab basics and when to use it: [Discovery Guide](discovery.md)
+* Evidence Dossiers workflow: [Dossiers Guide](dossiers.md)
 
 ## Screenshots to add
 
-- Queue → case detail view with tokenized entities.
+* Queue → case detail view with tokenized entities.
 
 ## Best Practices
 

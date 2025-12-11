@@ -34,4 +34,3 @@ This guide is for people submitting scam reports or checking status. It focuses 
 
 - Use the in-app help link to contact support.
 - For urgent safety concerns, notify your liaison immediately; do not wait for a reply in-app.
-
