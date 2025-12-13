@@ -2,7 +2,8 @@
 
 Use the Search tab when you need hybrid (semantic + structured) triage.
 
-![Analyst search – chips and saved searches](../../.gitbook/assets/analyst-search.png)
+![Analyst search – chips and saved searches](../../assets/screenshots/analyst-search.png)
+<a href="../../assets/screenshots/analyst-search.png" target="_blank">Open full size</a>
 
 ## Chips and filters
 
@@ -16,7 +17,8 @@ Use the Search tab when you need hybrid (semantic + structured) triage.
 2. Click **Save search** to name it, add tags, and (optionally) mark as favorite.
 3. Re-open saved searches from the drawer; use **Save as copy** to clone without overwriting.
 
-![Analyst search – saved-search drawer](../../.gitbook/assets/analyst-search-drawer.png)
+![Analyst search – saved-search drawer](../../assets/screenshots/analyst-search-drawer.png)
+<a href="../../assets/screenshots/analyst-search-drawer.png" target="_blank">Open full size</a>
 
 ## Reading results
 

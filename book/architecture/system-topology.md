@@ -1,46 +1,7 @@
 # System Topology
 
-```mmd
-graph TD
-  subgraph Intake
-    User[User Intake]
-    Chatbot[Guided Chat]
-    Upload[Secure Upload]
-  end
-  subgraph Processing
-    OCR[Tesseract OCR]
-    Extract[LLM Extraction]
-    Tokenize[PII Tokenization]
-  end
-  subgraph Storage
-    Firestore[(Firestore Cases)]
-    Vault[(Encrypted PII Vault)]
-    VertexSearch[(Vertex AI Search)]
-    GCS[(Evidence Buckets)]
-  end
-  subgraph HumanLoop
-    Streamlit[Streamlit Analyst UI]
-    Reports[Report Generator]
-  end
-  subgraph Integrations
-    AzureSQL[(Azure SQL Export)]
-    AzureSearch[(Azure Cognitive Search Export)]
-  end
-  User --> Upload
-  Chatbot --> Upload
-  Upload --> OCR --> Extract --> Tokenize --> Firestore
-  Tokenize --> Vault
-  Extract --> VertexSearch
-  Upload --> GCS
-  Firestore --> Streamlit
-  VertexSearch --> Streamlit
-  Streamlit --> Reports
-  Reports -->|PDF| LawEnforcement[Law Enforcement]
-  AzureSQL --> WeeklyJob[Cloud Run Weekly Refresh]
-  AzureSearch --> WeeklyJob --> Firestore
-```
-
-> _Diagram source: summarize architecture from_ [_`core/docs/prd_production.md`_](../../core/docs/prd_production.md) _and `infra/environments` Terraform modules. Update with Draw.io or Figma export when visual design is available._
+![Architecture - system topology](../../assets/architecture/system-topology.svg)
+<a href="../../assets/architecture/system-topology.svg" target="_blank">Open full size</a>
 
 ## Component Highlights
 

@@ -2,14 +2,16 @@
 
 Discovery is for quick, semantic-only exploration before you add filters.
 
-![Analyst discovery – semantic results](../../.gitbook/assets/analyst-discovery.png)
+![Analyst discovery – semantic results](../../assets/screenshots/analyst-discovery.png)
+<a href="../../assets/screenshots/analyst-discovery.png" target="_blank">Open full size</a>
 
 ## When to use Discovery
 
 - Fast browsing, fuzzy lookups, and early investigations when you do not know which filters to apply.
 - Discovery does not apply structured filters or chips; it returns semantic hits only.
 
-![Analyst discovery – promote to search](../../.gitbook/assets/analyst-discovery-promote.png)
+![Analyst discovery – promote to search](../../assets/screenshots/analyst-discovery-promote.png)
+<a href="../../assets/screenshots/analyst-discovery-promote.png" target="_blank">Open full size</a>
 
 ## Workflow
 

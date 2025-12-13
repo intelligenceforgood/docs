@@ -3,9 +3,11 @@
 Volunteer analysts operate the heart of i4g. This guide covers how to access the console, triage cases, and maintain
 audit-ready notes.
 
-![Analyst console – home/queue](../../.gitbook/assets/analyst-dashboard.png)
+![Analyst console – home/queue](../../assets/screenshots/analyst-dashboard.png)
+<a href="../../assets/screenshots/analyst-dashboard.png" target="_blank">Open full size</a>
 
-![Analyst case detail – tokenized entities](../../.gitbook/assets/analyst-case-detail.png)
+![Analyst case detail – tokenized entities](../../assets/screenshots/analyst-case-detail.png)
+<a href="../../assets/screenshots/analyst-case-detail.png" target="_blank">Open full size</a>
 
 ## Access Requirements
 

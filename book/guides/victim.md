@@ -2,7 +2,8 @@
 
 This guide walks individuals through submitting evidence safely and receiving updates about their case. It is written in plain language so volunteers can share it directly with users.
 
-![User intake flow placeholder](../assets/screenshots/user-intake-placeholder.svg)
+![User intake flow placeholder](../assets/screenshots/victim-intake-placeholder.svg)
+<a href="../assets/screenshots/victim-intake-placeholder.svg" target="_blank">Open full size</a>
 
 > _Replace this image with a current capture of the public intake or chatbot flow once the UI stabilizes._
 
