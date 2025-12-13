@@ -3,7 +3,6 @@
 Discovery is for quick, semantic-only exploration before you add filters.
 
 ![Analyst discovery – semantic results](../../assets/screenshots/analyst-discovery.png)
-<a href="../../assets/screenshots/analyst-discovery.png" target="_blank">Open full size</a>
 
 ## When to use Discovery
 
@@ -11,7 +10,6 @@ Discovery is for quick, semantic-only exploration before you add filters.
 - Discovery does not apply structured filters or chips; it returns semantic hits only.
 
 ![Analyst discovery – promote to search](../../assets/screenshots/analyst-discovery-promote.png)
-<a href="../../assets/screenshots/analyst-discovery-promote.png" target="_blank">Open full size</a>
 
 ## Workflow
 

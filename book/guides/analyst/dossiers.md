@@ -3,7 +3,6 @@
 Use the Reports → Dossiers tab to validate bundles before sharing with partners.
 
 ![Analyst dossiers – list and filters](../../assets/screenshots/analyst-dossiers.png)
-<a href="../../assets/screenshots/analyst-dossiers.png" target="_blank">Open full size</a>
 
 ## Before you begin
 
@@ -17,7 +16,6 @@ Use the Reports → Dossiers tab to validate bundles before sharing with partner
 3. Expand the payload accordion only if you need raw JSON (larger responses).
 
 ![Analyst dossiers – verification panel](../../assets/screenshots/analyst-dossiers-verify.png)
-<a href="../../assets/screenshots/analyst-dossiers-verify.png" target="_blank">Open full size</a>
 
 ## Verify signatures
 

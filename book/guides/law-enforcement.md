@@ -3,7 +3,6 @@
 The i4g program delivers digitally signed, evidence-rich reports that streamline intake for law enforcement agencies. This guide explains how to interpret reports, verify authenticity, and request additional data.
 
 ![Law enforcement report placeholder](../assets/screenshots/leo-report-placeholder.svg)
-<a href="../assets/screenshots/leo-report-placeholder.svg" target="_blank">Open full size</a>
 
 > _Replace with a screenshot of the PDF report viewer highlighting key sections (timeline, entity table, evidence manifest)._
 
