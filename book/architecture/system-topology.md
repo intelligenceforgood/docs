@@ -1,7 +1,7 @@
 # System Topology
 
-![Architecture - system topology](../../assets/architecture/system-topology.svg)
-<a href="../../assets/architecture/system-topology.svg" target="_blank">Open full size</a>
+![Architecture - system topology](../assets/architecture/system-topology.svg)
+<a href="../assets/architecture/system-topology.svg" target="_blank">Open full size</a>
 
 ## Component Highlights
 
