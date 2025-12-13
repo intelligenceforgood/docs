@@ -1,17 +1,18 @@
 # System Topology
 
-![Architecture - system topology](../assets/architecture/system-topology.svg)
+This diagram shows the high-level components and how they interact. It is the best starting point for understanding the system boundaries.
 
-## Component Highlights
+![System Topology](../assets/architecture/system_topology.svg)
 
-* **User Intake & Chatbot:** Web experiences that collect evidence and offer immediate guidance. Deployed behind Identity Platform to throttle abuse while we evaluate broader IAM options.
-* **Processing Pipeline:** Python-based services perform OCR, natural language extraction, and PII tokenization before persisting any data.
-* **Storage:** Firestore stores structured case data; a dedicated encrypted vault keeps PII tokens; Evidence and generated reports live in private Cloud Storage buckets; Vertex AI Search powers semantic retrieval.
-* **Human Loop:** The Streamlit dashboard keeps analysts in the loop. Approved cases flow into automated report generation pipelines served by FastAPI.
-* **External Integrations:** A weekly Cloud Run job synchronizes historical Azure SQL/Search data until all upstream systems migrate fully to GCP.
+## Key Pillars
 
-## Future Enhancements
-
-* Replace placeholder domains with branded hosts once nonprofit DNS approvals land (`app.intelligenceforgood.org`, `api.i4g.app`, etc.).
-* Introduce event-driven ingestion to cut the dependency on scheduled refreshes.
-* Harden report delivery with signed download portals and optional case collaboration for partner agencies.
+*   **Ingress & Auth:** All external traffic enters via a Global Load Balancer and is authenticated via Identity Platform (Firebase Auth).
+*   **Compute:** We use **Cloud Run** for stateless containers.
+    *   `Core API`: FastAPI backend serving the frontend and external partners.
+    *   `Worker`: Background job processor for OCR, ingestion, and reporting.
+    *   `UI Console`: Next.js frontend for analysts.
+*   **Data:**
+    *   `Firestore`: Primary NoSQL database for structured case data.
+    *   `PII Vault`: A separate, encrypted Firestore instance for sensitive personal data.
+    *   `GCS`: Object storage for raw evidence files and generated PDF reports.
+*   **AI:** We leverage **Document AI** for OCR and **Vertex AI** for vector search.

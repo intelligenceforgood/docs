@@ -14,6 +14,7 @@
 * [Architecture](architecture/README.md)
   * [System Topology](architecture/system-topology.md)
   * [Data Pipelines](architecture/data-pipeline.md)
+  * [Security Model](architecture/security-model.md)
   * [Infrastructure & Deployment](architecture/infra.md)
 * [Operations](operations/README.md)
   * [Weekly Azure Refresh](operations/weekly-refresh.md)
