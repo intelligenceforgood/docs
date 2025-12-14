@@ -3,7 +3,6 @@
 High-level view of how users, analysts, and law enforcement interact with the platform. (Replace the placeholder with the latest “metro map” diagram.)
 
 <img src="../assets/architecture/system_topology.svg" alt="System topology" title="System topology" />
-> Placeholder: replace with the latest export from `arch-viz/output/system_topology.svg`.
 
 ## What’s in the platform
 

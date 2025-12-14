@@ -3,7 +3,6 @@
 How we keep victims’ data safe while delivering evidence law enforcement can trust. (Replace the placeholder with the updated security diagram.)
 
 <img src="../assets/architecture/security_model.svg" alt="Security model" title="Security model" />
-> Placeholder: replace with the latest export from `arch-viz/output/security_model.svg`; keep it under one page.
 
 ## Core safeguards
 

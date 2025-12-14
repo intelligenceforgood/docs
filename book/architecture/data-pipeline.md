@@ -3,7 +3,6 @@
 How evidence moves from upload to a signed, verifiable dossier. (Replace the placeholder with the latest pipeline diagram.)
 
 <img src="../assets/architecture/data_pipeline.svg" alt="Data pipeline" title="Data pipeline" />
-> Placeholder: replace with the latest export from `arch-viz/output/data_pipeline.svg`.
 
 ## Stages at a glance
 
