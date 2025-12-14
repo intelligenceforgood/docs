@@ -1,5 +1,10 @@
 # Intelligence for Good Documentation
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![Node](https://img.shields.io/badge/Node-20%2B-green.svg)](https://nodejs.org/)
+[![Docs Site](https://img.shields.io/badge/GitBook-Live-blueviolet.svg)](https://app.gitbook.com/o/Hg1e7Xd0z04S7CXWL3N0/s/wiZ96sabsxLxLwhsQmRz)
+[![Build](https://img.shields.io/badge/Docs-Honkit%20build-blue.svg)](package.json)
+
 This repository backs the public documentation site for **Intelligence for Good (i4g)**. Content is authored in Markdown, rendered locally with Honkit (the open GitBook toolchain), and synchronized to the GitBook space at <https://app.gitbook.com/o/Hg1e7Xd0z04S7CXWL3N0/s/wiZ96sabsxLxLwhsQmRz> via Git Sync.
 
 ## Repository Layout
