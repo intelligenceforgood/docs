@@ -1,12 +1,13 @@
 # Dossiers Guide (Analysts)
 
-Use the Reports → Dossiers tab to validate bundles before sharing with partners.
+Use the Reports → Dossiers tab to validate bundles before sharing with partners. This guide is for analysts; recipients should follow the [Law Enforcement Guide](../law-enforcement.md) to open and verify reports.
 
-![Analyst dossiers – list and filters](../../assets/screenshots/analyst-dossiers.png)
+<img src="../../assets/screenshots/analyst-dossiers.png" alt="Analyst dossiers – list and filters" title="Analyst dossiers – list and filters" />
+> Placeholder: replace with the latest UI capture showing filters and cards.
 
 ## Before you begin
 
-- Sign into `https://app.intelligenceforgood.org/reports/dossiers` (IAP-protected).
+- Sign into <https://app.intelligenceforgood.org/reports/dossiers> (protected access).
 - Ensure at least one dossier plan exists; if empty, ping ops to enqueue plans.
 
 ## Review and filter
@@ -15,7 +16,7 @@ Use the Reports → Dossiers tab to validate bundles before sharing with partner
 2. Each card shows jurisdiction, loss totals, cases, warning counts, and chips for manifest/signature paths.
 3. Expand the payload accordion only if you need raw JSON (larger responses).
 
-![Analyst dossiers – verification panel](../../assets/screenshots/analyst-dossiers-verify.png)
+<img src="../../assets/screenshots/analyst-dossiers-verify.png" alt="Analyst dossiers – verification panel" title="Analyst dossiers – verification panel" />
 
 ## Verify signatures
 
@@ -26,5 +27,5 @@ Use the Reports → Dossiers tab to validate bundles before sharing with partner
 ## Share with partners
 
 - Copy manifest and signature paths into your case notes or handoff.
-- Remind partners to download the `.signatures.json` alongside the PDF for independent verification.
+- Remind partners to download the `.signatures.json` alongside the PDF for independent verification (see [Law Enforcement Guide](../law-enforcement.md)).
 - Capture the verification result (timestamp + hash snippets) in tickets for audit trails.

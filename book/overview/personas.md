@@ -4,7 +4,7 @@ Personas guide how i4g prioritizes features and documentation. They originate fr
 
 ## User (Primary End User)
 
-- Typically 60+ years old with limited technical literacy.
+- Often seniors or vulnerable users, but open to anyone needing help.
 - Needs reassurance, clarity, and a safe way to submit evidence.
 - Shares data voluntarily; expects PII protection and empathetic communication.
 

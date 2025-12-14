@@ -1,10 +1,9 @@
 # Law Enforcement Guide
 
-The i4g program delivers digitally signed, evidence-rich reports that streamline intake for law enforcement agencies. This guide explains how to interpret reports, verify authenticity, and request additional data.
+The i4g program delivers digitally signed, evidence-rich reports that streamline intake for law enforcement agencies. Analysts assemble and verify dossiers; this guide explains how recipients can interpret reports, verify authenticity, and request additional data.
 
-![Law enforcement report placeholder](../assets/screenshots/leo-report-placeholder.svg)
-
-> _Replace with a screenshot of the PDF report viewer highlighting key sections (timeline, entity table, evidence manifest)._
+<img src="../assets/screenshots/leo-report-placeholder.svg" alt="Law enforcement report placeholder" title="Law enforcement report" />
+> Placeholder: replace with a screenshot of the PDF report viewer highlighting key sections (timeline, entity table, evidence manifest).
 
 ## Report Contents
 
@@ -19,7 +18,7 @@ Each report follows a standardized template derived from the production PRD:
 
 ## Authenticity & Chain of Custody
 
-* Reports include a SHA-256 signature generated at export time. Verify using the hash listed on the cover sheet.
+* Reports include a SHA-256 signature generated at export time. Verify using the hash listed on the cover sheet and the `.signatures.json` provided by the analyst.
 * Each evidence file contains embedded metadata referencing the case ID and export timestamp.
 * Access to raw PII or unredacted media requires a subpoena or mutual aid agreement. Contact `leo@intelligenceforgood.org` with the Case ID.
 
