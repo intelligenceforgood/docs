@@ -1,18 +1,21 @@
 # System Topology
 
-This diagram shows the high-level components and how they interact. It is the best starting point for understanding the system boundaries.
+High-level view of how users, analysts, and law enforcement interact with the platform. (Replace the placeholder with the latest “metro map” diagram.)
 
-![System Topology](../assets/architecture/system_topology.svg)
+<img src="../assets/architecture/system_topology.svg" alt="System topology" title="System topology" />
+> Placeholder: replace with the latest export from `arch-viz/output/system_topology.svg`.
 
-## Key Pillars
+## What’s in the platform
 
-- **Ingress & Auth:** All external traffic enters via a Global Load Balancer and is authenticated via Identity Platform (Firebase Auth).
-- **Compute:** We use **Cloud Run** for stateless containers.
-  - `Core API`: FastAPI backend serving the frontend and external partners.
-  - `Worker`: Background job processor for OCR, ingestion, and reporting.
-  - `UI Console`: Next.js frontend for analysts.
-- **Data:**
-  - `Firestore`: Primary NoSQL database for structured case data.
-  - `PII Vault`: A separate, encrypted Firestore instance for sensitive personal data.
-  - `GCS`: Object storage for raw evidence files and generated PDF reports.
-- **AI:** We leverage **Document AI** for OCR and **Vertex AI** for vector search.
+- **User & Analyst App (Next.js)** — secure portal for victims, volunteers, and LEOs; all traffic goes through the API proxy so PII stays masked.
+- **API & Orchestration (FastAPI)** — intake, hybrid search, report generation, and task status; enforces tokenization and access rules.
+- **Ops Console (Streamlit)** — internal dashboards for reliability checks and telemetry (not exposed to the public app).
+- **Tokenization Vault** — separates canonical PII from case data; deterministic tokens keep searches useful without exposing identities.
+- **Data Stores** — structured case store + SQL dual-write for filters, vector store for semantic search, and evidence buckets for artifacts and signed dossiers.
+- **AI Assist** — OCR, entity extraction, classification, and embeddings to accelerate analyst review while remaining audit-friendly.
+
+## Why it matters
+
+- **Safety by design:** PII is isolated in the vault; analysts work on masked data.
+- **Evidence-ready:** Every case flows toward a signed dossier that law enforcement can verify.
+- **Resilient & scalable:** Serverless services scale for campaigns or surges without a large ops team.

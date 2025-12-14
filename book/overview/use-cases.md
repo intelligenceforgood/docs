@@ -28,10 +28,3 @@ The platform orchestrates several workflows end-to-end. Each use case maps to in
 2. Reports include standardized narratives, timelines, evidence manifests, and contact info.
 3. Secure sharing channels are used to transmit reports and supporting artifacts.
 4. Feedback from agencies informs future report templates and evidentiary requirements.
-
-## Operational Cadence
-
-- Weekly Cloud Run task pulls Azure SQL/Search exports into Firestore and Vertex AI Search (see [Weekly Azure Refresh](../operations/weekly-refresh.md)).
-- Monitoring and alerting ensure ingestion, review, and reporting SLAs remain healthy.
-
-For deeper implementation details, cross-reference the infrastructure modules in [`infra/environments`](../../infra/environments) and the migration scripts in [`core/scripts/migration`](../../core/scripts/migration).

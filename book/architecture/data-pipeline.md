@@ -1,12 +1,15 @@
 # Data Pipeline
 
-The journey of a case file from upload to search index.
+How evidence moves from upload to a signed, verifiable dossier. (Replace the placeholder with the latest pipeline diagram.)
 
-![Data Pipeline](../assets/architecture/data_pipeline.svg)
+<img src="../assets/architecture/data_pipeline.svg" alt="Data pipeline" title="Data pipeline" />
+> Placeholder: replace with the latest export from `arch-viz/output/data_pipeline.svg`.
 
-## Stages
+## Stages at a glance
 
-- **Ingestion:** Files are uploaded via the API and queued in Pub/Sub.
-- **Processing:** The Worker service pulls jobs, extracts text via OCR, and redacts PII.
-- **Storage:** Raw files go to a locked bucket; redacted files go to a clean bucket. PII tokens are stored in the Vault.
-- **Indexing:** Clean text is embedded and synced to Vertex AI Vector Search.
+1. **Submit & protect** — Users upload chats, screenshots, or receipts. The API normalizes content and immediately tokenizes PII so only masked data flows downstream.
+2. **Extract & enrich** — OCR and classifiers find entities (wallets, emails, phones), detect language/sentiment, and tag scam type. Related cases are linked.
+3. **Store safely** — Canonical PII is locked in the vault; case data lands in the structured store + SQL for filters; evidence files go to protected buckets.
+4. **Search & triage** — Hybrid search (keywords + semantic vectors) lets analysts and LEOs find patterns without exposing identities.
+5. **Report & sign** — The report generator assembles findings into a dossier, signs it (hash manifest + signatures), and shares via controlled links.
+6. **Feedback loop** — Outcomes and signals feed back into detectors and playbooks, improving precision over time.
