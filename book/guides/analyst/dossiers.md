@@ -2,7 +2,7 @@
 
 Use the Reports → Dossiers tab to validate bundles before sharing with partners. This guide is for analysts; recipients should follow the [Law Enforcement Guide](../law-enforcement.md) to open and verify reports.
 
-<img src="../../assets/screenshots/analyst-dossiers.png" alt="Analyst dossiers – list and filters" title="Analyst dossiers – list and filters" />
+![Analyst dossiers – list and filters](../../assets/screenshots/analyst-dossiers.png "Analyst dossiers – list and filters")
 > Placeholder: replace with the latest UI capture showing filters and cards.
 
 ## Before you begin
@@ -16,7 +16,7 @@ Use the Reports → Dossiers tab to validate bundles before sharing with partner
 2. Each card shows jurisdiction, loss totals, cases, warning counts, and chips for manifest/signature paths.
 3. Expand the payload accordion only if you need raw JSON (larger responses).
 
-<img src="../../assets/screenshots/analyst-dossiers-verify.png" alt="Analyst dossiers – verification panel" title="Analyst dossiers – verification panel" />
+![Analyst dossiers – verification panel](../../assets/screenshots/analyst-dossiers-verify.png "Analyst dossiers – verification panel")
 
 ## Verify signatures
 

@@ -11,6 +11,8 @@
     * [Discovery Guide](guides/analyst/discovery.md)
     * [Dossiers Guide](guides/analyst/dossiers.md)
   * [Law Enforcement Guide](guides/law-enforcement.md)
+* Admin Guide
+  * [CLI Guide](guides/admin/cli.md)
 * [Architecture](architecture/README.md)
   * [System Topology](architecture/system-topology.md)
   * [Data Pipelines](architecture/data-pipeline.md)

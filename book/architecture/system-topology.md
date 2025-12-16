@@ -2,7 +2,7 @@
 
 High-level view of how users, analysts, and law enforcement interact with the platform. (Replace the placeholder with the latest “metro map” diagram.)
 
-<img src="../assets/architecture/system_topology.svg" alt="System topology" title="System topology" />
+![System topology](../assets/architecture/system_topology.svg "System topology")
 
 ## What’s in the platform
 

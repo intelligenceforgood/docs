@@ -7,5 +7,4 @@ This book shows how the platform works—what happens to evidence, how AI and hu
 - **[Security Model](security-model.md)**: The safeguards (masking, encryption, access approvals, auditing) that keep users safe.
 
 > Diagram sources: export current SVGs from `arch-viz/output/` (system_topology, data_pipeline, security_model) and place them under `book/assets/architecture/` to replace the placeholders.
-
 > Scope: No deployment minutiae here—just how the platform delivers trustworthy reports while protecting identities.

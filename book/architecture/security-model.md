@@ -2,7 +2,7 @@
 
 How we keep victims’ data safe while delivering evidence law enforcement can trust. (Replace the placeholder with the updated security diagram.)
 
-<img src="../assets/architecture/security_model.svg" alt="Security model" title="Security model" />
+![Security model](../assets/architecture/security_model.svg "Security model")
 
 ## Core safeguards
 

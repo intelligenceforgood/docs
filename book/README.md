@@ -1,4 +1,5 @@
 # Welcome
+
 Welcome to the documentation hub for **Intelligence for Good (i4g)**, a volunteer-driven initiative incubated by [intelligence.org](https://intelligence.org/) to protect vulnerable communities from crypto and romance scams. This site consolidates the product vision, platform architecture, operating procedures, and user guidance that underpin the i4g service.
 
 Key goals for the documentation space:
