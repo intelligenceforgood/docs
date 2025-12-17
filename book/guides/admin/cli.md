@@ -30,7 +30,7 @@ This ordering helps prevent accidental runs against production or someone else�
 
 ## Command map (shortcuts)
 
-- `i4g bootstrap` – reset/load/verify smoke flows. Subcommands: `local reset|load|verify|smoke`, `dev reset|load|verify|smoke`, and `seed-sample`. The legacy `i4g env bootstrap-*` aliases remain but print a deprecation notice. Local bootstrap supports `--smoke-search` and `--smoke-dossiers` (FastAPI must be running) so you can capture verification evidence without rerunning imports.
+- `i4g bootstrap` – reset/load/verify smoke flows. Subcommands: `local reset|load|verify|smoke`, `dev reset|load|verify|smoke`, and `seed-sample`. Local bootstrap supports `--smoke-search` and `--smoke-dossiers` (FastAPI must be running) so you can capture verification evidence without rerunning imports. Set `I4G_ENV=local` when running local bootstrap commands in CI.
 - `i4g settings` – inspect/export config manifests so docs and CI stay in sync.
 - `i4g jobs` – run worker jobs (ingest, report, intake, account, dossier, ingest-retry).
 - `i4g ingest` – bundle and Vertex ingest helpers; tag saved searches.
