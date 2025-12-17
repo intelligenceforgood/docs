@@ -1,11 +1,11 @@
 # Authentication
 
-API access is tightly controlled because the platform processes highly sensitive PII. **The canonical IAM plan now lives in `core/docs/iam.md`;** this page only captures API-specific notes and examples.
+API access is tightly controlled because the platform processes highly sensitive PII. **The canonical IAM plan now lives in `core/docs/design/iam.md`;** this page only captures API-specific notes and examples.
 
 ## Current State
 
 - **Provider:** Google Identity Platform (OAuth 2.0) with email-domain allowlists.
-- **Flow:** Clients obtain an ID/access token via Google Sign-In or the temporary Quick Auth Portal (see `docs/iam.md`) and attach it as `Authorization: Bearer <token>` when calling Cloud Run.
+- **Flow:** Clients obtain an ID/access token via Google Sign-In or the temporary Quick Auth Portal (see `core/docs/design/iam.md`) and attach it as `Authorization: Bearer <token>` when calling Cloud Run.
 - **Roles:** `user`, `analyst`, `admin`, `leo`. Role claims are included in JWTs and enforced by FastAPI dependency guards.
 - **Session Lifetime:** 1 hour access token, with refresh token rotation handled by the gateway.
 
