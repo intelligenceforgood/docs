@@ -265,7 +265,7 @@ Without the token, the API returns `401 Invalid credentials`.
 ### OCR + Extraction
 
 ```bash
-python scripts/run_ocr.py --input data/chat_screens
+i4g extract ocr --input data/chat_screens --output data/ocr_output.jsonl
 ```
 
 That path is where the synthetic screenshots land; swap in another directory if you are running OCR on real evidence.
@@ -273,11 +273,11 @@ That path is where the synthetic screenshots land; swap in another directory if 
 ### Semantic NER + Classification
 
 ```bash
-python scripts/run_semantic_extraction.py
+i4g extract semantic --input data/ocr_output.jsonl --output data/entities_semantic.jsonl
 python tests/adhoc/classify_text.py "This looks like a scam."
 ```
 
-`run_semantic_extraction.py` reads the OCR output saved to `data/ocr_output.json` by the previous step and writes enriched entities to `data/entities_semantic.json`.
+`i4g extract semantic` reads the OCR output saved to `data/ocr_output.jsonl` by the previous step and writes enriched entities to `data/entities_semantic.jsonl`.
 
 ### Scam Detection RAG Query
 
