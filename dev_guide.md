@@ -505,6 +505,6 @@ docker buildx build \
     .
 ```
 
-By default the ingestion job runs against `/app/data/retrieval_poc/cases.jsonl` packaged in the container and skips embeddings unless `I4G_INGEST__ENABLE_VECTOR=true` is supplied, allowing the Cloud Run job to succeed without an external Ollama endpoint. Terraform injects `I4G_ENV` and the Dockerfile sets `I4G_RUNTIME__PROJECT_ROOT=/app`, so structured-store writes land in `/app/data` unless overridden.
+By default the ingestion job streams the dataset from GCS (`gs://i4g-dev-data-bundles/retrieval_poc/20251217/cases.jsonl`) and skips embeddings unless `I4G_INGEST__ENABLE_VECTOR=true` is supplied, allowing the Cloud Run job to succeed without an external Ollama endpoint. Terraform injects `I4G_ENV` and the Dockerfile sets `I4G_RUNTIME__PROJECT_ROOT=/app`, so structured-store writes land in `/app/data` unless overridden.
 
-> ⚠️  Reminder: `data/retrieval_poc` only seeds the prototype. Plan to remove the dataset from local workstations and job images once production ingestion sources are wired up.
+> ℹ️  Note: The `retrieval_poc` dataset is no longer packaged in the container. Local development uses `i4g bootstrap local` to download it, while Cloud Run jobs stream it directly from GCS.
