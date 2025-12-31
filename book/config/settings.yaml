@@ -778,32 +778,26 @@ fields:
   - STRUCTURED_BACKEND
   - STORAGE__STRUCTURED_BACKEND
   description: Structured + blob storage configuration.
-- path: tokenization.pepper
-  section: tokenization
+- path: pii.pepper
+  section: pii
   type: str | NoneType
   default: null
   env_vars:
-  - I4G_TOKENIZATION__PEPPER
-  - TOKENIZATION_PEPPER
-  - TOKENIZATION__PEPPER
+  - I4G_PII__PEPPER
   description: Deterministic tokenization controls for PII vault integration.
-- path: tokenization.pepper_version
-  section: tokenization
+- path: pii.pepper_version
+  section: pii
   type: str
   default: v1
   env_vars:
-  - I4G_TOKENIZATION__PEPPER_VERSION
-  - TOKENIZATION_PEPPER_VERSION
-  - TOKENIZATION__PEPPER_VERSION
+  - I4G_PII__PEPPER_VERSION
   description: Deterministic tokenization controls for PII vault integration.
-- path: tokenization.require_pepper
-  section: tokenization
+- path: pii.require_pepper
+  section: pii
   type: bool
   default: true
   env_vars:
-  - I4G_TOKENIZATION__REQUIRE_PEPPER
-  - TOKENIZATION_REQUIRE_PEPPER
-  - TOKENIZATION__REQUIRE_PEPPER
+  - I4G_PII__REQUIRE_PEPPER
   description: Deterministic tokenization controls for PII vault integration.
 - path: vector.backend
   section: vector
