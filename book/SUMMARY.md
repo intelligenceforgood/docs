@@ -21,5 +21,6 @@
 * [API Guide](api/README.md)
   * [Authentication](api/authentication.md)
   * [Sample Workflows](api/sample-requests.md)
+  * [Taxonomy Reference](api/taxonomy_reference.md)
 * [Security & Compliance](security/README.md)
 * [Contributing](contributing.md)

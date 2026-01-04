@@ -4,6 +4,7 @@ The FastAPI gateway exposes endpoints for ingestion, case management, and report
 
 - [Authentication](authentication.md) – describes IAM gating, tokens, and future plans.
 - [Sample Workflows](sample-requests.md) – provides request/response examples for common tasks.
+- [Taxonomy Reference](taxonomy_reference.md) – lists fraud taxonomy codes and definitions.
 
 ## API Reference
 
