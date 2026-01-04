@@ -34,12 +34,14 @@ This ordering helps prevent accidental runs against production or someone else�
 - `i4g settings` – inspect/export config manifests so docs and CI stay in sync.
 - `i4g jobs` – run worker jobs (ingest, report, intake, account, dossier, ingest-retry).
 - `i4g ingest` – bundle and Vertex ingest helpers; tag saved searches.
+- `i4g taxonomy` – manage fraud taxonomy definitions and code generation.
 - `i4g search` – query or evaluate Vertex, refresh schema, annotate saved searches.
 - `i4g data` – prepare retrieval datasets and indexes.
 - `i4g reports` – verify dossier/ingestion artifacts.
 - `i4g extract` – OCR and semantic extraction pipelines.
 - `i4g smoke` – dossiers, Vertex retrieval, Cloud Run smokes.
 - `i4g admin` – saved-search export/import/tagging, dossier build/process/pilot, RAG query helpers.
+- `i4g azure` – legacy Azure migration and export helpers.
 
 ## Guardrails
 
