@@ -42,6 +42,7 @@ This creates a "Golden Thread" that connects daily operations to high-level stra
 
 When configuring a Campaign in the Analyst Console:
 
-1.  **Define your Detection Rules:** Set the technical triggers (e.g., cases containing `Intent: Romance` AND `Action: Crypto transfer`).
-2.  **Select the Governance Category:** Use the **"Reporting Category"** dropdown to select the high-level home for this campaign (e.g., "Financial Facilitation").
-3.  **Save:** Your campaign is now live. New cases matching your rules will be detected immediately and automatically rolled up into the strategic metrics.
+1.  **Define your Campaign:** Enter the Name and Description for your campaign.
+2.  **Select Governance Assignment:** In the "Governance Assignment" section, check the boxes for the high-level categories this campaign belongs to (e.g., "Financial Facilitation").
+    *   *Why?* This links your tactical work to organizational risk categories for executive reporting.
+3.  **Save:** Your campaign is now live.
