@@ -10,6 +10,7 @@
     * [Search Guide](guides/analyst/search.md)
     * [Discovery Guide](guides/analyst/discovery.md)
     * [Dossiers Guide](guides/analyst/dossiers.md)
+    * [Campaigns & Governance](guides/analyst/campaign_governance.md)
   * [Law Enforcement Guide](guides/law-enforcement.md)
 * Admin Guide
   * [CLI Guide](guides/admin/cli.md)
