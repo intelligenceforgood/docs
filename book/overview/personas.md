@@ -18,7 +18,7 @@ Personas guide how i4g prioritizes features and documentation. They originate fr
 ## Volunteer Analyst (Secondary User)
 
 - Graduate student, retired investigator, or trained volunteer dedicating ~10 hours/week.
-- Works exclusively in the Streamlit dashboard; never sees raw PII.
+- Works exclusively in the analyst console; never sees raw PII.
 - Needs structured workflows, audit trails, and recognition for service hours.
 
 ### Journey Highlights — Analyst

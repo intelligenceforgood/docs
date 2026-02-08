@@ -8,7 +8,7 @@ High-level view of how users, analysts, and law enforcement interact with the pl
 
 - **User & Analyst App (Next.js)** — secure portal for victims, volunteers, and LEOs; all traffic goes through the API proxy so PII stays masked.
 - **API & Orchestration (FastAPI)** — intake, hybrid search, report generation, and task status; enforces tokenization and access rules.
-- **Ops Console (Streamlit)** — internal dashboards for reliability checks and telemetry (not exposed to the public app).
+- **Analyst Console (Next.js)** — internal dashboards for case review, reliability checks, and telemetry; accessed by authenticated analysts only.
 - **Tokenization Vault** — separates canonical PII from case data; deterministic tokens keep searches useful without exposing identities.
 - **Data Stores** — structured case store + SQL dual-write for filters, vector store for semantic search, and evidence buckets for artifacts and signed dossiers.
 - **AI Assist** — OCR, entity extraction, classification, and embeddings to accelerate analyst review while remaining audit-friendly.
