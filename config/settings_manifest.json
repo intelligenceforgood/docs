@@ -299,20 +299,6 @@
       "description": "Scheduler + job configuration for ingestion workflows."
     },
     {
-      "path": "ingestion.enable_firestore",
-      "section": "ingestion",
-      "type": "bool",
-      "default": false,
-      "env_vars": [
-        "I4G_INGESTION__ENABLE_FIRESTORE",
-        "INGEST_ENABLE_FIRESTORE",
-        "INGEST__ENABLE_FIRESTORE",
-        "INGESTION_ENABLE_FIRESTORE",
-        "INGESTION__ENABLE_FIRESTORE"
-      ],
-      "description": "Scheduler + job configuration for ingestion workflows."
-    },
-    {
       "path": "ingestion.enable_scheduled_jobs",
       "section": "ingestion",
       "type": "bool",
@@ -873,30 +859,6 @@
       "description": "Structured + blob storage configuration."
     },
     {
-      "path": "storage.firestore_collection",
-      "section": "storage",
-      "type": "str",
-      "default": "cases",
-      "env_vars": [
-        "I4G_STORAGE__FIRESTORE_COLLECTION",
-        "FIRESTORE_COLLECTION",
-        "STORAGE__FIRESTORE__COLLECTION"
-      ],
-      "description": "Structured + blob storage configuration."
-    },
-    {
-      "path": "storage.firestore_project",
-      "section": "storage",
-      "type": "str | NoneType",
-      "default": null,
-      "env_vars": [
-        "I4G_STORAGE__FIRESTORE_PROJECT",
-        "FIRESTORE_PROJECT",
-        "STORAGE__FIRESTORE__PROJECT"
-      ],
-      "description": "Structured + blob storage configuration."
-    },
-    {
       "path": "storage.reports_bucket",
       "section": "storage",
       "type": "str | NoneType",
@@ -919,7 +881,7 @@
     {
       "path": "storage.structured_backend",
       "section": "storage",
-      "type": "Literal['sqlite', 'firestore', 'cloudsql']",
+      "type": "Literal['sqlite', 'cloudsql']",
       "default": "sqlite",
       "env_vars": [
         "I4G_STORAGE__STRUCTURED_BACKEND",

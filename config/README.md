@@ -13,7 +13,7 @@ Usage guidance for developers and sysadmins:
 1. Prefer the `I4G_*` env vars when exporting values; legacy aliases exist only for backwards compatibility.
 2. When adding or changing a setting, update `src/i4g/settings/config.py`, extend `tests/unit/settings/`, and rerun `python scripts/export_settings_manifest.py` (pass `--docs-repo ../docs` when the docs checkout is available) before committing.
 3. Store credentials in `.env.local` or Secret Manager rather than committing secrets here; laptop runs can source the file via `direnv` or the built-in dotenv loader.
-4. Keep `I4G_ENV=local` for sandbox testing; other values assume GCP services (Firestore, Cloud Storage, Vertex AI) are reachable.
+4. Keep `I4G_ENV=local` for sandbox testing; other values assume GCP services (Cloud SQL, Cloud Storage, Vertex AI) are reachable.
 5. Machine-readable manifests live next to this page (`docs/config/settings_manifest.{json,yaml}` in core, `config/settings.yaml` in the docs site) for automation and CI validation.
 
 This catalog is assembled by `core/scripts/export_settings_manifest.py` directly from `src/i4g/settings/config.py`. The descriptions below are automatically generated—do not hand-edit them; change the implementation defaults and rerun the exporter instead.
@@ -44,7 +44,6 @@ This catalog is assembled by `core/scripts/export_settings_manifest.py` directly
 | ingestion | `ingestion.default_region` | `I4G_INGESTION__DEFAULT_REGION`<br />`INGESTION_DEFAULT_REGION`<br />`INGESTION__DEFAULT_REGION` | `str` | `us-central1` | Scheduler + job configuration for ingestion workflows. |
 | ingestion | `ingestion.default_service_account` | `I4G_INGESTION__DEFAULT_SERVICE_ACCOUNT`<br />`INGESTION_SERVICE_ACCOUNT`<br />`INGESTION__SERVICE_ACCOUNT` | `str &#124; NoneType` | `None` | Scheduler + job configuration for ingestion workflows. |
 | ingestion | `ingestion.dry_run` | `I4G_INGESTION__DRY_RUN`<br />`INGEST_DRY_RUN`<br />`INGEST__DRY_RUN`<br />`INGESTION_DRY_RUN`<br />`INGESTION__DRY_RUN` | `bool` | `False` | Scheduler + job configuration for ingestion workflows. |
-| ingestion | `ingestion.enable_firestore` | `I4G_INGESTION__ENABLE_FIRESTORE`<br />`INGEST_ENABLE_FIRESTORE`<br />`INGEST__ENABLE_FIRESTORE`<br />`INGESTION_ENABLE_FIRESTORE`<br />`INGESTION__ENABLE_FIRESTORE` | `bool` | `False` | Scheduler + job configuration for ingestion workflows. |
 | ingestion | `ingestion.enable_scheduled_jobs` | `I4G_INGESTION__ENABLE_SCHEDULED_JOBS`<br />`INGESTION_ENABLE_SCHEDULED_JOBS`<br />`INGESTION__ENABLE_SCHEDULED_JOBS` | `bool` | `False` | Scheduler + job configuration for ingestion workflows. |
 | ingestion | `ingestion.enable_sql` | `I4G_INGESTION__ENABLE_SQL`<br />`INGEST_ENABLE_SQL`<br />`INGEST__ENABLE_SQL`<br />`INGESTION_ENABLE_SQL`<br />`INGESTION__ENABLE_SQL` | `bool` | `True` | Scheduler + job configuration for ingestion workflows. |
 | ingestion | `ingestion.enable_vector_store` | `I4G_INGESTION__ENABLE_VECTOR_STORE`<br />`INGEST_ENABLE_VECTOR`<br />`INGEST__ENABLE_VECTOR`<br />`INGESTION_ENABLE_VECTOR`<br />`INGESTION__ENABLE_VECTOR` | `bool` | `True` | Scheduler + job configuration for ingestion workflows. |
@@ -89,11 +88,9 @@ This catalog is assembled by `core/scripts/export_settings_manifest.py` directly
 | storage | `storage.cloudsql_instance` | `I4G_APP__CLOUDSQL__INSTANCE`<br />`CLOUDSQL_INSTANCE`<br />`APP__CLOUDSQL__INSTANCE` | `str &#124; NoneType` | `None` | Structured + blob storage configuration. |
 | storage | `storage.evidence_bucket` | `I4G_STORAGE__EVIDENCE_BUCKET`<br />`STORAGE_EVIDENCE_BUCKET`<br />`STORAGE__EVIDENCE_BUCKET` | `str &#124; NoneType` | `None` | Structured + blob storage configuration. |
 | storage | `storage.evidence_local_dir` | `I4G_STORAGE__EVIDENCE_LOCAL_DIR`<br />`STORAGE_EVIDENCE_LOCAL_DIR`<br />`STORAGE__EVIDENCE__LOCAL_DIR` | `Path` | `/Users/jerry/Work/project/i4g/core/data/evidence` | Structured + blob storage configuration. |
-| storage | `storage.firestore_collection` | `I4G_STORAGE__FIRESTORE_COLLECTION`<br />`FIRESTORE_COLLECTION`<br />`STORAGE__FIRESTORE__COLLECTION` | `str` | `cases` | Structured + blob storage configuration. |
-| storage | `storage.firestore_project` | `I4G_STORAGE__FIRESTORE_PROJECT`<br />`FIRESTORE_PROJECT`<br />`STORAGE__FIRESTORE__PROJECT` | `str &#124; NoneType` | `None` | Structured + blob storage configuration. |
 | storage | `storage.reports_bucket` | `I4G_STORAGE__REPORTS_BUCKET` | `str &#124; NoneType` | `None` | Structured + blob storage configuration. |
 | storage | `storage.sqlite_path` | `I4G_STORAGE__SQLITE_PATH` | `Path` | `/Users/jerry/Work/project/i4g/core/data/i4g_store.db` | Structured + blob storage configuration. |
-| storage | `storage.structured_backend` | `I4G_STORAGE__STRUCTURED_BACKEND`<br />`STRUCTURED_BACKEND`<br />`STORAGE__STRUCTURED_BACKEND` | `Literal['sqlite', 'firestore', 'cloudsql']` | `sqlite` | Structured + blob storage configuration. |
+| storage | `storage.structured_backend` | `I4G_STORAGE__STRUCTURED_BACKEND`<br />`STRUCTURED_BACKEND`<br />`STORAGE__STRUCTURED_BACKEND` | `Literal['sqlite', 'cloudsql']` | `sqlite` | Structured + blob storage configuration. |
 | vector | `vector.backend` | `I4G_VECTOR__BACKEND`<br />`VECTOR_BACKEND`<br />`VECTOR__BACKEND` | `Literal['chroma', 'faiss', 'pgvector', 'vertex_ai']` | `chroma` | Vector store configuration supporting multiple backends. |
 | vector | `vector.chroma_dir` | `I4G_VECTOR__CHROMA_DIR` | `Path` | `/Users/jerry/Work/project/i4g/core/data/chroma_store` | Vector store configuration supporting multiple backends. |
 | vector | `vector.collection` | `I4G_VECTOR__COLLECTION`<br />`VECTOR_COLLECTION`<br />`VECTOR__COLLECTION` | `str` | `i4g_vectors` | Vector store configuration supporting multiple backends. |

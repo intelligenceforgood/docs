@@ -18,7 +18,7 @@ The platform orchestrates several workflows end-to-end. Each use case maps to in
 
 ## Knowledge Base Growth
 
-- Accepted cases enrich Firestore collections and Vertex AI Search indexes.
+- Accepted cases enrich Cloud SQL tables and Vertex AI Search indexes.
 - Structured entity graphs reveal recurring wallets, accounts, and scripts.
 - Reports feed training datasets for future LLM classifiers and response models.
 
