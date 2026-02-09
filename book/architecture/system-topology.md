@@ -1,10 +1,10 @@
 # System Topology
 
-High-level view of how users, analysts, and law enforcement interact with the platform. (Replace the placeholder with the latest “metro map” diagram.)
+High-level view of how users, analysts, and law enforcement interact with the platform. (Replace the placeholder with the latest "metro map" diagram.)
 
 ![System topology](../assets/architecture/system_topology.svg "System topology")
 
-## What’s in the platform
+## What's in the platform
 
 - **User & Analyst App (Next.js)** — secure portal for victims, volunteers, and LEOs; all traffic goes through the API proxy so PII stays masked.
 - **API & Orchestration (FastAPI)** — intake, hybrid search, report generation, and task status; enforces tokenization and access rules.

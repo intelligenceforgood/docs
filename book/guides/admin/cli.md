@@ -26,7 +26,7 @@ Many commands accept numerous runtime options. Rather than remembering every fla
 3. Env vars `I4G_*` with `__` for nesting (e.g., `I4G_VECTOR__BACKEND`) – great for CI or one-off changes.
 4. CLI flags – last-mile overrides when you truly need to deviate.
 
-This ordering helps prevent accidental runs against production or someone else’s test data. Use `i4g settings info` to see which files and environment values are active before running a command.
+This ordering helps prevent accidental runs against production or someone else's test data. Use `i4g settings info` to see which files and environment values are active before running a command.
 
 ## Command map (shortcuts)
 

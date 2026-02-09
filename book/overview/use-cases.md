@@ -11,7 +11,7 @@ The platform orchestrates several workflows end-to-end. Each use case maps to in
 
 ## Analyst Review
 
-1. Cases exceeding risk thresholds or marked “uncertain” enter the analyst queue.
+1. Cases exceeding risk thresholds or marked "uncertain" enter the analyst queue.
 2. Analysts view masked evidence, add annotations, and assign scam categories.
 3. Decisions feed back into the knowledge base to improve future classification.
 4. Key metrics (time to resolution, false positives) are tracked in the dashboard.
