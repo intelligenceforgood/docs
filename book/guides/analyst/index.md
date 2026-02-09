@@ -14,44 +14,58 @@ audit-ready notes.
   Google account.
 * Optional: enroll in the volunteer Slack/Discord channel for real-time coordination.
 
+## Console Pages
+
+The sidebar gives you access to these sections:
+
+| Page | Purpose |
+| --- | --- |
+| **Dashboard** | Metrics cards (cases, resolution times, loss totals), alerts and escalations, activity feed, reminders, and quick-action buttons. |
+| **Cases** | Browse and filter the case queue by status, priority, classification. Open a case to view its narrative, timeline, and artifacts. |
+| **Search** | Hybrid search (text + structured filters) across the case corpus. Save and manage search queries. |
+| **Discovery** | Vertex AI Discovery integration for semantic exploration against the indexed case corpus. |
+| **Evidence Dossiers** | Review, verify, and share signed evidence bundles with law enforcement partners. |
+| **Campaigns** | Create and manage active campaigns that group cases by tactical signals. |
+| **Analytics** | Charts and trend metrics for operational reporting. |
+| **Taxonomy** | Browse the multi-axis fraud classification taxonomy used across the platform. |
+| **Accounts** | Account list extraction and search. |
+
 ## Daily Workflow
 
 1. Open [app.intelligenceforgood.org](https://app.intelligenceforgood.org).
-2. Review the **Queue** widget on the home tab to see items assigned to you, SLA breaches, and campaign spikes.
-3. Open the top-priority case and review the synopsis (scam type, risk score, key entities).
+2. Review the **Dashboard** for summary metrics, alerts, and the activity feed.
+3. Navigate to **Cases** and open a top-priority case to review the synopsis (classification badges, timeline, artifacts).
 4. Inspect evidence. PII appears as masked tokens (`AAA-XXXXXXXX`). If context is unclear, request detokenization from
    an admin via secure channel.
-5. Add structured annotations:
-   * Scam classification (romance, crypto investment, phishing, other).
-   * Confidence rating.
-   * Free-form notes (Markdown supported).
-6. Take a final action:
-   * **Approve** (true positive) → qualifies for reporting.
-   * **Reject** (false positive) → archive with rationale.
-   * **Needs more info** → loops back to user liaison.
+5. Classification badges reflect the multi-axis taxonomy:
+   * Intent (e.g., Romance, Investment, Imposter)
+   * Channel (e.g., Chat, Social Media, Email)
+   * Social Engineering Technique (e.g., Trust Building, Urgency)
+   * Requested Action (e.g., Send Money, Crypto)
+   * Claimed Persona (e.g., Romantic Partner, Bank)
+6. Take action on a case:
+   * **Close Case** — marks the case as resolved.
+   * **Share** — shares case information with partners or liaisons.
 
 ## Where to go next
 
-* Search tab usage, chips, and saved searches: [Search Guide](search.md)
-* Discovery tab basics and when to use it: [Discovery Guide](discovery.md)
+* Search tab usage, filters, and saved searches: [Search Guide](search.md)
+* Discovery tab and Vertex AI exploration: [Discovery Guide](discovery.md)
 * Evidence Dossiers workflow: [Dossiers Guide](dossiers.md)
-
-## Screenshots to add
-
-* Queue → case detail view with tokenized entities.
+* Campaigns and governance taxonomy: [Campaigns & Governance](campaign_governance.md)
 
 ## Best Practices
 
 * Keep notes factual and concise. Avoid personally identifying language in free-form text.
-* Use the predefined tags (e.g., `#wallet`, `#social-media`, `#payment-processor`) to support analytics queries.
-* If a case appears to be part of a larger campaign, tag it with the campaign ID or create a new one via the “Link Cases” dialog.
+* Use taxonomy classifications consistently to support analytics queries.
+* If a case appears to be part of a larger campaign, link it from the **Campaigns** page.
 * Coordinate handoffs in the volunteer chat, especially if you cannot finish a review in one session.
 
 ## Metrics & Impact Tracking
 
-* The console displays individual and team metrics (cases closed, time to resolution, dollars recovered estimates).
-* Download CSV reports from the **Analytics** tab to include in academic or grant reporting.
-* When in doubt about classification, err on the side of escalation—administrators can always downgrade later.
+* The Dashboard displays summary metrics cards (cases processed, resolution times, total losses).
+* The **Analytics** page shows charts and trend data for operational and grant reporting.
+* When in doubt about classification, err on the side of escalation — administrators can always downgrade later.
 
 ## Escalation Paths
 
@@ -59,4 +73,4 @@ audit-ready notes.
 * **Potential law enforcement action**: flag with `@leo-liaison` in the secure channel; provide context and recommended next steps.
 * **Tooling issues** (timeouts, UI bugs): open a ticket in the GitHub `core` repo with reproduction steps and screenshots.
 
-Thank you for volunteering—your work directly strengthens our ability to protect vulnerable communities.
+Thank you for volunteering — your work directly strengthens our ability to protect vulnerable communities.

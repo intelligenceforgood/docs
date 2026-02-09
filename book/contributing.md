@@ -4,7 +4,7 @@ We welcome contributions that improve clarity, accessibility, and accuracy of th
 
 ## How to Help
 
-1. Review open items in [Roadmap → Open Questions](roadmap/open-questions.md) or backlog issues in the GitHub repository.
+1. Review open items in the [planning roadmap](../../planning/roadmap.md) or backlog issues in the GitHub repository.
 2. Create a feature branch (`docs/<short-description>`) and make focused changes.
 3. Run the local checks:
 

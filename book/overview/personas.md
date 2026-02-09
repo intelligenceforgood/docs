@@ -12,7 +12,7 @@ Personas guide how i4g prioritizes features and documentation. They originate fr
 
 1. Lands on the user intake experience via public education campaigns.
 2. Uploads chat logs, screenshots, receipts, or voice notes.
-3. Receives confirmation, optional chatbot guidance, and a case ID for follow-up.
+3. Receives confirmation, guidance on next steps, and a case ID for follow-up.
 4. Gets notified when an analyst has reviewed the submission and a report is ready.
 
 ## Volunteer Analyst (Secondary User)

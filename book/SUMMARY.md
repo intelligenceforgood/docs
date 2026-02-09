@@ -14,6 +14,7 @@
   * [Law Enforcement Guide](guides/law-enforcement.md)
 * Admin Guide
   * [CLI Guide](guides/admin/cli.md)
+  * [Developer Setup](guides/developer-setup.md)
 * [Architecture](architecture/README.md)
   * [System Topology](architecture/system-topology.md)
   * [Data Pipelines](architecture/data-pipeline.md)

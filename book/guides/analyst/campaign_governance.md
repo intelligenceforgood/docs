@@ -42,7 +42,7 @@ This creates a "Golden Thread" that connects daily operations to high-level stra
 
 When configuring a Campaign in the Analyst Console:
 
-1.  **Define your Campaign:** Enter the Name and Description for your campaign.
-2.  **Select Governance Assignment:** In the "Governance Assignment" section, check the boxes for the high-level categories this campaign belongs to (e.g., "Financial Facilitation").
-    *   *Why?* This links your tactical work to organizational risk categories for executive reporting.
-3.  **Save:** Your campaign is now live.
+1.  **Browse campaigns:** The Campaigns page shows a card grid with campaign name, description, and linked governance taxonomy IDs.
+2.  **Create a campaign:** Click **New Campaign**, enter the Name and Description.
+3.  **Governance Assignment:** The taxonomy selector is displayed but currently disabled pending the multi-axis taxonomy UI update. Once enabled, you will select high-level governance categories to link tactical detections to strategic reporting.
+4.  **Save:** Your campaign is now live and visible in the campaign list.
