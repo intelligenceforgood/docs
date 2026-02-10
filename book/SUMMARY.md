@@ -25,4 +25,5 @@
   * [Sample Workflows](api/sample-requests.md)
   * [Taxonomy Reference](api/taxonomy_reference.md)
 * [Security & Compliance](security/README.md)
+  * [Secrets & Credentials Reference](security/secrets-reference.md)
 * [Contributing](contributing.md)
