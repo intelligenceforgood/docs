@@ -11,10 +11,11 @@
 
 2. **Config Discipline** – Always fetch settings via `i4g.settings.get_settings()`; nested sections (`api`, `storage`, `vector`, `llm`, `identity`, etc.) are mutated by `_apply_environment_overrides`, so override via env vars (`I4G_*`, double underscores) rather than hard-coded paths. Store builders live in `src/i4g/services/factories.py`; use them for structured/review/vector/intake/evidence stores.
 
-3. **Documentation Standards** – Follow `core/.github/general-coding.instructions.md` for shared norms.
+3. **Documentation & Coding Standards** – Follow `core/.github/general-coding.instructions.md` for all language-specific standards and documentation conventions.
    - **Grammar:** Use present tense ("is", "open"), active voice, and second person ("you"). Write factual statements; avoid "could"/"would".
-   - **Markdown:** Use headings for organization, bullet points for lists, and code blocks for snippets.
+   - **Markdown:** Use headings for organization, bullet points for lists, and code blocks for snippets. Keep lines at most 120 chars.
    - **Snippets:** Do NOT paste whole source files. Show focused excerpts (3-15 lines) with a link to the full file path. If larger, include a summary paragraph.
+   - **Config/code examples:** Follow each language's naming conventions as defined in the general coding guidelines (e.g., `snake_case` for Python, `camelCase` for TypeScript, `snake_case` for Terraform).
 
 4. **Core Architecture** – `src/i4g/api/app.py` wires FastAPI routers, middleware (rate limit + TASK_STATUS), and the report-generation lock. `src/i4g/api/review.py` orchestrates search + queue actions backed by `ReviewStore`, `HybridRetriever`, and audit logging via `store.log_action`. Background work executes through `src/i4g/worker/jobs/*` and `src/i4g/worker/tasks.py` (e.g., `generate_report_for_case`).
 
