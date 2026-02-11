@@ -1,136 +1,52 @@
 # Field Name Translation Reference
 
-The backend (Python / FastAPI) uses **snake_case** for all field names. The frontend SDK and UI components use **camelCase**. Translation is performed manually at specific integration points -- there is no generic `toSnakeCase` / `toCamelCase` utility.
+The backend (Python / FastAPI) uses **snake_case** for all field names internally.
+API response models inherit from `CamelModel` (`i4g.api.camel`), which uses
+Pydantic's `alias_generator = to_camel` to serialise JSON keys as **camelCase**
+automatically. No manual translation is needed for response models.
 
-This document catalogs every known translation site so developers can keep them in sync when adding or renaming fields.
+The frontend SDK and UI components use **camelCase** natively.
 
-## Translation Points Overview
+## Current State
 
-| #   | File                                                    | Function(s)                                                                                                     | Direction             |
-| --- | ------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- | --------------------- |
-| 1   | `ui/apps/web/src/lib/platform-client.ts`                | `fetchCoreSearch`, `mapCoreSearchResult`                                                                        | Both                  |
-| 2   | `ui/packages/sdk/src/index.ts`                          | `normalizeDossierRecord`, `normalizeDownloads`, `normalizeVerificationArtifact`, `normalizeDossierVerification` | server → client       |
-| 3   | `ui/packages/sdk/src/index.ts`                          | `listDossiers`, `detokenize`                                                                                    | client → server       |
-| 4   | `ui/apps/web/src/lib/server/reviews-service.helpers.ts` | `mapHistoryEvent`, `extractSavedSearchDescriptor`, `mapSavedSearch`, `mapHybridSearchSchemaPayload`             | server → client       |
-| 5   | `ui/apps/web/src/lib/server/account-list-service.ts`    | `buildRunPayload`                                                                                               | client → server       |
-| 6   | `ui/apps/web/src/lib/search-links.ts`                   | `buildSearchHref`                                                                                               | Dual-casing tolerance |
+### Automatic Translation (via CamelModel)
 
-## Detailed Mappings
+All Pydantic response models in `response_models.py` and `cases.py` inherit
+from `CamelModel`. Python code uses `snake_case` field names; JSON output is
+`camelCase`. No manual mapping required.
 
-### 1. Search Request (`fetchCoreSearch` — client → server)
+**SDK cleanup (D79):** The `normalizeVerificationArtifact` and
+`normalizeDossierVerification` functions have been removed — the backend now
+returns camelCase for verification endpoints directly.
 
-| camelCase (TypeScript) | snake_case (Python)  |
-| ---------------------- | -------------------- |
-| `lossBuckets`          | `loss_buckets`       |
-| `timeRange`            | `time_range`         |
-| `savedSearchId`        | `saved_search_id`    |
-| `savedSearchName`      | `saved_search_name`  |
-| `savedSearchOwner`     | `saved_search_owner` |
-| `savedSearchTags`      | `saved_search_tags`  |
-| `entity.matchMode`     | `match_mode`         |
-| _(computed)_           | `vector_limit`       |
-| _(computed)_           | `structured_limit`   |
+### Remaining Manual Translation Points
 
-### 2. Search Response (`mapCoreSearchResult` — server → client)
+These sites still perform explicit mapping because the data flows through raw
+dicts (`Dict[str, Any]`) rather than typed CamelModel instances:
 
-| snake_case (Python)          | camelCase (TypeScript) |
-| ---------------------------- | ---------------------- |
-| `case_id`                    | `id`                   |
-| `created_at`                 | `occurredAt`           |
-| `elapsed_ms` / `duration_ms` | `stats.took`           |
+| #   | File                                                    | Function(s)                                                         | Reason                              |
+| --- | ------------------------------------------------------- | ------------------------------------------------------------------- | ----------------------------------- |
+| 1   | `ui/apps/web/src/lib/platform-client.ts`                | `fetchCoreSearch` (request body)                                    | Client→server query params          |
+| 2   | `ui/packages/sdk/src/index.ts`                          | `normalizeDossierRecord`, `normalizeDownloads`                      | Dossier list returns raw dicts      |
+| 3   | `ui/apps/web/src/lib/server/reviews-service.helpers.ts` | `mapHistoryEvent`, `mapSavedSearch`, `mapHybridSearchSchemaPayload` | Events/searches are raw store dicts |
+| 4   | `ui/apps/web/src/lib/server/account-list-service.ts`    | `buildRunPayload`                                                   | Client→server request body          |
+| 5   | `ui/apps/web/src/lib/search-links.ts`                   | `buildSearchHref`                                                   | URL param building (dual-tolerance) |
 
-### 3. Dossier Records (`normalizeDossierRecord` — server → client)
+### Eliminated Translation Points
 
-| snake_case                | camelCase               |
-| ------------------------- | ----------------------- |
-| `plan_id`                 | `planId`                |
-| `queued_at`               | `queuedAt`              |
-| `updated_at`              | `updatedAt`             |
-| `manifest_path`           | `manifestPath`          |
-| `signature_manifest_path` | `signatureManifestPath` |
-| `signature_manifest`      | `signatureManifest`     |
-| `artifact_warnings`       | `artifactWarnings`      |
+The following were removed by D79:
 
-### 4. Dossier Downloads (`normalizeDownloads` — server → client)
+- `normalizeVerificationArtifact` — backend `VerifyArtifact` now serialises as camelCase
+- `normalizeDossierVerification` — backend `DossierVerifyResponse` now serialises as camelCase
+- `detokenizeResponseSchema` snake_case keys — schema updated to camelCase
+- `caseDetailSchema` `graph_nodes`/`graph_links` — updated to `graphNodes`/`graphLinks`
 
-| snake_case                 | camelCase           |
-| -------------------------- | ------------------- |
-| `local.signature_manifest` | `signatureManifest` |
-| `remote[].remote_ref`      | `remoteRef`         |
-| `remote[].size_bytes`      | `sizeBytes`         |
+## Guidelines for New Endpoints
 
-### 5. Verification Artifacts (`normalizeVerificationArtifact` — server → client)
-
-| snake_case      | camelCase      |
-| --------------- | -------------- |
-| `expected_hash` | `expectedHash` |
-| `actual_hash`   | `actualHash`   |
-| `size_bytes`    | `sizeBytes`    |
-
-### 6. Verification Summary (`normalizeDossierVerification` — server → client)
-
-| snake_case       | camelCase       |
-| ---------------- | --------------- |
-| `plan_id`        | `planId`        |
-| `missing_count`  | `missingCount`  |
-| `mismatch_count` | `mismatchCount` |
-| `all_verified`   | `allVerified`   |
-
-### 7. Search History (`mapHistoryEvent` — server → client)
-
-| snake_case      | camelCase     |
-| --------------- | ------------- |
-| `created_at`    | `createdAt`   |
-| `action_id`     | `id`          |
-| `case_id`       | `caseId`      |
-| `results_count` | `resultCount` |
-
-### 8. Saved Search Descriptor (`extractSavedSearchDescriptor` — dual tolerance)
-
-Accepts both casings on input and normalizes to camelCase output:
-
-| Accepted input                                    | Output  |
-| ------------------------------------------------- | ------- |
-| `saved_search_id` / `savedSearchId` / `search_id` | `id`    |
-| `saved_search_name` / `savedSearchName`           | `name`  |
-| `saved_search_owner` / `savedSearchOwner`         | `owner` |
-| `saved_search_tags` / `savedSearchTags`           | `tags`  |
-
-### 9. Saved Search Record (`mapSavedSearch` — server → client)
-
-| snake_case   | camelCase   |
-| ------------ | ----------- |
-| `search_id`  | `id`        |
-| `created_at` | `createdAt` |
-
-### 10. Search Schema (`mapHybridSearchSchemaPayload` — dual tolerance)
-
-| snake_case / camelCase accepted      | Output (camelCase) |
-| ------------------------------------ | ------------------ |
-| `indicator_types` / `indicatorTypes` | `indicatorTypes`   |
-| `loss_buckets` / `lossBuckets`       | `lossBuckets`      |
-| `time_presets` / `timePresets`       | `timePresets`      |
-| `entity_examples` / `entityExamples` | `entityExamples`   |
-
-### 11. Account List (`buildRunPayload` — client → server)
-
-| camelCase        | snake_case        |
-| ---------------- | ----------------- |
-| `startTime`      | `start_time`      |
-| `endTime`        | `end_time`        |
-| `topK`           | `top_k`           |
-| `includeSources` | `include_sources` |
-| `outputFormats`  | `output_formats`  |
-
-### 12. SDK Direct Methods
-
-**`listDossiers()`** — query param: `includeManifest` → `include_manifest`
-
-**`detokenize()`** — body field: `caseId` → `case_id`
-
-## Guidelines for New Translations
-
-1. **Always map in an explicit function** — do not rely on generic converters.
-2. **Accept both casings on read** where feasible (see `extractSavedSearchDescriptor` as a pattern).
-3. **Test the round-trip** — if the backend returns a field that the SDK translates, verify the client receives the expected shape.
-4. **Update this document** when adding new translated fields.
+1. **Response models:** Inherit from `CamelModel` — camelCase is automatic.
+2. **Raw dict responses** (e.g., `List[Dict[str, Any]]`): Keys pass through
+   unchanged. If the frontend needs camelCase, add a normalize function.
+3. **Request bodies:** Currently snake_case. Frontend sends snake_case; Pydantic
+   accepts both casings when `populate_by_name=True`.
+4. **Query parameters:** Defined as function parameters — always snake_case in
+   the URL. Frontend maps camelCase values to snake_case params explicitly.
