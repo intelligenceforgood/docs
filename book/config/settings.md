@@ -20,6 +20,14 @@ This catalog is assembled by `i4g settings export-manifest` directly from `src/i
 
 | Section | Setting | Env Vars | Type | Default | Description |
 | --- | --- | --- | --- | --- | --- |
+| account_job | `account_job.categories` | `I4G_ACCOUNT_JOB__CATEGORIES`<br />`ACCOUNT_JOB_CATEGORIES`<br />`ACCOUNT_JOB__CATEGORIES` | `list[str]` | `[]` | Comma-separated fraud categories to include (e.g. bank,crypto,payments). |
+| account_job | `account_job.dry_run` | `I4G_ACCOUNT_JOB__DRY_RUN`<br />`ACCOUNT_JOB_DRY_RUN`<br />`ACCOUNT_JOB__DRY_RUN` | `bool` | `False` | Run extraction without persisting results. |
+| account_job | `account_job.end_time` | `I4G_ACCOUNT_JOB__END_TIME`<br />`ACCOUNT_JOB_END_TIME`<br />`ACCOUNT_JOB__END_TIME` | `str &#124; NoneType` | `None` | ISO-8601 end of the extraction window. Defaults to now (UTC). |
+| account_job | `account_job.include_sources` | `I4G_ACCOUNT_JOB__INCLUDE_SOURCES`<br />`ACCOUNT_JOB_INCLUDE_SOURCES`<br />`ACCOUNT_JOB__INCLUDE_SOURCES` | `bool` | `True` | Whether to include source evidence references in output. |
+| account_job | `account_job.output_formats` | `I4G_ACCOUNT_JOB__OUTPUT_FORMATS`<br />`ACCOUNT_JOB_OUTPUT_FORMATS`<br />`ACCOUNT_JOB__OUTPUT_FORMATS` | `list[str]` | `[]` | Comma-separated output formats (e.g. pdf,xlsx). Overrides account_list.default_formats. |
+| account_job | `account_job.start_time` | `I4G_ACCOUNT_JOB__START_TIME`<br />`ACCOUNT_JOB_START_TIME`<br />`ACCOUNT_JOB__START_TIME` | `str &#124; NoneType` | `None` | ISO-8601 start of the extraction window. Defaults to end_time minus window_days. |
+| account_job | `account_job.top_k` | `I4G_ACCOUNT_JOB__TOP_K`<br />`ACCOUNT_JOB_TOP_K`<br />`ACCOUNT_JOB__TOP_K` | `int` | `200` | Maximum number of accounts to extract per run. |
+| account_job | `account_job.window_days` | `I4G_ACCOUNT_JOB__WINDOW_DAYS`<br />`ACCOUNT_JOB_WINDOW_DAYS`<br />`ACCOUNT_JOB__WINDOW_DAYS` | `int` | `15` | Number of days in the extraction window when start_time is not set. |
 | account_list | `account_list.api_key` | `I4G_ACCOUNT_LIST__API_KEY`<br />`ACCOUNT_LIST_API_KEY`<br />`ACCOUNT_LIST__API_KEY` | `str &#124; NoneType` | `None` | Account list extraction configuration. |
 | account_list | `account_list.artifact_prefix` | `I4G_ACCOUNT_LIST__ARTIFACT_PREFIX`<br />`ACCOUNT_LIST_ARTIFACT_PREFIX`<br />`ACCOUNT_LIST__ARTIFACT_PREFIX` | `str` | `account_list` | Account list extraction configuration. |
 | account_list | `account_list.default_formats` | `I4G_ACCOUNT_LIST__DEFAULT_FORMATS`<br />`ACCOUNT_LIST_DEFAULT_FORMATS`<br />`ACCOUNT_LIST__DEFAULT_FORMATS` | `list[str]` | `[]` | Account list extraction configuration. |
@@ -33,7 +41,7 @@ This catalog is assembled by `i4g settings export-manifest` directly from `src/i
 | api | `api.key` | `I4G_API__KEY`<br />`API_KEY`<br />`API__KEY` | `str` | `dev-analyst-token` | API endpoint configuration shared by CLI + dashboards. |
 | api | `api.rate_limit_per_minute` | `I4G_API__RATE_LIMIT_PER_MINUTE`<br />`API_RATE_LIMIT`<br />`API__RATE_LIMIT_PER_MINUTE` | `int` | `60` | API endpoint configuration shared by CLI + dashboards. |
 | crypto | `crypto.pii_key` | `I4G_CRYPTO__PII_KEY`<br />`CRYPTO_PII_KEY`<br />`CRYPTO__PII_KEY` | `str &#124; NoneType` | `None` | Application-level cryptographic material used by vault/tokenization flows. |
-| data_dir | `data_dir` | `I4G_DATA_DIR` | `Path` | `<project_root>/data` | Top-level configuration model with nested sections for each subsystem. |
+| data_dir | `data_dir` | `I4G_DATA_DIR` | `Path` | `/Users/jerry/Work/project/i4g/core/data` | Top-level configuration model with nested sections for each subsystem. |
 | env | `env` | `I4G_ENV`<br />`ENV`<br />`ENVIRONMENT`<br />`RUNTIME__ENV` | `str` | `local` | Top-level configuration model with nested sections for each subsystem. |
 | identity | `identity.audience` | `I4G_IDENTITY__AUDIENCE`<br />`IDENTITY_AUDIENCE`<br />`IDENTITY__AUDIENCE` | `str &#124; NoneType` | `None` | Identity provider wiring for auth-enabled services. |
 | identity | `identity.client_id` | `I4G_IDENTITY__CLIENT_ID`<br />`IDENTITY_CLIENT_ID`<br />`IDENTITY__CLIENT_ID` | `str &#124; NoneType` | `None` | Identity provider wiring for auth-enabled services. |
@@ -41,7 +49,7 @@ This catalog is assembled by `i4g settings export-manifest` directly from `src/i
 | identity | `identity.issuer` | `I4G_IDENTITY__ISSUER`<br />`IDENTITY_ISSUER`<br />`IDENTITY__ISSUER` | `str &#124; NoneType` | `None` | Identity provider wiring for auth-enabled services. |
 | identity | `identity.provider` | `I4G_IDENTITY__PROVIDER`<br />`IDENTITY_PROVIDER`<br />`IDENTITY__PROVIDER` | `Literal['mock', 'google_identity', 'authentik', 'firebase']` | `mock` | Identity provider wiring for auth-enabled services. |
 | ingestion | `ingestion.batch_limit` | `I4G_INGESTION__BATCH_LIMIT`<br />`INGEST_BATCH_LIMIT`<br />`INGEST__BATCH_LIMIT`<br />`INGESTION_BATCH_LIMIT`<br />`INGESTION__BATCH_LIMIT` | `int` | `0` | Scheduler + job configuration for ingestion workflows. |
-| ingestion | `ingestion.dataset_path` | `I4G_INGESTION__DATASET_PATH`<br />`INGEST_JSONL_PATH`<br />`INGEST__JSONL_PATH`<br />`INGESTION_JSONL_PATH`<br />`INGESTION__JSONL_PATH` | `Path` | `<project_root>/data/retrieval_poc/cases.jsonl` | Scheduler + job configuration for ingestion workflows. |
+| ingestion | `ingestion.dataset_path` | `I4G_INGESTION__DATASET_PATH`<br />`INGEST_JSONL_PATH`<br />`INGEST__JSONL_PATH`<br />`INGESTION_JSONL_PATH`<br />`INGESTION__JSONL_PATH` | `Path` | `/Users/jerry/Work/project/i4g/core/data/retrieval_poc/cases.jsonl` | Scheduler + job configuration for ingestion workflows. |
 | ingestion | `ingestion.default_dataset` | `I4G_INGESTION__DEFAULT_DATASET`<br />`INGEST_DEFAULT_DATASET`<br />`INGEST__DEFAULT_DATASET`<br />`INGESTION_DEFAULT_DATASET`<br />`INGESTION__DEFAULT_DATASET` | `str` | `unknown` | Scheduler + job configuration for ingestion workflows. |
 | ingestion | `ingestion.default_region` | `I4G_INGESTION__DEFAULT_REGION`<br />`INGESTION_DEFAULT_REGION`<br />`INGESTION__DEFAULT_REGION` | `str` | `us-central1` | Scheduler + job configuration for ingestion workflows. |
 | ingestion | `ingestion.default_service_account` | `I4G_INGESTION__DEFAULT_SERVICE_ACCOUNT`<br />`INGESTION_SERVICE_ACCOUNT`<br />`INGESTION__SERVICE_ACCOUNT` | `str &#124; NoneType` | `None` | Scheduler + job configuration for ingestion workflows. |
@@ -55,6 +63,10 @@ This catalog is assembled by `i4g settings export-manifest` directly from `src/i
 | ingestion | `ingestion.reset_vector` | `I4G_INGESTION__RESET_VECTOR`<br />`INGEST_RESET_VECTOR`<br />`INGEST__RESET_VECTOR`<br />`INGESTION_RESET_VECTOR`<br />`INGESTION__RESET_VECTOR` | `bool` | `False` | Scheduler + job configuration for ingestion workflows. |
 | ingestion | `ingestion.retry_delay_seconds` | `I4G_INGESTION__RETRY_DELAY_SECONDS`<br />`INGEST_RETRY_DELAY_SECONDS`<br />`INGEST__RETRY_DELAY_SECONDS`<br />`INGESTION_RETRY_DELAY_SECONDS`<br />`INGESTION__RETRY_DELAY_SECONDS` | `int` | `60` | Scheduler + job configuration for ingestion workflows. |
 | ingestion | `ingestion.scheduler_project` | `I4G_INGESTION__SCHEDULER_PROJECT`<br />`INGESTION_SCHEDULER_PROJECT`<br />`INGESTION__SCHEDULER_PROJECT` | `str &#124; NoneType` | `None` | Scheduler + job configuration for ingestion workflows. |
+| intake | `intake.api_base` | `I4G_INTAKE__API_BASE`<br />`INTAKE_API_BASE`<br />`INTAKE__API_BASE` | `str &#124; NoneType` | `None` | Base URL for the intake API (if processing via HTTP rather than direct service call). |
+| intake | `intake.api_key` | `I4G_INTAKE__API_KEY`<br />`INTAKE_API_KEY`<br />`INTAKE__API_KEY` | `str &#124; NoneType` | `None` | API key for authenticating intake API calls. Falls back to api.key. |
+| intake | `intake.id` | `I4G_INTAKE__ID`<br />`INTAKE_ID`<br />`INTAKE__ID` | `str &#124; NoneType` | `None` | Intake submission ID to process. |
+| intake | `intake.job_id` | `I4G_INTAKE__JOB_ID`<br />`INTAKE_JOB_ID`<br />`INTAKE__JOB_ID` | `str &#124; NoneType` | `None` | Intake job ID for tracking. |
 | llm | `llm.chat_model` | `I4G_LLM__CHAT_MODEL`<br />`LLM_CHAT_MODEL`<br />`LLM__CHAT_MODEL` | `str` | `llama3` | Primary model identifier (e.g. 'llama3', 'gemini-2.5-flash'). Used for all providers. |
 | llm | `llm.ollama_base_url` | `I4G_LLM__OLLAMA_BASE_URL`<br />`OLLAMA_BASE_URL`<br />`LLM__OLLAMA_BASE_URL` | `str` | `http://127.0.0.1:11434` | Large language model provider settings. |
 | llm | `llm.provider` | `I4G_LLM__PROVIDER`<br />`LLM_PROVIDER`<br />`LLM__PROVIDER` | `Literal['ollama', 'vertex_ai', 'mock']` | `ollama` | Large language model provider settings. |
@@ -78,7 +90,7 @@ This catalog is assembled by `i4g settings export-manifest` directly from `src/i
 | pii | `pii.pepper` | `I4G_PII__PEPPER`<br />`PII_PEPPER`<br />`PII__PEPPER` | `str &#124; NoneType` | `None` | Deterministic tokenization controls for PII vault integration. |
 | pii | `pii.pepper_version` | `I4G_PII__PEPPER_VERSION`<br />`PII_PEPPER_VERSION`<br />`PII__PEPPER_VERSION` | `str` | `v1` | Deterministic tokenization controls for PII vault integration. |
 | pii | `pii.require_pepper` | `I4G_PII__REQUIRE_PEPPER`<br />`PII_REQUIRE_PEPPER`<br />`PII__REQUIRE_PEPPER` | `bool` | `True` | Deterministic tokenization controls for PII vault integration. |
-| project_root | `project_root` | `I4G_PROJECT_ROOT`<br />`PROJECT_ROOT`<br />`RUNTIME__PROJECT_ROOT`<br />`I4G_RUNTIME__PROJECT_ROOT` | `Path` | `<repo_root>` | Top-level configuration model with nested sections for each subsystem. |
+| project_root | `project_root` | `I4G_PROJECT_ROOT`<br />`PROJECT_ROOT`<br />`RUNTIME__PROJECT_ROOT`<br />`I4G_RUNTIME__PROJECT_ROOT` | `Path` | `/Users/jerry/Work/project/i4g/core` | Top-level configuration model with nested sections for each subsystem. |
 | report | `report.drive_parent_id` | `I4G_REPORT__DRIVE_PARENT_ID`<br />`REPORT_DRIVE_PARENT_ID`<br />`REPORT__DRIVE_PARENT_ID` | `str &#124; NoneType` | `None` | Agentic dossier/report configuration. |
 | report | `report.hash_algorithm` | `I4G_REPORT__HASH_ALGORITHM`<br />`REPORT_HASH_ALGORITHM`<br />`REPORT__HASH_ALGORITHM` | `str` | `sha256` | Agentic dossier/report configuration. |
 | report | `report.max_cases_per_dossier` | `I4G_REPORT__MAX_CASES_PER_DOSSIER`<br />`REPORT_MAX_CASES_PER_DOSSIER`<br />`REPORT__MAX_CASES_PER_DOSSIER` | `int` | `5` | Agentic dossier/report configuration. |
@@ -86,6 +98,7 @@ This catalog is assembled by `i4g settings export-manifest` directly from `src/i
 | report | `report.recency_days` | `I4G_REPORT__RECENCY_DAYS`<br />`REPORT_RECENCY_DAYS`<br />`REPORT__RECENCY_DAYS` | `int` | `30` | Agentic dossier/report configuration. |
 | report | `report.require_cross_border` | `I4G_REPORT__REQUIRE_CROSS_BORDER`<br />`REPORT_REQUIRE_CROSS_BORDER`<br />`REPORT__REQUIRE_CROSS_BORDER` | `bool` | `False` | Agentic dossier/report configuration. |
 | report | `report.tool_timeout_seconds` | `I4G_REPORT__TOOL_TIMEOUT_SECONDS`<br />`REPORT_TOOL_TIMEOUT_SECONDS`<br />`REPORT__TOOL_TIMEOUT_SECONDS` | `float &#124; NoneType` | `None` | Per-tool timeout for LangChain dossier tools; None disables timeouts. |
+| runtime | `runtime.fallback_dir` | `I4G_RUNTIME__FALLBACK_DIR`<br />`RUNTIME_FALLBACK_DIR`<br />`RUNTIME__FALLBACK_DIR` | `Path` | `/tmp/i4g/evidence` | Fallback directory for local evidence storage when primary path is not writable. |
 | runtime | `runtime.log_level` | `I4G_RUNTIME__LOG_LEVEL`<br />`LOG_LEVEL`<br />`RUNTIME__LOG_LEVEL` | `str` | `INFO` | Process-level runtime controls. |
 | search | `search.classification_presets` | `I4G_SEARCH__CLASSIFICATION_PRESETS`<br />`SEARCH_CLASSIFICATION_PRESETS`<br />`SEARCH__CLASSIFICATION_PRESETS` | `list[str]` | `[]` | Hybrid search tuning parameters and schema presets. |
 | search | `search.dataset_presets` | `I4G_SEARCH__DATASET_PRESETS`<br />`SEARCH_DATASET_PRESETS`<br />`SEARCH__DATASET_PRESETS` | `list[str]` | `[]` | Hybrid search tuning parameters and schema presets. |
@@ -108,15 +121,15 @@ This catalog is assembled by `i4g settings export-manifest` directly from `src/i
 | storage | `storage.cloudsql_password` | `I4G_STORAGE__CLOUDSQL_PASSWORD`<br />`APP__CLOUDSQL__PASSWORD`<br />`I4G_APP__CLOUDSQL__PASSWORD` | `str &#124; NoneType` | `None` | Structured + blob storage configuration. |
 | storage | `storage.cloudsql_user` | `I4G_STORAGE__CLOUDSQL_USER`<br />`APP__CLOUDSQL__USER`<br />`I4G_APP__CLOUDSQL__USER` | `str &#124; NoneType` | `None` | Structured + blob storage configuration. |
 | storage | `storage.evidence_bucket` | `I4G_STORAGE__EVIDENCE_BUCKET`<br />`STORAGE_EVIDENCE_BUCKET`<br />`STORAGE__EVIDENCE_BUCKET` | `str &#124; NoneType` | `None` | Structured + blob storage configuration. |
-| storage | `storage.evidence_local_dir` | `I4G_STORAGE__EVIDENCE_LOCAL_DIR`<br />`STORAGE_EVIDENCE_LOCAL_DIR`<br />`STORAGE__EVIDENCE__LOCAL_DIR` | `Path` | `<project_root>/data/evidence` | Structured + blob storage configuration. |
+| storage | `storage.evidence_local_dir` | `I4G_STORAGE__EVIDENCE_LOCAL_DIR`<br />`STORAGE_EVIDENCE_LOCAL_DIR`<br />`STORAGE__EVIDENCE__LOCAL_DIR` | `Path` | `/Users/jerry/Work/project/i4g/core/data/evidence` | Structured + blob storage configuration. |
 | storage | `storage.report_bucket` | `I4G_STORAGE__REPORT_BUCKET`<br />`STORAGE_REPORT_BUCKET`<br />`STORAGE__REPORT_BUCKET` | `str &#124; NoneType` | `None` | Structured + blob storage configuration. |
-| storage | `storage.sqlite_path` | `I4G_STORAGE__SQLITE_PATH` | `Path` | `<project_root>/data/i4g_store.db` | Structured + blob storage configuration. |
+| storage | `storage.sqlite_path` | `I4G_STORAGE__SQLITE_PATH` | `Path` | `/Users/jerry/Work/project/i4g/core/data/i4g_store.db` | Structured + blob storage configuration. |
 | storage | `storage.structured_backend` | `I4G_STORAGE__STRUCTURED_BACKEND`<br />`STRUCTURED_BACKEND`<br />`STORAGE__STRUCTURED_BACKEND` | `Literal['sqlite', 'cloudsql']` | `sqlite` | Structured + blob storage configuration. |
 | vector | `vector.backend` | `I4G_VECTOR__BACKEND`<br />`VECTOR_BACKEND`<br />`VECTOR__BACKEND` | `Literal['chroma', 'faiss', 'pgvector', 'vertex_ai']` | `chroma` | Vector store configuration supporting multiple backends. |
-| vector | `vector.chroma_dir` | `I4G_VECTOR__CHROMA_DIR` | `Path` | `<project_root>/data/chroma_store` | Vector store configuration supporting multiple backends. |
+| vector | `vector.chroma_dir` | `I4G_VECTOR__CHROMA_DIR` | `Path` | `/Users/jerry/Work/project/i4g/core/data/chroma_store` | Vector store configuration supporting multiple backends. |
 | vector | `vector.collection` | `I4G_VECTOR__COLLECTION`<br />`VECTOR_COLLECTION`<br />`VECTOR__COLLECTION` | `str` | `i4g_vectors` | Vector store configuration supporting multiple backends. |
 | vector | `vector.embedding_model` | `I4G_VECTOR__EMBEDDING_MODEL`<br />`EMBED_MODEL`<br />`VECTOR__EMBED_MODEL` | `str` | `nomic-embed-text` | Vector store configuration supporting multiple backends. |
-| vector | `vector.faiss_dir` | `I4G_VECTOR__FAISS_DIR`<br />`VECTOR_FAISS_DIR`<br />`VECTOR__FAISS_DIR` | `Path` | `<project_root>/data/faiss_store` | Vector store configuration supporting multiple backends. |
+| vector | `vector.faiss_dir` | `I4G_VECTOR__FAISS_DIR`<br />`VECTOR_FAISS_DIR`<br />`VECTOR__FAISS_DIR` | `Path` | `/Users/jerry/Work/project/i4g/core/data/faiss_store` | Vector store configuration supporting multiple backends. |
 | vector | `vector.pgvector_dsn` | `I4G_VECTOR__PGVECTOR_DSN`<br />`VECTOR_PGVECTOR_DSN`<br />`VECTOR__PGVECTOR__DSN` | `str &#124; NoneType` | `None` | Vector store configuration supporting multiple backends. |
 | vector | `vector.vertex_ai_branch` | `I4G_VECTOR__VERTEX_AI_BRANCH`<br />`VECTOR_VERTEX_AI_BRANCH`<br />`VECTOR__VERTEX_AI__BRANCH`<br />`I4G_VERTEX_SEARCH_BRANCH` | `str` | `default_branch` | Vector store configuration supporting multiple backends. |
 | vector | `vector.vertex_ai_data_store` | `I4G_VECTOR__VERTEX_AI_DATA_STORE`<br />`VECTOR_VERTEX_AI_DATA_STORE`<br />`VECTOR__VERTEX_AI__DATA_STORE`<br />`I4G_VERTEX_SEARCH_DATA_STORE` | `str &#124; NoneType` | `None` | Vector store configuration supporting multiple backends. |
