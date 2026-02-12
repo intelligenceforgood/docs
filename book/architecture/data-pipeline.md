@@ -1,6 +1,6 @@
 # Data Pipeline
 
-How evidence moves from upload to a signed, verifiable dossier. (Replace the placeholder with the latest pipeline diagram.)
+How evidence moves from upload to a signed, verifiable dossier.
 
 ![Data pipeline](../assets/architecture/data_pipeline.svg "Data pipeline")
 

@@ -1,6 +1,6 @@
 # System Topology
 
-High-level view of how users, analysts, and law enforcement interact with the platform. (Replace the placeholder with the latest "metro map" diagram.)
+High-level view of how users, analysts, and law enforcement interact with the platform.
 
 ![System topology](../assets/architecture/system_topology.svg "System topology")
 

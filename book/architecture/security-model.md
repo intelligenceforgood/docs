@@ -1,6 +1,6 @@
 # Security Model
 
-How we keep victims' data safe while delivering evidence law enforcement can trust. (Replace the placeholder with the updated security diagram.)
+How we keep victims' data safe while delivering evidence law enforcement can trust.
 
 ![Security model](../assets/architecture/security_model.svg "Security model")
 
