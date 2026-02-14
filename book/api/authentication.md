@@ -1,28 +1,35 @@
 # Authentication
 
-API access is tightly controlled because the platform processes highly sensitive PII. **The canonical IAM plan lives in `core/docs/design/iam.md`;** this page captures API-specific notes and examples.
+API access is tightly controlled because the platform processes highly sensitive PII. **The canonical IAM design lives in `core/docs/design/iam.md`;** this page covers API-specific auth concepts. For role definitions and requesting access, see [Access Control](../security/access-control.md).
 
-## Two-Layer Authentication Model
-
-The platform uses a dual authentication model:
+## Three-Layer Authentication
 
 ### Layer 1: Infrastructure (IAP)
 
-Cloud Run services are protected by Google Identity-Aware Proxy (IAP). Users authenticate via Google Sign-In and must be on the domain allowlist. IAP validates the Google identity before traffic reaches the application.
+Cloud Run services sit behind a Global External Application Load Balancer with Google Identity-Aware Proxy (IAP) enabled. Users authenticate via Google Sign-In; IAP validates Google identity before traffic reaches Cloud Run. Only members of authorized Google Groups can pass through.
 
-### Layer 2: Application (API Keys)
+### Layer 2: Application (JWT + API key)
 
-Within the FastAPI application, routers that require auth use `X-API-KEY` header validation. The current prototype uses development tokens configured in `config/settings.local.toml`:
+The FastAPI `require_token()` dependency validates credentials in priority order:
+
+| Method       | Header                          | When used                                          |
+| ------------ | ------------------------------- | -------------------------------------------------- |
+| IAP JWT      | `X-Goog-IAP-JWT-Assertion`      | Browser → LB → API (direct hit through IAP)        |
+| Bearer token | `Authorization: Bearer <token>` | Service-to-service calls (e.g., console SSR → API) |
+| API key      | `X-API-KEY`                     | Local development, CI, and background jobs         |
+
+The authenticated email is resolved to an application role via the `accounts` table. Unknown users are auto-provisioned with the `user` role on first request.
+
+### Layer 3: Forwarded user identity
+
+When the Next.js console makes server-side API calls, it authenticates as a service account. To preserve the real user's identity, the console extracts the user's email from the IAP assertion and forwards it via `X-I4G-Forwarded-User`. The API trusts this header only when the caller is a service account.
 
 ```python
-from i4g.api.auth import require_token, require_role
-
-# Token validation reads the X-API-KEY header
+# Route protection examples (see src/i4g/api/auth.py)
 @router.get("/protected", dependencies=[Depends(require_token)])
 def protected_endpoint():
     ...
 
-# Role-based access restricts to specific user roles
 @router.get("/admin-only", dependencies=[Depends(require_role("admin"))])
 def admin_endpoint():
     ...
@@ -30,38 +37,38 @@ def admin_endpoint():
 
 ### Auth Coverage
 
-Not all routers currently enforce authentication. The following routers require `X-API-KEY`:
-
-| Router | Auth Required |
-| --- | --- |
-| `/reviews/*` | Yes (`require_token`) |
-| `/intakes/*` | Yes (`require_token`) |
-| `/tokenization/*` | Yes (`require_token`) |
-| `/accounts/*` | Yes (custom `require_account_list_key`) |
-| Others (cases, reports, analytics, etc.) | No (planned) |
-
-> **Note:** Expanding auth coverage to all routers is a tracked debt item. In production, IAP provides the outer security layer for all endpoints.
+| Route group                    | Auth requirement          |
+| ------------------------------ | ------------------------- |
+| `/accounts/me`                 | `require_token`           |
+| `/accounts/*` (CRUD)           | `require_role("admin")`   |
+| `/campaigns/*` (create/update) | `require_role("admin")`   |
+| `/tasks/*` (update)            | `require_role("admin")`   |
+| `/tokenization/detokenize`     | `require_role("analyst")` |
+| `/reviews/*`, `/intakes/*`     | `require_token`           |
+| Other read endpoints           | `require_token`           |
 
 ## Roles
 
-| Role | Permissions |
-| --- | --- |
-| `analyst` | Search, review cases, create annotations, generate reports |
-| `admin` | All analyst permissions plus PII detokenization, user management |
+| Role      | Capabilities                                               |
+| --------- | ---------------------------------------------------------- |
+| `user`    | Read-only access to public case summaries (default)        |
+| `analyst` | Full case review, annotation, search, report generation    |
+| `leo`     | All analyst capabilities plus LEO-specific reports         |
+| `admin`   | All capabilities plus user management, campaigns, bulk ops |
 
-Additional roles (`user`, `leo`) are defined in the IAM design but not yet enforced in the application layer.
+Roles follow a hierarchy (`user < analyst < leo ≤ admin`). A `require_role("analyst")` check passes for analysts, LEOs, and admins.
 
-## API Keys & Service Accounts
+## Local Development
 
-- Development tokens are configured via `I4G_API__KEY` and `I4G_ACCOUNT_LIST__API_KEY` environment variables.
-- Background Cloud Run jobs use Workload Identity Federation service accounts with least-privilege IAM roles.
-- The Account List router has a separate API key mechanism (`X-ACCOUNTLIST-KEY` header) configured independently.
+Set `I4G_ENV=local` or `settings.identity.disable_auth=true` to bypass authentication entirely. The API returns a mock admin user (`local-dev`). The UI skips IAP token generation for localhost targets.
 
-## Planned Enhancements
+## Service Accounts & Background Jobs
 
-- **JWT-based auth:** Replace hardcoded API keys with signed JWTs from Google Identity Platform.
-- **Nonprofit IAM improvements:** Evaluate passwordless options (e.g., Passkeys, Auth0 for Nonprofits) to lower the barrier for users without Google accounts.
+- Background Cloud Run jobs (ingestion, report generation, account sync) run under dedicated service accounts with least-privilege IAM roles managed by Terraform.
+- The API key (`I4G_API__KEY`) is used for local development and CI environments.
+
+## Future Enhancements
+
+- **Non-Google identity options:** Evaluate passkeys or external IdPs for users without Google accounts.
 - **Hardware key support:** For administrators handling PII rehydration or law enforcement liaison duties.
-- **Full router coverage:** Extend `require_token` to all API routers.
-
-Keep authentication details in sync with the Terraform IAM bindings under `infra/modules/iam`.
+- **Device posture checks:** Pair IAP with BeyondCorp Enterprise for sensitive operations.
