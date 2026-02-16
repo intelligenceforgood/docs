@@ -254,12 +254,14 @@ export I4G_SECRETS__USE_SECRET_MANAGER=true
 ## Adding a New Secret
 
 1. **Create the secret in Secret Manager:**
+
    ```bash
    echo -n "value" | gcloud secrets create SECRET_NAME \
      --project=PROJECT_ID --replication-policy=automatic --data-file=-
    ```
 
 2. **Grant access to the service account** that needs it:
+
    ```bash
    gcloud secrets add-iam-policy-binding SECRET_NAME \
      --project=PROJECT_ID \
@@ -268,6 +270,7 @@ export I4G_SECRETS__USE_SECRET_MANAGER=true
    ```
 
 3. **Add the `secret_env_vars` entry** in the appropriate `terraform.tfvars`:
+
    ```hcl
    # For Cloud Run services (v1 API):
    fastapi_secret_env_vars = {

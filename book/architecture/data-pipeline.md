@@ -81,10 +81,6 @@ flowchart LR
     Outcomes -. "improve" .-> Classify
 ```
 
-> **Diagram too small?** View the full-size interactive version on GitHub — copy this URL into your browser:
->
-> `https://github.com/intelligenceforgood/docs/blob/main/book/architecture/data-pipeline.md`
-
 ## Stages at a glance
 
 1. **Submit & protect** — Users upload chats, screenshots, or receipts. The API normalizes content, detects language, deduplicates, and immediately tokenizes PII (regex + LLM-assisted detection of SSN, email, phone, card numbers) so only masked data flows downstream.

@@ -102,10 +102,6 @@ flowchart TB
     Metrics --> Alerts
 ```
 
-> **Diagram too small?** View the full-size interactive version on GitHub — copy this URL into your browser:
->
-> `https://github.com/intelligenceforgood/docs/blob/main/book/architecture/security-model.md`
-
 ## Core safeguards
 
 - **Immediate masking:** PII is tokenized on upload using regex patterns and LLM-assisted detection (SSN, email, phone, credit card, address, DOB). Analysts and most systems see tokens like `<PII:SSN:7a8f2e>`, not raw identifiers.

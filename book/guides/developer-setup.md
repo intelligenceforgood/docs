@@ -4,11 +4,11 @@ This guide provides a step-by-step path to setting up the full Intelligence for 
 
 ## Prerequisites
 
-*   **Git**
-*   **Python 3.11+** (Conda recommended)
-*   **Node.js 20+** & **PNPM 9**
-*   **Docker** (Optional, for containerized runs)
-*   **Google Cloud SDK** (Optional, for infra deployment)
+* **Git**
+* **Python 3.11+** (Conda recommended)
+* **Node.js 20+** & **PNPM 9**
+* **Docker** (Optional, for containerized runs)
+* **Google Cloud SDK** (Optional, for infra deployment)
 
 ## 1. Repository Setup
 
@@ -27,26 +27,34 @@ git clone https://github.com/intelligenceforgood/planning.git
 
 The `core` repository contains the FastAPI backend and worker jobs.
 
-1.  **Navigate to Core:** `cd core`
-2.  **Create Environment:**
+1. **Navigate to Core:** `cd core`
+2. **Create Environment:**
+
     ```bash
     conda create -n i4g python=3.11
     conda activate i4g
     ```
-3.  **Install Dependencies:**
+
+3. **Install Dependencies:**
+
     ```bash
     pip install -e .
     ```
-4.  **Seed Local Data:**
+
+4. **Seed Local Data:**
+
     ```bash
     i4g bootstrap local reset --report-dir data/reports/bootstrap_local
     ```
-5.  **Run the API:**
+
+5. **Run the API:**
+
     ```bash
     uvicorn i4g.api.app:app --reload
     ```
-    *   API will be available at `http://127.0.0.1:8000`.
-    *   Docs at `http://127.0.0.1:8000/docs`.
+
+    * API will be available at `http://127.0.0.1:8000`.
+    * Docs at `http://127.0.0.1:8000/docs`.
 
 *See [core/README.md](../../../core/README.md) for detailed instructions.*
 
@@ -54,23 +62,29 @@ The `core` repository contains the FastAPI backend and worker jobs.
 
 The `ui` repository contains the Next.js analyst console.
 
-1.  **Navigate to UI:** `cd ../ui`
-2.  **Install Dependencies:**
+1. **Navigate to UI:** `cd ../ui`
+2. **Install Dependencies:**
+
     ```bash
     pnpm install
     ```
-3.  **Configure Environment:**
+
+3. **Configure Environment:**
+
     ```bash
     cd apps/web
     cp .env.example .env.local
     # Edit .env.local if needed (defaults usually work with local Core)
     ```
-4.  **Run Development Server:**
+
+4. **Run Development Server:**
+
     ```bash
     # From ui/ root
     pnpm dev
     ```
-    *   UI will be available at `http://localhost:3000`.
+
+    * UI will be available at `http://localhost:3000`.
 
 *See [ui/README.md](../../../ui/README.md) for detailed instructions.*
 
@@ -78,12 +92,15 @@ The `ui` repository contains the Next.js analyst console.
 
 If you need to deploy to Google Cloud or manage cloud resources:
 
-1.  **Navigate to Infra:** `cd ../infra`
-2.  **Authenticate:**
+1. **Navigate to Infra:** `cd ../infra`
+2. **Authenticate:**
+
     ```bash
     gcloud auth application-default login
     ```
-3.  **Initialize Terraform:**
+
+3. **Initialize Terraform:**
+
     ```bash
     cd environments/app/dev
     terraform init
@@ -93,5 +110,5 @@ If you need to deploy to Google Cloud or manage cloud resources:
 
 ## Troubleshooting
 
-*   **CORS Errors:** Ensure `API_URL` in `ui/apps/web/.env.local` matches the running Core API URL.
-*   **Missing Data:** Rerun the `i4g bootstrap local reset` command in `core`.
+* **CORS Errors:** Ensure `API_URL` in `ui/apps/web/.env.local` matches the running Core API URL.
+* **Missing Data:** Rerun the `i4g bootstrap local reset` command in `core`.

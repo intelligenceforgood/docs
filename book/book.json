@@ -1,8 +1,0 @@
-{
-  "plugins": [
-    "honkit-plugin-mermaid"
-  ],
-  "styles": {
-    "website": "styles/website.css"
-  }
-}

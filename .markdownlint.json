@@ -2,7 +2,11 @@
   "MD013": false,
   "MD033": {
     "allowed_elements": [
+      "a",
       "br",
+      "details",
+      "summary",
+      "img",
       "table",
       "thead",
       "tbody",
