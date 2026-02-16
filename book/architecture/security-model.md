@@ -102,7 +102,7 @@ flowchart TB
     Metrics --> Alerts
 ```
 
-> **Diagram too small?** [View the full-size interactive diagram on GitHub](https://github.com/intelligenceforgood/docs/blob/main/book/architecture/security-model.md).
+> **Diagram too small?** <a href="https://github.com/intelligenceforgood/docs/blob/main/book/architecture/security-model.md" target="_blank" rel="noopener">View the full-size interactive diagram on GitHub</a>.
 
 ## Core safeguards
 
