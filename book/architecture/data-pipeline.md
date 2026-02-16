@@ -81,7 +81,9 @@ flowchart LR
     Outcomes -. "improve" .-> Classify
 ```
 
-> **Diagram too small?** <a href="https://github.com/intelligenceforgood/docs/blob/main/book/%61rchitecture/data-pipeline.md" target="_blank" rel="noopener">View the full-size interactive diagram on GitHub</a>.
+> **Diagram too small?** View the full-size interactive version on GitHub — copy this URL into your browser:
+>
+> `https://github.com/intelligenceforgood/docs/blob/main/book/architecture/data-pipeline.md`
 
 ## Stages at a glance
 
