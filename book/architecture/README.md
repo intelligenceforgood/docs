@@ -6,5 +6,5 @@ This book shows how the platform works—what happens to evidence, how AI and hu
 - **[Data Pipeline](data-pipeline.md)**: The journey from upload → tokenization → hybrid search → signed dossier.
 - **[Security Model](security-model.md)**: The safeguards (masking, encryption, access approvals, auditing) that keep users safe.
 
-> Diagram sources live in `arch-viz/src/views/`; SVGs are generated into `arch-viz/output/` and copied to `book/assets/architecture/`.
+> Diagrams are inline Mermaid rendered by GitHub and HonKit. Source experiments live in `arch-viz/output/mermaid/`.
 > Scope: No deployment minutiae here—just how the platform delivers trustworthy reports while protecting identities.
