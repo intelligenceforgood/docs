@@ -3,6 +3,7 @@
 How evidence moves from upload to a signed, verifiable dossier.
 
 ```mermaid
+%%{init: {'theme':'base', 'themeVariables': {'fontSize':'16px', 'fontFamily':'system-ui, sans-serif'}, 'flowchart': {'curve':'basis', 'padding':20}}}%%
 flowchart LR
     classDef intake    fill:#e3f2fd,stroke:#1565c0,stroke-width:2px,color:#0d47a1
     classDef process   fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#bf360c
