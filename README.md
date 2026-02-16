@@ -3,61 +3,166 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Docs Site](https://img.shields.io/badge/GitBook-Live-blueviolet.svg)](https://app.gitbook.com/o/Hg1e7Xd0z04S7CXWL3N0/s/wiZ96sabsxLxLwhsQmRz)
 
-This repository backs the public documentation site for **Intelligence for Good (i4g)**. Content is authored in Markdown and published to GitBook via Git Sync.
+This repository backs the public documentation site for **Intelligence for Good (i4g)**. Content is authored in Markdown, published to [GitBook](https://www.gitbook.com/) via Git Sync, and also renders natively on GitHub.
 
 ## Repository Layout
 
-- `.gitbook.yaml` – configures GitBook to read from the `book/` directory.
-- `book/` – Markdown sources, images, and navigation files.
-- `book/SUMMARY.md` – defines the left-hand navigation tree in GitBook.
-- `package.json` – local tooling (Markdown linting).
+```text
+.gitbook.yaml          ← tells GitBook to read from book/
+book/
+├── README.md          ← landing page ("Welcome")
+├── SUMMARY.md         ← left-hand navigation tree
+├── architecture/      ← system topology, data pipeline, security model
+├── api/               ← authentication, sample workflows, taxonomy
+├── config/            ← settings manifest, SLO definitions
+├── guides/            ← user, analyst, admin, developer setup
+├── overview/          ← platform overview, personas, use cases
+├── security/          ← access control, secrets reference
+├── assets/            ← SVGs, screenshots, branding
+│   └── architecture/  ← pre-rendered Mermaid SVGs (see below)
+└── contributing.md
+package.json           ← lint + diagram rendering scripts
+```
 
 ## Prerequisites
 
-- Node.js ≥ 20.x (use `nvm` or Homebrew to install/update).
-- `npm` (bundled with Node.js).
+- **Node.js ≥ 20.x** (use `nvm` or Homebrew).
+- **npm** (bundled with Node.js).
 
-## Local Authoring Workflow
+## Getting Started
 
-1. Clone the repo and install dependencies:
-   ```bash
-   npm install
+```bash
+# 1. Clone and install
+git clone https://github.com/intelligenceforgood/docs.git
+cd docs
+npm install
+
+# 2. Lint your changes
+npm run lint
+
+# 3. Auto-fix lint issues
+npm run lint:fix
+```
+
+## Local Preview & Verification
+
+There is no local GitBook server — GitBook is a SaaS platform that renders content from the synced repository. Use these options to verify before merging:
+
+### VS Code Markdown Preview
+
+Open any `.md` file and press **Cmd + Shift + V** (macOS) or **Ctrl + Shift + V** (Linux/Windows). This renders headings, tables, code blocks, and images. Install the [Markdown Preview Mermaid Support](https://marketplace.visualstudio.com/items?itemName=bierner.markdown-mermaid) extension to preview Mermaid diagrams inline.
+
+### GitBook Change Requests (Canonical Preview)
+
+Push your branch to GitHub. GitBook automatically creates a **Change Request** for each branch — open the GitBook space and review the rendered draft. This is the only way to see exactly what the published site will look like.
+
+### Pre-Push Checklist
+
+```bash
+# 1. Lint all Markdown
+npm run lint
+
+# 2. If you edited any Mermaid source, regenerate SVGs
+npm run render:diagrams
+
+# 3. Verify SVGs render correctly
+open book/assets/architecture/*.svg   # macOS
+# xdg-open on Linux
+```
+
+## Adding and Editing Pages
+
+1. Create or edit `.md` files inside `book/`.
+2. Add new pages to `book/SUMMARY.md` so they appear in the GitBook navigation.
+3. Use standard Markdown. GitBook supports fenced code blocks, tables, callout blocks, and Mermaid diagrams natively.
+4. For cross-repo links (to `core/`, `infra/`, `planning/`), use **full GitHub URLs** — not relative paths. GitBook only sees the `book/` subtree, so relative links outside it break on the published site.
+
+   ```markdown
+   <!-- ✅ Correct — works on GitBook and GitHub -->
+
+   [core/README.md](https://github.com/intelligenceforgood/core/blob/main/README.md)
+
+   <!-- ❌ Broken on GitBook — resolves outside book/ -->
+
+   [core/README.md](../../../core/README.md)
    ```
-2. Edit Markdown files inside `book/`. GitBook renders Mermaid diagrams, hint blocks, and other extensions natively — no local build step is required.
-3. Run the quality check before raising a PR:
+
+## Architecture Diagrams (Mermaid)
+
+The architecture pages (`book/architecture/`) contain complex Mermaid flowcharts. These diagrams are maintained using a dual-render approach:
+
+### The Problem
+
+GitBook renders Mermaid blocks natively but **does not support resizing or zoom** — complex diagrams appear too small to read. GitHub, by contrast, renders the same Mermaid blocks at full width with interactive features.
+
+### The Solution
+
+Each architecture page has:
+
+1. **An SVG image** (`book/assets/architecture/*.svg`) — displayed by GitBook at full width with click-to-zoom lightbox.
+2. **The Mermaid source** in a `<details>` collapsible — the single source of truth, also rendered interactively on GitHub.
+
+### Editing Diagrams
+
+1. Edit the Mermaid source inside the `<details>` block in the `.md` file.
+2. Regenerate the SVGs:
+
    ```bash
-   npm run lint
+   npm run render:diagrams
    ```
-   To auto-fix fixable issues:
-   ```bash
-   npm run lint:fix
-   ```
+
+   This extracts Mermaid blocks from the three architecture pages and renders them to SVG at 2400px width using `@mermaid-js/mermaid-cli`.
+
+3. Commit both the updated `.md` file and the regenerated `.svg`.
+
+> **Always run `npm run render:diagrams` after editing any Mermaid source.** The SVG is what GitBook readers see — if you change the Mermaid but skip the render step, GitBook will show a stale diagram.
+
+### Adding a New Diagram
+
+1. Add the Mermaid block to your page using the same pattern (SVG image + `<details>` source).
+2. Place the SVG in `book/assets/architecture/`.
+3. Add the new file to the `render:diagrams` script in `package.json`.
 
 ## GitBook Git Sync
 
-The GitBook space is connected to this repository. After merging changes into `main`, GitBook automatically picks up the updates via Git Sync. If auto-sync is not enabled:
+The GitBook space is connected to this repository. After merging changes into `main`, GitBook picks up updates automatically via Git Sync. If auto-sync is not enabled:
 
 1. Open the GitBook project → **Git Sync** sidebar.
 2. Click **Pull latest** to import Markdown updates from GitHub.
 3. Review the draft build inside GitBook; adjust page order if needed.
 4. Publish the space to make the changes live.
 
+## Scripts Reference
+
+| Script          | Command                   | Purpose                                          |
+| --------------- | ------------------------- | ------------------------------------------------ |
+| Lint            | `npm run lint`            | Check all Markdown files for style issues        |
+| Lint fix        | `npm run lint:fix`        | Auto-fix fixable lint issues                     |
+| Render diagrams | `npm run render:diagrams` | Regenerate architecture SVGs from Mermaid source |
+
 ## Contribution Checklist
 
-- Branch from `main` and keep PRs focused (one topic per PR when possible).
-- Include screenshot placeholders or actual captures when documenting UI updates.
-- Reference source material from `core`, `infra`, and `planning` as needed; cite file paths so future contributors can trace the origin.
-- Ensure sensitive data (PII, secrets) never appears in docs or screenshots.
-- Images: prefer inline SVG/PNG without separate "Open full size" links (GitBook lightbox handles zoom). Use high-res PNGs; add width hints (e.g., `![caption](path.png =1600x)`) only if a page needs a wider render.
+- [ ] Branch from `main`; keep PRs focused (one topic per PR).
+- [ ] Run `npm run lint` — all checks pass.
+- [ ] New pages added to `book/SUMMARY.md`.
+- [ ] Cross-repo links use full GitHub URLs.
+- [ ] If Mermaid diagrams changed: ran `npm run render:diagrams` and committed the SVGs.
+- [ ] No PII, secrets, or sensitive data in docs or screenshots.
+- [ ] Screenshots stored in `book/assets/screenshots/`; SVG logos in `book/assets/branding/`.
 
-## Testing & Deployment
+## Known Limitations
 
-- `npm run lint` – Markdown lint rules (fails on stylistic or structural issues).
-
-Once the PR is merged, GitBook Git Sync deploys the updated content automatically.
+| Issue                                                   | Workaround                                                                   |
+| ------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| GitBook Mermaid blocks are not resizable/zoomable       | Pre-render to SVG and embed as images (see above)                            |
+| GitBook rewrites `.md` links matching its own file tree | Use full GitHub URLs for cross-repo references                               |
+| No GitBook-identical local preview                      | Use VS Code Markdown preview locally; push branch for GitBook Change Request |
 
 ## Related Repositories
 
-- [`intelligenceforgood/core`](../core) – primary source for product and technical documentation during MVP.
-- [`intelligenceforgood/infra`](../infra) – Terraform and Cloud Run configuration details referenced throughout the docs.
-- [`intelligenceforgood/planning`](../planning) – Change logs, migration runbooks, and roadmap inputs.
+| Repo                                                                              | Purpose                              |
+| --------------------------------------------------------------------------------- | ------------------------------------ |
+| [`intelligenceforgood/core`](https://github.com/intelligenceforgood/core)         | Python backend, FastAPI, worker jobs |
+| [`intelligenceforgood/ui`](https://github.com/intelligenceforgood/ui)             | Next.js analyst console              |
+| [`intelligenceforgood/infra`](https://github.com/intelligenceforgood/infra)       | Terraform, Cloud Run, IAM            |
+| [`intelligenceforgood/planning`](https://github.com/intelligenceforgood/planning) | Roadmap, change log, task tracking   |
