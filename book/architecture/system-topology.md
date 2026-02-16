@@ -137,7 +137,7 @@ flowchart TB
     AR -. "pull" .-> Jobs
 ```
 
-> **Diagram too small?** <a href="https://github.com/intelligenceforgood/docs/blob/main/book/architecture/system-topology.md" target="_blank" rel="noopener">View the full-size interactive diagram on GitHub</a>.
+> **Diagram too small?** <a href="https://github.com/intelligenceforgood/docs/blob/main/book/%61rchitecture/system-topology.md" target="_blank" rel="noopener">View the full-size interactive diagram on GitHub</a>.
 
 ## What's in the platform
 
