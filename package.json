@@ -5,7 +5,8 @@
   "license": "MIT",
   "scripts": {
     "lint": "markdownlint \"book/**/*.md\"",
-    "lint:fix": "markdownlint --fix \"book/**/*.md\""
+    "lint:fix": "markdownlint --fix \"book/**/*.md\"",
+    "render:diagrams": "for f in book/architecture/data-pipeline.md book/architecture/security-model.md book/architecture/system-topology.md; do name=$(basename \"$f\" .md | tr '-' '_'); sed -n '/^```mermaid$/,/^```$/{ /^```mermaid$/d; /^```$/d; p; }' \"$f\" > /tmp/\"$name\".mmd && npx @mermaid-js/mermaid-cli -i /tmp/\"$name\".mmd -o book/assets/architecture/\"$name\".svg -w 2400 --backgroundColor transparent; done"
   },
   "devDependencies": {
     "markdownlint-cli": "^0.39.0"

@@ -2,6 +2,11 @@
 
 How evidence moves from upload to a signed, verifiable dossier.
 
+![Data Pipeline](../assets/architecture/data_pipeline.svg)
+
+<details>
+<summary>Mermaid source (click to expand)</summary>
+
 ```mermaid
 %%{init: {'theme':'base', 'themeVariables': {'fontSize':'16px', 'fontFamily':'system-ui, sans-serif'}, 'flowchart': {'curve':'basis', 'padding':20}}}%%
 flowchart LR
@@ -80,6 +85,8 @@ flowchart LR
     Analyst -. "retrain signals" .-> Outcomes
     Outcomes -. "improve" .-> Classify
 ```
+
+</details>
 
 ## Stages at a glance
 

@@ -6,5 +6,5 @@ This book shows how the platform works—what happens to evidence, how AI and hu
 - **[Data Pipeline](data-pipeline.md)**: The journey from upload → tokenization → hybrid search → signed dossier.
 - **[Security Model](security-model.md)**: The safeguards (masking, encryption, access approvals, auditing) that keep users safe.
 
-> Diagrams use inline Mermaid, rendered natively by GitBook. Source experiments live in `arch-viz/output/mermaid/`.
+> Diagrams are rendered as SVG images for full-width display on GitBook. The Mermaid source is preserved in a collapsible block on each page for editing. To regenerate SVGs, run `npx @mermaid-js/mermaid-cli -i source.mmd -o output.svg -w 2400`.
 > Scope: No deployment minutiae here—just how the platform delivers trustworthy reports while protecting identities.

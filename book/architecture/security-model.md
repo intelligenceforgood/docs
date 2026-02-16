@@ -2,6 +2,11 @@
 
 How we keep victims' data safe while delivering evidence law enforcement can trust.
 
+![Security Model](../assets/architecture/security_model.svg)
+
+<details>
+<summary>Mermaid source (click to expand)</summary>
+
 ```mermaid
 %%{init: {'theme':'base', 'themeVariables': {'fontSize':'16px', 'fontFamily':'system-ui, sans-serif'}, 'flowchart': {'curve':'basis', 'padding':20}}}%%
 flowchart TB
@@ -101,6 +106,8 @@ flowchart TB
     AuditLog --> Metrics
     Metrics --> Alerts
 ```
+
+</details>
 
 ## Core safeguards
 

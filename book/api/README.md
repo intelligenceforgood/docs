@@ -13,4 +13,4 @@ For detailed endpoint documentation (parameters, schemas, and response types), p
 - **Swagger UI:** `/docs` (e.g., `http://127.0.0.1:8000/docs`)
 - **ReDoc:** `/redoc` (e.g., `http://127.0.0.1:8000/redoc`)
 
-*See [core/docs/api_reference.md](../../../core/docs/api_reference.md) for more details.*
+_See [core/docs/api_reference.md](https://github.com/intelligenceforgood/core/blob/main/docs/api_reference.md) for more details._

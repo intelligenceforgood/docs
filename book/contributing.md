@@ -4,13 +4,13 @@ We welcome contributions that improve clarity, accessibility, and accuracy of th
 
 ## How to Help
 
-1. Review open items in the [planning roadmap](../../planning/roadmap.md) or backlog issues in the GitHub repository.
+1. Review open items in the [planning roadmap](https://github.com/intelligenceforgood/planning/blob/main/roadmap.md) or backlog issues in the GitHub repository.
 2. Create a feature branch (`docs/<short-description>`) and make focused changes.
 3. Run the local checks appropriate for the repo you changed:
 
    ```bash
    # Docs (this repo)
-   npm run lint && npm run build
+   npm run lint
 
    # Core (Python backend)
    conda run -n i4g pytest tests/unit
@@ -39,4 +39,4 @@ We welcome contributions that improve clarity, accessibility, and accuracy of th
 
 ## Code of Conduct
 
-All contributors must follow the overarching project [Code of Conduct](../CONTRIBUTING.md). Report violations to the program administrators immediately.
+All contributors must follow the overarching project [Code of Conduct](https://github.com/intelligenceforgood/docs/blob/main/CONTRIBUTING.md). Report violations to the program administrators immediately.

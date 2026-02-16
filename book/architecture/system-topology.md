@@ -2,6 +2,11 @@
 
 High-level view of how users, analysts, and law enforcement interact with the platform.
 
+![System Topology](../assets/architecture/system_topology.svg)
+
+<details>
+<summary>Mermaid source (click to expand)</summary>
+
 ```mermaid
 %%{init: {'theme':'base', 'themeVariables': {'fontSize':'16px', 'fontFamily':'system-ui, sans-serif'}, 'flowchart': {'curve':'basis', 'padding':20}}}%%
 flowchart TB
@@ -136,6 +141,8 @@ flowchart TB
     AR -. "pull" .-> Services
     AR -. "pull" .-> Jobs
 ```
+
+</details>
 
 ## What's in the platform
 
