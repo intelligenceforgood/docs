@@ -137,6 +137,8 @@ flowchart TB
     AR -. "pull" .-> Jobs
 ```
 
+> **Diagram too small?** [View the full-size interactive diagram on GitHub](https://github.com/intelligenceforgood/docs/blob/main/book/architecture/system-topology.md).
+
 ## What's in the platform
 
 - **Analyst Console (Next.js)** — secure portal for volunteers and LEOs behind IAP; all traffic proxied through FastAPI so PII stays masked.
