@@ -29,6 +29,10 @@ The Scam Site Investigator (SSI) automates the analysis of suspicious websites â
 | **`ssi` CLI**   | `ssi investigate url "<URL>"`                                                           | For developers, admins, and scripted automation |
 | **REST API**    | `http://localhost:8100` (local) or Cloud Run service (dev/prod)                         | Programmatic integration                        |
 
+## For developers
+
+Contributor docs (architecture, testing, Docker builds, GCP deployment) live in the [SSI repo docs](https://github.com/intelligenceforgood/ssi/tree/main/docs).
+
 ## Section map
 
 - [Getting Started](getting-started.md) â€” install, configure, and run your first investigation.

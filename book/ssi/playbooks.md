@@ -59,63 +59,73 @@ Playbooks are JSON files stored in `config/playbooks/`. Each file defines:
 
 ```json
 {
-  "id": "fake-exchange-register",
-  "name": "Fake Crypto Exchange — Registration Flow",
+  "playbook_id": "fake_exchange_register",
   "description": "Handles registration on clone exchange sites that mimic Binance/Coinbase.",
-  "version": "1.0.0",
-  "url_patterns": [
-    "^https?://(www\\.)?fake-exchange\\.(com|net|org)",
-    "^https?://.*\\.exchange-clone\\.\\w+"
-  ],
+  "url_pattern": "^https?://(www\\.)?fake-exchange\\.(com|net|org)",
+  "version": "1.0",
+  "fallback_to_llm": true,
+  "max_duration_sec": 120,
+  "tags": ["crypto", "exchange"],
   "steps": [
     {
       "action": "click",
-      "target": "text:Register",
+      "selector": "text:Register",
       "description": "Click the Register button",
-      "retry": 2
+      "retry_on_failure": 2
     },
     {
       "action": "type",
-      "target": "input[name='email']",
+      "selector": "input[name='email']",
       "value": "{identity.email}",
       "description": "Enter email address"
     },
     {
       "action": "type",
-      "target": "input[name='password']",
+      "selector": "input[name='password']",
       "value": "{identity.password}",
       "description": "Enter password"
     },
     {
       "action": "click",
-      "target": "button[type='submit']",
+      "selector": "button[type='submit']",
       "description": "Submit registration form",
-      "retry": 3
+      "retry_on_failure": 3
     },
     {
       "action": "wait",
-      "duration_ms": 2000,
+      "value": "2000",
       "description": "Wait for redirect to deposit page"
     },
     {
-      "action": "extract_wallets",
+      "action": "extract",
       "description": "Extract wallet addresses from deposit page"
     }
   ]
 }
 ```
 
+### Step fields
+
+| Field              | Type   | Default | Description                                                  |
+| ------------------ | ------ | ------- | ------------------------------------------------------------ |
+| `action`           | string | —       | Step type (see table below). **Required.**                   |
+| `selector`         | string | `""`    | CSS selector or `text:` prefix for element targeting.        |
+| `value`            | string | `""`    | Input value, URL, or wait duration. Supports `{identity.*}`. |
+| `description`      | string | `""`    | Human-readable step description.                             |
+| `retry_on_failure` | int    | `0`     | Retry this step N times (0–10) before considering it failed. |
+| `fallback_to_llm`  | bool   | `true`  | Hand off to LLM vision agent if step fails after retries.    |
+
 ### Step actions
 
-| Action            | Required fields   | Description                                                      |
-| ----------------- | ----------------- | ---------------------------------------------------------------- |
-| `click`           | `target`          | Click an element (CSS selector or `text:` prefix for text match) |
-| `type`            | `target`, `value` | Type into a form field. Value supports `{identity.*}` variables. |
-| `wait`            | `duration_ms`     | Pause for a fixed duration                                       |
-| `goto`            | `url`             | Navigate to a specific URL                                       |
-| `screenshot`      | —                 | Capture a screenshot at this point                               |
-| `extract_wallets` | —                 | Run wallet extraction on the current page                        |
-| `scroll`          | `direction`       | Scroll up or down                                                |
+| Action     | Required fields     | Description                                                      |
+| ---------- | ------------------- | ---------------------------------------------------------------- |
+| `click`    | `selector`          | Click an element (CSS selector or `text:` prefix for text match) |
+| `type`     | `selector`, `value` | Type into a form field. Value supports `{identity.*}` variables. |
+| `select`   | `selector`, `value` | Select an option from a dropdown.                                |
+| `navigate` | `value`             | Navigate to a specific URL (passed in `value`).                  |
+| `wait`     | `value`             | Pause for a duration in milliseconds (passed in `value`).        |
+| `scroll`   | `selector`          | Scroll an element or the page.                                   |
+| `extract`  | —                   | Run wallet extraction on the current page.                       |
 
 ### Template variables
 

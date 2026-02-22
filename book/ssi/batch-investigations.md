@@ -125,7 +125,7 @@ curl http://localhost:8100/investigations/active
 
 ## Scheduling batch runs
 
-For recurring scans (e.g., daily PhishTank feed processing), schedule the batch command with cron or Cloud Scheduler:
+For recurring scans (e.g., daily PhishTank feed processing), schedule the batch command with cron:
 
 ```bash
 # Example crontab entry — run every day at 06:00 UTC
@@ -133,4 +133,4 @@ For recurring scans (e.g., daily PhishTank feed processing), schedule the batch 
   --output /data/batch-results --events --resume >> /var/log/ssi-batch.log 2>&1
 ```
 
-For GCP deployments, use `ssi job batch` as a Cloud Run Job that reads a manifest from GCS.
+For Cloud Run Jobs, Cloud Scheduler, and campaign runner scripts, see the [Batch Scheduling Guide](https://github.com/intelligenceforgood/ssi/blob/main/docs/batch_scheduling.md) in the developer docs.
