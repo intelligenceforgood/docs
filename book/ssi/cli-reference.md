@@ -1,20 +1,8 @@
 # CLI Reference
 
-The `ssi` command-line interface provides full access to every SSI capability. It is the primary tool for developers, admins, and scripted automation. Every feature available in the Console or API is also accessible via the CLI.
+The `ssi` command-line interface provides access to every SSI capability from the terminal. It is useful for admins running batch scans, scripted automation, and quick lookups.
 
-## Installation
-
-After installing SSI (`make setup` or `pip install -e ".[dev,test]"`), the `ssi` command is available:
-
-```bash
-ssi --version
-```
-
-Enable tab completion (once per shell):
-
-```bash
-ssi --install-completion
-```
+For installation instructions, see the [SSI Developer Guide](https://github.com/intelligenceforgood/ssi/blob/main/docs/developer_guide.md).
 
 ## Command overview
 
@@ -42,9 +30,6 @@ ssi
 ├── settings           Configuration management
 │   ├── show           Display resolved settings
 │   └── validate       Validate settings
-│
-├── job                Cloud Run Job entry point
-│   └── investigate    Run investigation as job
 │
 └── --version          Show version
 ```
@@ -223,16 +208,3 @@ ssi settings validate
 ```
 
 Checks that settings are valid and required services are reachable.
-
-## job
-
-### `ssi job investigate`
-
-Cloud Run Job entry point — runs a single investigation with the same options as `ssi investigate url`.
-
-```bash
-ssi job investigate --url "<URL>" [--scan-type TYPE] [--passive] \
-  [--push-to-core] [--trigger-dossier] [--dataset LABEL]
-```
-
-This command is used by the Cloud Run Job definition and is not typically invoked manually.

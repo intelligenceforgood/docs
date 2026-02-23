@@ -4,12 +4,12 @@ The Scam Site Investigator (SSI) automates the analysis of suspicious websites �
 
 ## Who is this for?
 
-| Audience                | Typical workflow                                                                 |
-| ----------------------- | -------------------------------------------------------------------------------- |
-| **Analysts**            | Submit URLs in the Console, review risk scores, download evidence                |
-| **Investigators**       | Use live monitoring to watch the AI agent interact with scam sites in real time  |
-| **Developers & Admins** | Automate investigations via the `ssi` CLI or REST API; schedule batch scans      |
-| **Law Enforcement**     | Receive evidence ZIPs, STIX bundles, and PDF reports with chain-of-custody proof |
+| Audience            | Typical workflow                                                                 |
+| ------------------- | -------------------------------------------------------------------------------- |
+| **Analysts**        | Submit URLs in the Console, review risk scores, download evidence                |
+| **Investigators**   | Use live monitoring to watch the AI agent interact with scam sites in real time  |
+| **Admins**          | Automate batch scans via the `ssi` CLI; manage configuration                     |
+| **Law Enforcement** | Receive evidence ZIPs, STIX bundles, and PDF reports with chain-of-custody proof |
 
 ## Key capabilities
 
@@ -23,25 +23,20 @@ The Scam Site Investigator (SSI) automates the analysis of suspicious websites �
 
 ## How to access
 
-| Surface         | URL / Command                                                                           | Notes                                           |
-| --------------- | --------------------------------------------------------------------------------------- | ----------------------------------------------- |
-| **i4g Console** | `https://app.intelligenceforgood.org/ssi` (prod) or `http://localhost:3000/ssi` (local) | Primary interface for analysts                  |
-| **`ssi` CLI**   | `ssi investigate url "<URL>"`                                                           | For developers, admins, and scripted automation |
-| **REST API**    | `http://localhost:8100` (local) or Cloud Run service (dev/prod)                         | Programmatic integration                        |
-
-## For developers
-
-Contributor docs (architecture, testing, Docker builds, GCP deployment) live in the [SSI repo docs](https://github.com/intelligenceforgood/ssi/tree/main/docs).
+| Surface         | URL / Command                                                                           | Notes                              |
+| --------------- | --------------------------------------------------------------------------------------- | ---------------------------------- |
+| **i4g Console** | `https://app.intelligenceforgood.org/ssi` (prod) or `http://localhost:3000/ssi` (local) | Primary interface for all users    |
+| **`ssi` CLI**   | `ssi investigate url "<URL>"`                                                           | For admins and scripted automation |
 
 ## Section map
 
-- [Getting Started](getting-started.md) — install, configure, and run your first investigation.
+- [Getting Started](getting-started.md) — access the Console and run your first investigation.
 - [Investigating Sites](investigating-sites.md) — passive scans, full investigations, and how the AI agent works.
 - [Wallet Extraction](wallet-extraction.md) — discover, validate, and export cryptocurrency wallet addresses.
 - [Live Monitoring](live-monitoring.md) — watch investigations in real time and send guidance commands.
-- [Playbooks](playbooks.md) — use and manage predefined investigation sequences.
+- [Playbooks](playbooks.md) — understand and manage predefined investigation sequences.
 - [Batch Investigations](batch-investigations.md) — process multiple URLs at scale.
 - [Reports & Evidence](reports-evidence.md) — understand the artifacts SSI produces.
-- [CLI Reference](cli-reference.md) — full command-line reference for developers and admins.
-- [Configuration](configuration.md) — environment variables, config files, and deployment profiles.
+- [CLI Reference](cli-reference.md) — command-line reference for admins.
+- [Configuration](configuration.md) — key settings and environment profiles.
 - [Troubleshooting](troubleshooting.md) — common issues and solutions.
