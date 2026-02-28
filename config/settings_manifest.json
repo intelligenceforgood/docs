@@ -859,6 +859,30 @@
       "description": "Structured + blob storage configuration."
     },
     {
+      "path": "storage.ssi_evidence_bucket",
+      "section": "storage",
+      "type": "str | NoneType",
+      "default": null,
+      "env_vars": [
+        "I4G_STORAGE__SSI_EVIDENCE_BUCKET",
+        "STORAGE__SSI_EVIDENCE_BUCKET",
+        "STORAGE_SSI_EVIDENCE_BUCKET"
+      ],
+      "description": "GCS bucket for SSI investigation evidence artifacts."
+    },
+    {
+      "path": "storage.ssi_evidence_prefix",
+      "section": "storage",
+      "type": "str",
+      "default": "investigations",
+      "env_vars": [
+        "I4G_STORAGE__SSI_EVIDENCE_PREFIX",
+        "STORAGE__SSI_EVIDENCE_PREFIX",
+        "STORAGE_SSI_EVIDENCE_PREFIX"
+      ],
+      "description": "Key prefix inside the SSI evidence bucket."
+    },
+    {
       "path": "storage.reports_bucket",
       "section": "storage",
       "type": "str | NoneType",
