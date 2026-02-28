@@ -35,7 +35,7 @@ flowchart TB
     subgraph GCP["☁️ GCP — i4g · us-central1"]
 
         subgraph Services["⚡ Cloud Run Services"]
-            API(["FastAPI Gateway<br/>13 routers · rate-limited"]):::service
+            API(["FastAPI Gateway<br/>19 routers · rate-limited"]):::service
             Console(["Next.js Console<br/>Analyst UI · SSR"]):::service
         end
 
@@ -48,6 +48,7 @@ flowchart TB
             Dossier["dossier-queue<br/>aggregate evidence"]:::job
             Account["account-list<br/>PDF · XLSX export"]:::job
             Purge["retention-purge<br/>90-day delete · daily"]:::job
+            SSIJob["ssi-investigate<br/>browser · OSINT · wallets"]:::job
         end
 
         subgraph Sched["🕐 Cloud Scheduler"]
@@ -71,7 +72,7 @@ flowchart TB
             Secrets["Secret Manager<br/>API keys · DB creds"]:::platform
             Logging["Cloud Logging<br/>structured JSON · corr-ID"]:::platform
             Monitoring["Cloud Monitoring<br/>error >5 % · p95 >2 s"]:::platform
-            AR["Artifact Registry<br/>7 container images"]:::cicd
+            AR["Artifact Registry<br/>8 container images"]:::cicd
         end
 
     end
@@ -128,6 +129,11 @@ flowchart TB
     Purge -- "delete" --> DB
     Purge -- "delete" --> Evidence
 
+    SSIJob -- "write scans · wallets" --> DB
+    SSIJob -- "store evidence" --> Evidence
+    SSIJob -- "OSINT · classify" --> Gemini
+    API -- "trigger job" --> SSIJob
+
     VaultSvc -- "encrypt / decrypt" --> KMS
     VaultSvc -- "read / write tokens" --> VaultDB
     VaultSvc -. "secrets" .-> VaultSecrets
@@ -147,8 +153,8 @@ flowchart TB
 ## What's in the platform
 
 - **Analyst Console (Next.js)** — secure portal for volunteers and LEOs behind IAP; all traffic proxied through FastAPI so PII stays masked.
-- **FastAPI Gateway** — 13 API routers covering intake, hybrid search, report generation, task status, and taxonomy; enforces tokenization and RBAC.
-- **Cloud Run Jobs (7)** — background workers for ingestion, classification sweeping, intake processing, report generation, dossier assembly, account-list export, and data-retention purge.
+- **FastAPI Gateway** — 19 API routers covering intake, hybrid search, report generation, task status, taxonomy, and SSI investigation management (history, wallets, evidence, playbooks); enforces tokenization and RBAC.
+- **Cloud Run Jobs (8)** — background workers for ingestion, classification sweeping, intake processing, report generation, dossier assembly, account-list export, data-retention purge, and SSI scam-site investigation (browser automation, OSINT, wallet extraction).
 - **PII Vault (isolated project)** — separates canonical PII from case data in a dedicated GCP project with KMS-wrapped encryption; deterministic tokens keep searches useful without exposing identities.
 - **Data Stores** — Cloud SQL (PostgreSQL 15, IAM auth), three GCS buckets (evidence, reports, data-bundles), and Vertex AI Search for hybrid retrieval.
 - **AI Services** — Vertex AI Gemini 2.0 for classification, entity extraction, and report generation; Vertex AI Search for semantic + keyword hybrid search.

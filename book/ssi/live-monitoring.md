@@ -2,6 +2,8 @@
 
 During active investigations, SSI streams real-time events — screenshots, state changes, wallet discoveries, and guidance requests. You can watch the AI agent work and intervene when it needs help.
 
+> **Availability:** Live WebSocket monitoring is available in local development mode (via the standalone SSI FastAPI app or the `ssi` CLI). In production, the Console shows investigation progress via task status polling (`GET /tasks/{task_id}`). Real-time agent log streaming in the production Console is deferred; if needed in the future, SSE (server-sent events) is the recommended path due to better Cloud Run and IAP compatibility.
+
 ## Monitoring in the Console
 
 1. Start an investigation from **SSI → Investigate** with **Active** or **Full** scan type.

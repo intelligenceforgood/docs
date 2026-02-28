@@ -1,6 +1,6 @@
 # API Guide
 
-The FastAPI gateway exposes endpoints for ingestion, case management, and reporting workflows. While access is currently limited to trusted services and authenticated analysts, documenting the API surface prepares i4g for future integrations.
+The FastAPI gateway exposes endpoints for ingestion, case management, reporting workflows, and SSI scam-site investigations. While access is currently limited to trusted services and authenticated analysts, documenting the API surface prepares i4g for future integrations.
 
 - [Authentication](authentication.md) – describes IAM gating, tokens, and future plans.
 - [Sample Workflows](sample-requests.md) – provides request/response examples for common tasks.
@@ -14,3 +14,23 @@ For detailed endpoint documentation (parameters, schemas, and response types), p
 - **ReDoc:** `/redoc` (e.g., `http://127.0.0.1:8000/redoc`)
 
 _See [core/docs/api_reference.md](https://github.com/intelligenceforgood/core/blob/main/docs/api_reference.md) for more details._
+
+## SSI Investigation Endpoints
+
+The gateway serves all SSI (Scam Site Investigator) endpoints. There is no separate `ssi-api` service; the SSI Cloud Run Job handles browser automation and OSINT, and writes results directly to the shared database.
+
+| Method                | Path                                            | Description                                             |
+| --------------------- | ----------------------------------------------- | ------------------------------------------------------- |
+| `POST`                | `/investigations/ssi`                           | Trigger an SSI investigation (launches Cloud Run Job)   |
+| `GET`                 | `/investigations/ssi/history`                   | List past investigations (paginated, filterable)        |
+| `GET`                 | `/investigations/ssi/active`                    | List active investigations                              |
+| `GET`                 | `/investigations/ssi/{scan_id}`                 | Full investigation detail (wallets, PII, agent actions) |
+| `GET`                 | `/investigations/ssi/wallets`                   | Cross-scan wallet search with deduplication             |
+| `GET`                 | `/investigations/ssi/{scan_id}/wallets.csv`     | Export wallets as CSV                                   |
+| `GET`                 | `/investigations/ssi/{scan_id}/wallets.xlsx`    | Export wallets as XLSX                                  |
+| `GET`                 | `/investigations/ssi/{scan_id}/evidence-bundle` | Download evidence ZIP                                   |
+| `GET`                 | `/investigations/ssi/{scan_id}/lea-package`     | Download LEA evidence package                           |
+| `GET`                 | `/investigations/ssi/{scan_id}/report.pdf`      | Download PDF report                                     |
+| `GET/POST/PUT/DELETE` | `/playbooks/ssi`                                | Playbook CRUD                                           |
+| `POST`                | `/playbooks/ssi/test-match`                     | Test URL against playbook patterns                      |
+| `GET`                 | `/tasks/{task_id}`                              | Poll investigation progress                             |

@@ -2,6 +2,8 @@
 
 The Scam Site Investigator (SSI) automates the analysis of suspicious websites — from passive reconnaissance to full AI-driven scam funnel traversal. It discovers infrastructure behind phishing, crypto, and romance-scam sites, extracts cryptocurrency wallet addresses, and generates court-ready evidence packages.
 
+> **Deployment note:** In production, all SSI API endpoints are served by the core FastAPI gateway (no standalone `ssi-api` service). The `ssi` CLI and standalone FastAPI app remain available for local development and testing. The SSI Cloud Run Job handles browser automation and OSINT, writing results directly to the shared Cloud SQL database.
+
 ## Who is this for?
 
 | Audience            | Typical workflow                                                                 |
@@ -23,10 +25,10 @@ The Scam Site Investigator (SSI) automates the analysis of suspicious websites �
 
 ## How to access
 
-| Surface         | URL / Command                                                                           | Notes                              |
-| --------------- | --------------------------------------------------------------------------------------- | ---------------------------------- |
-| **i4g Console** | `https://app.intelligenceforgood.org/ssi` (prod) or `http://localhost:3000/ssi` (local) | Primary interface for all users    |
-| **`ssi` CLI**   | `ssi investigate url "<URL>"`                                                           | For admins and scripted automation |
+| Surface         | URL / Command                                                                           | Notes                                                                 |
+| --------------- | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------- |
+| **i4g Console** | `https://app.intelligenceforgood.org/ssi` (prod) or `http://localhost:3000/ssi` (local) | Primary interface — all API calls route through the core gateway      |
+| **`ssi` CLI**   | `ssi investigate url "<URL>"`                                                           | For admins and scripted automation (local dev / standalone mode only) |
 
 ## Section map
 
