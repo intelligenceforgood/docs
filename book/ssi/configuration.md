@@ -55,11 +55,11 @@ Set to `false` to watch the agent interact with the site in a visible browser wi
 
 SSI writes investigation results directly to the core database (shared Cloud SQL in cloud, shared SQLite in local dev). The `SSI_STORAGE__DB_URL` setting controls which database SSI connects to.
 
-| Variable                        | Description                                     | Default                               |
-| ------------------------------- | ----------------------------------------------- | ------------------------------------- |
-| `SSI_STORAGE__DB_URL`           | Database URL for shared storage                 | `sqlite:///../core/data/i4g_store.db` |
-| `SSI_INTEGRATION__CORE_API_URL` | i4g core API URL (for task status callbacks)    | `http://localhost:8000`               |
-| `SSI_INTEGRATION__PUSH_TO_CORE` | Auto-push results to core (legacy, now default) | `false`                               |
+| Variable                        | Description                                   | Default                               |
+| ------------------------------- | --------------------------------------------- | ------------------------------------- |
+| `SSI_STORAGE__DB_URL`           | Database URL for shared storage               | `sqlite:///../core/data/i4g_store.db` |
+| `SSI_INTEGRATION__CORE_API_URL` | i4g core API URL (for legacy CoreBridge path) | `http://localhost:8000`               |
+| `SSI_JOB__PUSH_TO_CORE`         | Create case record after job completes        | `true`                                |
 
 > In production, SSI does not run its own API service. All SSI API endpoints (history, wallets, evidence, playbooks) are served by the core FastAPI gateway. The standalone SSI FastAPI app is used only for local development.
 
