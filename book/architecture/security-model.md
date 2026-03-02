@@ -44,7 +44,7 @@ flowchart TB
 
     subgraph ServiceLayer["⚡ Service Layer · Cloud Run"]
         Console(["Next.js Console<br/>sa-app · masked views"]):::service
-        API(["FastAPI Gateway<br/>sa-app · enforces RBAC"]):::service
+        API(["Core API (core-svc)<br/>sa-app · enforces RBAC"]):::service
         Workers(["Cloud Run Jobs<br/>sa-ingest · sa-report<br/>sa-intake"]):::service
     end
 

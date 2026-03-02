@@ -1,13 +1,13 @@
 # SDK Endpoint Coverage
 
-This page maps the endpoints available in the `@i4g/sdk` TypeScript client to the backend FastAPI routes. Use this reference to determine which client method to call and where manual integration may be needed.
+This page maps the endpoints available in the `@i4g/sdk` TypeScript client to the backend Core API routes. Use this reference to determine which client method to call and where manual integration may be needed.
 
 ## Client Variants
 
 | Client              | Factory                  | Use When                                                             |
 | ------------------- | ------------------------ | -------------------------------------------------------------------- |
 | **Default SDK**     | `createClient()`         | Connecting to an external API that matches the SDK's expected schema |
-| **Platform Client** | `createPlatformClient()` | Connecting to the `core` FastAPI backend (`I4G_API_KIND=core`)       |
+| **Platform Client** | `createPlatformClient()` | Connecting to the `core` API backend (`I4G_API_KIND=core`)           |
 
 The platform client wraps the default SDK and overrides methods where the core backend has a different contract (e.g., search). Resolution happens in `ui/apps/web/src/lib/i4g-client.ts`.
 

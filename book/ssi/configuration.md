@@ -61,7 +61,7 @@ SSI writes investigation results directly to the core database (shared Cloud SQL
 | `SSI_INTEGRATION__CORE_API_URL` | i4g core API URL (for legacy CoreBridge path) | `http://localhost:8000`               |
 | `SSI_INTEGRATION__PUSH_TO_CORE` | Create case record after investigation        | `true`                                |
 
-> In production, SSI does not run its own API service. All SSI API endpoints (history, wallets, evidence, playbooks) are served by the core FastAPI gateway. The standalone SSI FastAPI app is used only for local development.
+> In production, SSI does not run its own API service. All SSI API endpoints (history, wallets, evidence, playbooks) are served by the Core API. The standalone SSI FastAPI app is used only for local development.
 
 ## Local config file
 

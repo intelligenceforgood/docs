@@ -25,7 +25,7 @@ git clone https://github.com/intelligenceforgood/planning.git
 
 ## 2. Backend Setup (Core)
 
-The `core` repository contains the FastAPI backend and worker jobs.
+The `core` repository contains the Core API backend and worker jobs.
 
 1. **Navigate to Core:** `cd core`
 2. **Create Environment:**

@@ -1,6 +1,6 @@
 # Sample Workflows
 
-The following examples illustrate how trusted clients interact with the FastAPI gateway. All authenticated
+The following examples illustrate how trusted clients interact with the Core API. All authenticated
 endpoints require the `X-API-KEY` header (see [Authentication](authentication.md)).
 
 ## Submit Evidence (Intake)

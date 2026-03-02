@@ -30,7 +30,7 @@ This ordering helps prevent accidental runs against production or someone else's
 
 ## Command map (shortcuts)
 
-- `i4g bootstrap` – reset/load/verify smoke flows. Subcommands: `local reset|load|verify|smoke`, `dev reset|load|verify|smoke`, and `seed-sample`. Local bootstrap supports `--smoke-search` and `--smoke-dossiers` (FastAPI must be running) so you can capture verification evidence without rerunning imports. Set `I4G_ENV=local` when running local bootstrap commands in CI.
+- `i4g bootstrap` – reset/load/verify smoke flows. Subcommands: `local reset|load|verify|smoke`, `dev reset|load|verify|smoke`, and `seed-sample`. Local bootstrap supports `--smoke-search` and `--smoke-dossiers` (Core API must be running) so you can capture verification evidence without rerunning imports. Set `I4G_ENV=local` when running local bootstrap commands in CI.
 - `i4g settings` – inspect/export config manifests so docs and CI stay in sync.
 - `i4g jobs` – run worker jobs (ingest, report, intake, account, dossier, ingest-retry).
 - `i4g ingest` – bundle and Vertex ingest helpers; tag saved searches.
@@ -48,7 +48,7 @@ This ordering helps prevent accidental runs against production or someone else's
 - Local bootstrap refuses to run unless `I4G_ENV=local` (override with `--force` only when you know the target is isolated). It prints the bundle manifest sha256 during verification so you can confirm what was loaded.
 - Dev bootstrap blocks prod targets and non-dev envs unless `--force` is passed; it always impersonates the WIF service account you provide, logs the project/region/bundle, and computes a sha256 when the bundle URI points to a local file.
 - Keep `--dry-run` and `--verify-only` in regular use to avoid unintended writes.
-- Smokes: add `--smoke-search` on local runs, `--smoke-dossiers` when FastAPI is up, or `--run-dossier-smoke/--run-search-smoke` on dev runs to capture verification evidence; failures stop the run. Dev verify defaults to running both smokes; dev reset/load leave them opt-in.
+- Smokes: add `--smoke-search` on local runs, `--smoke-dossiers` when the Core API is up, or `--run-dossier-smoke/--run-search-smoke` on dev runs to capture verification evidence; failures stop the run. Dev verify defaults to running both smokes; dev reset/load leave them opt-in.
 
 ## Dev reprime workflow (manual)
 
@@ -77,9 +77,9 @@ i4g bootstrap local reset --bundle-uri data/bundles/synthetic_coverage/bundle.js
  i4g bootstrap dev reset --bundle-uri gs://i4g-dev-data-bundles/demo/bundle.jsonl --dry-run
 
 # Dev smoke-only verification (no job execution)
- i4g bootstrap dev smoke --smoke-api-url https://fastapi-gateway-y5jge5w2cq-uc.a.run.app
+ i4g bootstrap dev smoke --smoke-api-url https://core-svc-y5jge5w2cq-uc.a.run.app
 
-# Smoke dossiers against local FastAPI
+# Smoke dossiers against local Core API
  I4G_API_KEY=dev-token i4g smoke dossiers --api-url http://localhost:8000
 
 # Export saved searches to a file

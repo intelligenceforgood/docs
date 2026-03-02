@@ -35,7 +35,7 @@ flowchart TB
     subgraph GCP["☁️ GCP — i4g · us-central1"]
 
         subgraph Services["⚡ Cloud Run Services"]
-            API(["FastAPI Gateway<br/>19 routers · rate-limited"]):::service
+            API(["Core API (core-svc)<br/>19 routers · rate-limited"]):::service
             Console(["Next.js Console<br/>Analyst UI · SSR"]):::service
             SSISvc(["SSI Service (ssi-svc)<br/>browser · OSINT · wallets"]):::service
         end
@@ -152,8 +152,8 @@ flowchart TB
 
 ## What's in the platform
 
-- **Analyst Console (Next.js)** — secure portal for volunteers and LEOs behind IAP; all traffic proxied through FastAPI so PII stays masked.
-- **FastAPI Gateway** — 19 API routers covering intake, hybrid search, report generation, task status, taxonomy, and SSI investigation management (history, wallets, evidence, playbooks); enforces tokenization and RBAC.
+- **Analyst Console (Next.js)** — secure portal for volunteers and LEOs behind IAP; all traffic proxied through the Core API so PII stays masked.
+- **Core API (core-svc)** — 19 API routers covering intake, hybrid search, report generation, task status, taxonomy, and SSI investigation management (history, wallets, evidence, playbooks); enforces tokenization and RBAC.
 - **Cloud Run Jobs (7)** — background workers for ingestion, classification sweeping, intake processing, report generation, dossier assembly, account-list export, and data-retention purge.
 - **SSI Cloud Run Service (ssi-svc)** — always-on service for scam-site investigation: browser automation, OSINT, and wallet extraction. Triggered by the gateway via `POST /trigger/investigate`.
 - **PII Vault (isolated project)** — separates canonical PII from case data in a dedicated GCP project with KMS-wrapped encryption; deterministic tokens keep searches useful without exposing identities.

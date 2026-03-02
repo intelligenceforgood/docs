@@ -1,6 +1,6 @@
 # API Guide
 
-The FastAPI gateway exposes endpoints for ingestion, case management, reporting workflows, and SSI scam-site investigations. While access is currently limited to trusted services and authenticated analysts, documenting the API surface prepares i4g for future integrations.
+The Core API exposes endpoints for ingestion, case management, reporting workflows, and SSI scam-site investigations. While access is currently limited to trusted services and authenticated analysts, documenting the API surface prepares i4g for future integrations.
 
 - [Authentication](authentication.md) – describes IAM gating, tokens, and future plans.
 - [Sample Workflows](sample-requests.md) – provides request/response examples for common tasks.
