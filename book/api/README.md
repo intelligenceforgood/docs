@@ -17,20 +17,20 @@ _See [core/docs/api_reference.md](https://github.com/intelligenceforgood/core/bl
 
 ## SSI Investigation Endpoints
 
-The gateway serves all SSI (Scam Site Investigator) endpoints. There is no separate `ssi-api` service; the SSI Cloud Run Job handles browser automation and OSINT, and writes results directly to the shared database.
+The gateway serves all SSI (Scam Site Investigator) endpoints. There is no separate `ssi-api` service; the SSI Cloud Run Service (`ssi-svc`) handles browser automation and OSINT, and writes results directly to the shared database.
 
-| Method                | Path                                            | Description                                             |
-| --------------------- | ----------------------------------------------- | ------------------------------------------------------- |
-| `POST`                | `/investigations/ssi`                           | Trigger an SSI investigation (launches Cloud Run Job)   |
-| `GET`                 | `/investigations/ssi/history`                   | List past investigations (paginated, filterable)        |
-| `GET`                 | `/investigations/ssi/active`                    | List active investigations                              |
-| `GET`                 | `/investigations/ssi/{scan_id}`                 | Full investigation detail (wallets, PII, agent actions) |
-| `GET`                 | `/investigations/ssi/wallets`                   | Cross-scan wallet search with deduplication             |
-| `GET`                 | `/investigations/ssi/{scan_id}/wallets.csv`     | Export wallets as CSV                                   |
-| `GET`                 | `/investigations/ssi/{scan_id}/wallets.xlsx`    | Export wallets as XLSX                                  |
-| `GET`                 | `/investigations/ssi/{scan_id}/evidence-bundle` | Download evidence ZIP                                   |
-| `GET`                 | `/investigations/ssi/{scan_id}/lea-package`     | Download LEA evidence package                           |
-| `GET`                 | `/investigations/ssi/{scan_id}/report.pdf`      | Download PDF report                                     |
-| `GET/POST/PUT/DELETE` | `/playbooks/ssi`                                | Playbook CRUD                                           |
-| `POST`                | `/playbooks/ssi/test-match`                     | Test URL against playbook patterns                      |
-| `GET`                 | `/tasks/{task_id}`                              | Poll investigation progress                             |
+| Method                | Path                                            | Description                                                |
+| --------------------- | ----------------------------------------------- | ---------------------------------------------------------- |
+| `POST`                | `/investigations/ssi`                           | Trigger an SSI investigation (calls SSI Cloud Run Service) |
+| `GET`                 | `/investigations/ssi/history`                   | List past investigations (paginated, filterable)           |
+| `GET`                 | `/investigations/ssi/active`                    | List active investigations                                 |
+| `GET`                 | `/investigations/ssi/{scan_id}`                 | Full investigation detail (wallets, PII, agent actions)    |
+| `GET`                 | `/investigations/ssi/wallets`                   | Cross-scan wallet search with deduplication                |
+| `GET`                 | `/investigations/ssi/{scan_id}/wallets.csv`     | Export wallets as CSV                                      |
+| `GET`                 | `/investigations/ssi/{scan_id}/wallets.xlsx`    | Export wallets as XLSX                                     |
+| `GET`                 | `/investigations/ssi/{scan_id}/evidence-bundle` | Download evidence ZIP                                      |
+| `GET`                 | `/investigations/ssi/{scan_id}/lea-package`     | Download LEA evidence package                              |
+| `GET`                 | `/investigations/ssi/{scan_id}/report.pdf`      | Download PDF report                                        |
+| `GET/POST/PUT/DELETE` | `/playbooks/ssi`                                | Playbook CRUD                                              |
+| `POST`                | `/playbooks/ssi/test-match`                     | Test URL against playbook patterns                         |
+| `GET`                 | `/tasks/{task_id}`                              | Poll investigation progress                                |

@@ -2,7 +2,7 @@
 
 The Scam Site Investigator (SSI) automates the analysis of suspicious websites — from passive reconnaissance to full AI-driven scam funnel traversal. It discovers infrastructure behind phishing, crypto, and romance-scam sites, extracts cryptocurrency wallet addresses, and generates court-ready evidence packages.
 
-> **Deployment note:** In production, all SSI API endpoints are served by the core FastAPI gateway (no standalone `ssi-api` service). The `ssi` CLI and standalone FastAPI app remain available for local development and testing. The SSI Cloud Run Job handles browser automation and OSINT, writing results directly to the shared Cloud SQL database.
+> **Deployment note:** In production, all SSI API endpoints are served by the core FastAPI gateway (no standalone `ssi-api` service). The `ssi` CLI and standalone FastAPI app remain available for local development and testing. The SSI Cloud Run Service handles browser automation and OSINT, writing results directly to the shared Cloud SQL database.
 
 ## Who is this for?
 

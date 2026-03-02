@@ -2,7 +2,7 @@
 
 This page walks you through accessing SSI and running your first investigation.
 
-> **Architecture note:** In production, SSI investigations are triggered through the core FastAPI gateway (`POST /investigations/ssi`), which launches a Cloud Run Job for browser automation and OSINT. Investigation results, wallets, and evidence are served by core's API endpoints. The standalone SSI FastAPI app (`ssi/src/ssi/api/app.py`) remains available for local development and CLI use.
+> **Architecture note:** In production, SSI investigations are triggered through the core FastAPI gateway (`POST /investigations/ssi`), which calls the SSI Cloud Run Service (`POST /trigger/investigate`) for browser automation and OSINT. Investigation results, wallets, and evidence are served by core's API endpoints. The standalone SSI FastAPI app (`ssi/src/ssi/api/app.py`) remains available for local development and CLI use.
 
 ## Using the Console (recommended)
 
