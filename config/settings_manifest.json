@@ -752,18 +752,6 @@
       "description": "Large language model provider settings."
     },
     {
-      "path": "llm.vertex_ai_model",
-      "section": "llm",
-      "type": "str | NoneType",
-      "default": null,
-      "env_vars": [
-        "I4G_LLM__VERTEX_AI_MODEL",
-        "LLM_VERTEX_AI_MODEL",
-        "LLM__VERTEX_AI__MODEL"
-      ],
-      "description": "Legacy override for Vertex AI model. Prefer 'chat_model'."
-    },
-    {
       "path": "llm.vertex_ai_project",
       "section": "llm",
       "type": "str | NoneType",
