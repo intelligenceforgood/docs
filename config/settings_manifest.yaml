@@ -1387,3 +1387,26 @@ fields:
       - VECTOR__VERTEX_AI__SERVING_CONFIG
       - I4G_VERTEX_SEARCH_SERVING_CONFIG
     description: Vertex AI Search serving config ID.
+  - path: feedback.enabled
+    section: feedback
+    type: bool
+    default: true
+    env_vars:
+      - I4G_FEEDBACK__ENABLED
+      - FEEDBACK_ENABLED
+      - FEEDBACK__ENABLED
+    description: >-
+      Master on/off switch for the inline feedback feature. Set to false
+      to hide all feedback buttons and reject API submissions.
+  - path: feedback.sheet_id
+    section: feedback
+    type: str
+    default: ""
+    env_vars:
+      - I4G_FEEDBACK__SHEET_ID
+      - FEEDBACK_SHEET_ID
+      - FEEDBACK__SHEET_ID
+    description: >-
+      Google Sheets spreadsheet ID for feedback storage. When empty,
+      feedback is logged to stdout (LoggingFeedbackService). Must be set
+      in cloud environments for rows to appear in the Sheet.
