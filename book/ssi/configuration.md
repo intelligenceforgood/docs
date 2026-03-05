@@ -63,6 +63,29 @@ SSI writes investigation results directly to the core database (shared Cloud SQL
 
 > In production, SSI does not run its own API service. All SSI API endpoints (history, wallets, evidence, playbooks) are served by the Core API. The standalone SSI FastAPI app is used only for local development.
 
+### eCrimeX (eCX) enrichment
+
+SSI enriches investigations with community intelligence from the [APWG eCrimeX](https://ecrimex.net) platform. When enabled, SSI queries eCX for known phishing URLs, malicious domains, suspicious IPs, and cryptocurrency addresses linked to fraud.
+
+| Variable                      | Description                               | Default                        |
+| ----------------------------- | ----------------------------------------- | ------------------------------ |
+| `SSI_ECX__ENABLED`            | Enable eCX integration                    | `false`                        |
+| `SSI_ECX__API_KEY`            | eCX API bearer token                      | (none)                         |
+| `SSI_ECX__BASE_URL`           | eCX API base URL                          | `https://api.ecrimex.net`      |
+| `SSI_ECX__ATTRIBUTION`        | Attribution string sent with eCX requests | `i4g-ssi`                      |
+| `SSI_ECX__TIMEOUT`            | HTTP timeout in seconds                   | `10`                           |
+| `SSI_ECX__ENRICHMENT_ENABLED` | Auto-enrich during investigations         | `true`                         |
+| `SSI_ECX__CACHE_TTL_HOURS`    | Hours to cache enrichment results         | `24`                           |
+| `SSI_ECX__CURRENCY_MAP_PATH`  | Path to eCX currency symbol mapping JSON  | `config/ecx_currency_map.json` |
+
+To enable eCX enrichment locally, add to `config/settings.local.toml`:
+
+```toml
+[ecx]
+enabled = true
+api_key = "your-ecx-api-key"
+```
+
 ## Local config file
 
 Create `config/settings.local.toml` (git-ignored) for persistent local overrides:
