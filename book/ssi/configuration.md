@@ -78,6 +78,33 @@ SSI enriches investigations with community intelligence from the [APWG eCrimeX](
 | `SSI_ECX__CACHE_TTL_HOURS`    | Hours to cache enrichment results         | `24`                           |
 | `SSI_ECX__CURRENCY_MAP_PATH`  | Path to eCX currency symbol mapping JSON  | `config/ecx_currency_map.json` |
 
+### eCX submission (Phase 2)
+
+SSI can submit investigation findings back to eCX. Two safety gates prevent accidental submissions.
+
+| Variable                               | Description                                         | Default |
+| -------------------------------------- | --------------------------------------------------- | ------- |
+| `SSI_ECX__SUBMISSION_ENABLED`          | Enable submission pipeline (safety gate 1)          | `false` |
+| `SSI_ECX__SUBMISSION_AGREEMENT_SIGNED` | Confirm APWG data sharing agreement (safety gate 2) | `false` |
+| `SSI_ECX__AUTO_SUBMIT_THRESHOLD`       | Risk score >= this auto-submits to eCX              | `80`    |
+| `SSI_ECX__QUEUE_THRESHOLD`             | Risk score >= this queues for analyst review        | `50`    |
+
+Both `SUBMISSION_ENABLED` and `SUBMISSION_AGREEMENT_SIGNED` must be `true` before any indicator data leaves SSI.
+
+### eCX polling (Phase 3)
+
+SSI can poll eCX for new records and optionally trigger investigations automatically. The poller uses cursor-based delta polling — it only fetches records newer than the last poll.
+
+| Variable                                | Description                                   | Default |
+| --------------------------------------- | --------------------------------------------- | ------- |
+| `SSI_ECX__POLLING_ENABLED`              | Enable inbound polling                        | `false` |
+| `SSI_ECX__POLLING_MODULES`              | eCX modules to poll (comma-separated)         | `phish` |
+| `SSI_ECX__POLLING_INTERVAL_MINUTES`     | Cloud Scheduler cadence                       | `15`    |
+| `SSI_ECX__POLLING_CONFIDENCE_THRESHOLD` | Minimum confidence for polled records         | `50`    |
+| `SSI_ECX__POLLING_AUTO_INVESTIGATE`     | Auto-trigger SSI investigations for new phish | `false` |
+| `SSI_ECX__POLLING_BRANDS`               | Brand allowlist (empty = all)                 | `[]`    |
+| `SSI_ECX__POLLING_TLDS`                 | TLD allowlist (empty = all)                   | `[]`    |
+
 To enable eCX enrichment locally, add to `config/settings.local.toml`:
 
 ```toml

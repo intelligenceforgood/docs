@@ -1,0 +1,183 @@
+generated_at: "2026-03-06T00:00:00+00:00"
+source: ssi/src/ssi/settings/config.py
+env_prefix: SSI_ECX__
+description: >
+  eCrimeX (eCX) integration settings for the SSI scam-site investigator.
+  Controls API access to the APWG eCrimeX data clearinghouse for enrichment
+  (Phase 1), submission (Phase 2), and polling (Phase 3).
+fields:
+  - path: ecx.enabled
+    section: ecx
+    type: bool
+    default: false
+    env_vars:
+      - SSI_ECX__ENABLED
+    description: Enable eCX integration. When false, all eCX enrichment, submission, and polling are skipped.
+
+  - path: ecx.api_key
+    section: ecx
+    type: str
+    default: ""
+    env_vars:
+      - SSI_ECX__API_KEY
+    description: >
+      APWG eCrimeX API key. Required for all eCX operations.
+      Store in Secret Manager (GCP) or .env.local — never commit to source.
+    sensitive: true
+
+  - path: ecx.base_url
+    section: ecx
+    type: str
+    default: "https://sandbox.ecx2.ecrimex.net/api/v1"
+    env_vars:
+      - SSI_ECX__BASE_URL
+    description: >
+      eCX API base URL. Default is the sandbox. Set to
+      https://api.ecrimex.net/api/v1 for production.
+
+  - path: ecx.attribution
+    section: ecx
+    type: str
+    default: IntelligenceForGood
+    env_vars:
+      - SSI_ECX__ATTRIBUTION
+    description: Attribution string sent with eCX API requests (identifies the submitting organisation).
+
+  - path: ecx.timeout
+    section: ecx
+    type: int
+    default: 15
+    env_vars:
+      - SSI_ECX__TIMEOUT
+    description: HTTP timeout (seconds) for eCX API requests.
+
+  - path: ecx.enrichment_enabled
+    section: ecx
+    type: bool
+    default: true
+    env_vars:
+      - SSI_ECX__ENRICHMENT_ENABLED
+    description: Enable enrichment queries during passive recon. Requires ecx.enabled=true and a valid API key.
+
+  - path: ecx.submission_enabled
+    section: ecx
+    type: bool
+    default: false
+    env_vars:
+      - SSI_ECX__SUBMISSION_ENABLED
+    description: >
+      Enable submission of investigation findings to eCX. Safety gate 1 of 2.
+      Both submission_enabled and submission_agreement_signed must be true.
+
+  - path: ecx.submission_agreement_signed
+    section: ecx
+    type: bool
+    default: false
+    env_vars:
+      - SSI_ECX__SUBMISSION_AGREEMENT_SIGNED
+    description: >
+      Confirm APWG data sharing agreement is executed. Safety gate 2 of 2.
+      Set true only after the agreement is in place.
+
+  - path: ecx.auto_submit_threshold
+    section: ecx
+    type: int
+    default: 80
+    env_vars:
+      - SSI_ECX__AUTO_SUBMIT_THRESHOLD
+    description: >
+      Risk score threshold for automatic submission to eCX.
+      Scores >= this value are auto-submitted; below this value, indicators
+      are queued for analyst review (if >= queue_threshold).
+
+  - path: ecx.queue_threshold
+    section: ecx
+    type: int
+    default: 50
+    env_vars:
+      - SSI_ECX__QUEUE_THRESHOLD
+    description: >
+      Risk score threshold for queuing submissions for analyst review.
+      Scores >= this value but below auto_submit_threshold are queued.
+      Scores below this value are skipped.
+
+  - path: ecx.cache_ttl_hours
+    section: ecx
+    type: int
+    default: 24
+    env_vars:
+      - SSI_ECX__CACHE_TTL_HOURS
+    description: Time-to-live (hours) for cached eCX enrichment results before re-query.
+
+  - path: ecx.currency_map_path
+    section: ecx
+    type: str
+    default: config/ecx_currency_map.json
+    env_vars:
+      - SSI_ECX__CURRENCY_MAP_PATH
+    description: Path to the JSON file mapping SSI token symbols to eCX currency codes.
+
+  - path: ecx.polling_enabled
+    section: ecx
+    type: bool
+    default: false
+    env_vars:
+      - SSI_ECX__POLLING_ENABLED
+    description: Enable inbound polling for new eCX records. Runs as a Cloud Run Job or via CLI.
+
+  - path: ecx.polling_modules
+    section: ecx
+    type: list[str]
+    default:
+      - phish
+    env_vars:
+      - SSI_ECX__POLLING_MODULES
+    description: >
+      eCX modules to poll for new records.
+      Valid values: phish, malicious-domain, malicious-ip, cryptocurrency-addresses.
+
+  - path: ecx.polling_interval_minutes
+    section: ecx
+    type: int
+    default: 15
+    env_vars:
+      - SSI_ECX__POLLING_INTERVAL_MINUTES
+    description: Polling cadence in minutes. Used by Cloud Scheduler to trigger the poller job.
+
+  - path: ecx.polling_confidence_threshold
+    section: ecx
+    type: int
+    default: 50
+    env_vars:
+      - SSI_ECX__POLLING_CONFIDENCE_THRESHOLD
+    description: Minimum confidence score for polled records. Records below this threshold are filtered out.
+
+  - path: ecx.polling_auto_investigate
+    section: ecx
+    type: bool
+    default: false
+    env_vars:
+      - SSI_ECX__POLLING_AUTO_INVESTIGATE
+    description: >
+      When true, automatically trigger SSI investigations for new phish records
+      that pass filtering and deduplication. When false, records are logged only.
+
+  - path: ecx.polling_brands
+    section: ecx
+    type: list[str]
+    default: []
+    env_vars:
+      - SSI_ECX__POLLING_BRANDS
+    description: >
+      Brand allowlist for polling. Only records matching these brands are processed.
+      Empty list means all brands are accepted.
+
+  - path: ecx.polling_tlds
+    section: ecx
+    type: list[str]
+    default: []
+    env_vars:
+      - SSI_ECX__POLLING_TLDS
+    description: >
+      TLD allowlist for polling. Only records with domains matching these TLDs are processed.
+      Empty list means all TLDs are accepted.

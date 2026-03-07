@@ -15,6 +15,7 @@ Usage guidance for developers and sysadmins:
 3. Store credentials in `.env.local` or Secret Manager rather than committing secrets here; laptop runs can source the file via `direnv` or the built-in dotenv loader.
 4. Keep `I4G_ENV=local` for sandbox testing; other values assume GCP services (Cloud SQL, Cloud Storage, Vertex AI) are reachable.
 5. Machine-readable manifests live next to this page (`docs/config/settings_manifest.{json,yaml}` in core, `config/settings.yaml` in the docs site) for automation and CI validation.
+6. SSI-specific settings (prefix `SSI_*`) are documented separately in `docs/config/ssi_ecx_settings_manifest.{json,yaml}`. The eCX integration settings control enrichment, submission, and polling against the APWG eCrimeX data clearinghouse.
 
 This catalog is assembled by `core/scripts/export_settings_manifest.py` directly from `src/i4g/settings/config.py`. The descriptions below are automatically generated—do not hand-edit them; change the implementation defaults and rerun the exporter instead.
 

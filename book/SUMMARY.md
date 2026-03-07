@@ -37,6 +37,7 @@
   - [Reports & Evidence](ssi/reports-evidence.md)
   - [CLI Reference](ssi/cli-reference.md)
   - [Configuration](ssi/configuration.md)
+  - [eCrimeX Integration](ssi/ecrimex-integration.md)
   - [Troubleshooting](ssi/troubleshooting.md)
 - [Security & Compliance](security/README.md)
   - [Access Control](security/access-control.md)
