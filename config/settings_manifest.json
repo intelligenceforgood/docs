@@ -208,6 +208,42 @@
       "description": "Account list extraction configuration."
     },
     {
+      "path": "analytics.refresh_interval_minutes",
+      "section": "analytics",
+      "type": "int",
+      "default": 15,
+      "env_vars": [
+        "I4G_ANALYTICS__REFRESH_INTERVAL_MINUTES",
+        "ANALYTICS_REFRESH_INTERVAL_MINUTES",
+        "ANALYTICS__REFRESH_INTERVAL_MINUTES"
+      ],
+      "description": "How often to run the analytics aggregation job (minutes)."
+    },
+    {
+      "path": "analytics.loss_linkage_confidence_threshold",
+      "section": "analytics",
+      "type": "float",
+      "default": 0.6,
+      "env_vars": [
+        "I4G_ANALYTICS__LOSS_LINKAGE_CONFIDENCE_THRESHOLD",
+        "ANALYTICS_LOSS_LINKAGE_CONFIDENCE_THRESHOLD",
+        "ANALYTICS__LOSS_LINKAGE_CONFIDENCE_THRESHOLD"
+      ],
+      "description": "Minimum confidence for LLM-extracted intake-indicator links."
+    },
+    {
+      "path": "analytics.campaign_risk_weights",
+      "section": "analytics",
+      "type": "dict",
+      "default": {"case_count": 0.15, "loss_sum": 0.30, "avg_risk": 0.25, "recency": 0.15, "indicator_diversity": 0.15},
+      "env_vars": [
+        "I4G_ANALYTICS__CAMPAIGN_RISK_WEIGHTS",
+        "ANALYTICS_CAMPAIGN_RISK_WEIGHTS",
+        "ANALYTICS__CAMPAIGN_RISK_WEIGHTS"
+      ],
+      "description": "Weighted factors for campaign risk score computation (PRD Section 7.5)."
+    },
+    {
       "path": "api.base_url",
       "section": "api",
       "type": "str",
