@@ -96,3 +96,21 @@ flowchart LR
 4. **Search & triage** — Embeddings are generated and indexed in Vertex AI Search for hybrid retrieval (semantic + keyword). SQL filters provide date, status, and type facets. Analysts search without exposing identities.
 5. **Report & sign** — The report generator assembles findings from case data and redacted evidence into a dossier PDF, signs it with a SHA-256 hash manifest and timestamp, and publishes via controlled links.
 6. **Feedback loop** — Analyst corrections and outcome signals feed back into the classifier, improving precision over time.
+
+### Analytics aggregation (Sprint 3)
+
+A periodic job (`analytics_aggregation.py`, default every 15 minutes)
+materializes raw data into four aggregate tables used by the Impact Dashboard
+and Campaign Intelligence views:
+
+| Source tables                   | Target table      | Purpose                           |
+| ------------------------------- | ----------------- | --------------------------------- |
+| `cases` + `entities`            | `entity_stats`    | Entity-level risk and loss totals |
+| `indicators` + `intake_records` | `indicator_stats` | Indicator freshness and counts    |
+| `threat_campaigns` + `cases`    | `campaign_stats`  | Campaign-level aggregates         |
+| `cases` + `intake_records`      | `platform_kpis`   | Weekly/monthly KPI snapshots      |
+
+The Impact Dashboard reads exclusively from these pre-computed tables, keeping
+analyst-facing queries fast and avoiding full-table scans on the transactional
+database. See `core/docs/design/threat_intelligence_analytics_tdd.md` for the
+full schema.

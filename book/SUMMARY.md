@@ -11,8 +11,11 @@
     - [Discovery Guide](guides/analyst/discovery.md)
     - [Dossiers Guide](guides/analyst/dossiers.md)
     - [Campaigns & Governance](guides/analyst/campaign_governance.md)
+    - [Threat Campaigns](guides/analyst/campaigns.md)
+    - [Impact Dashboard](guides/analyst/impact_dashboard.md)
     - [Entity Explorer](guides/analyst/entity_explorer.md)
     - [Indicator Registry](guides/analyst/indicator_registry.md)
+  - [Reports](guides/user-guide-reports.md)
   - [Law Enforcement Guide](guides/law-enforcement.md)
 - Admin Guide
   - [CLI Guide](guides/admin/cli.md)

@@ -3,6 +3,7 @@
 The i4g program delivers digitally signed, evidence-rich reports that streamline intake for law enforcement agencies. Analysts assemble and verify dossiers; this guide explains how recipients can interpret reports, verify authenticity, and request additional data.
 
 ![Law enforcement report placeholder](../assets/screenshots/leo-report-placeholder.svg "Law enforcement report")
+
 > Placeholder: replace with a screenshot of the PDF report viewer highlighting key sections (timeline, entity table, evidence manifest).
 
 ## Report Contents
@@ -18,9 +19,9 @@ Each report follows a standardized template derived from the production PRD:
 
 ## Authenticity & Chain of Custody
 
-* Reports include a SHA-256 signature generated at export time. Verify using the hash listed on the cover sheet and the `.signatures.json` provided by the analyst.
-* Each evidence file contains embedded metadata referencing the case ID and export timestamp.
-* Access to raw PII or unredacted media requires a subpoena or mutual aid agreement. Contact `leo@intelligenceforgood.org` with the Case ID.
+- Reports include a SHA-256 signature generated at export time. Verify using the hash listed on the cover sheet and the `.signatures.json` provided by the analyst.
+- Each evidence file contains embedded metadata referencing the case ID and export timestamp.
+- Access to raw PII or unredacted media requires a subpoena or mutual aid agreement. Contact `leo@intelligenceforgood.org` with the Case ID.
 
 ## Requesting Additional Information
 
@@ -33,14 +34,57 @@ Each report follows a standardized template derived from the production PRD:
 
 Your feedback helps improve the system:
 
-* Report sections that require more detail or different formatting.
-* Additional entities or metrics that would support your investigative process.
-* Outcomes (arrests, funds recovered) tied to i4g reporting.
+- Report sections that require more detail or different formatting.
+- Additional entities or metrics that would support your investigative process.
+- Outcomes (arrests, funds recovered) tied to i4g reporting.
 
 ## Data Handling Expectations
 
-* Treat all shared artifacts as confidential and for official use only.
-* Do not forward reports to third parties without consent from Intelligence for Good or the user.
-* Notify the liaison immediately if you detect compromised credentials, phishing attempts, or other operational risks involving the shared data.
+- Treat all shared artifacts as confidential and for official use only.
+- Do not forward reports to third parties without consent from Intelligence for Good or the user.
+- Notify the liaison immediately if you detect compromised credentials, phishing attempts, or other operational risks involving the shared data.
+
+## LEA Evidence Dossier (Sprint 3)
+
+Analysts can now generate a dedicated **LEA Evidence Dossier** from the Report
+Builder. The dossier is a structured package specifically designed for law
+enforcement intake.
+
+### Generation flow
+
+1. An analyst navigates to **Reports → Builder** and selects the
+   `LEA Evidence Dossier` template.
+2. They define the scope (campaign ID, entity filter, or date range) and
+   confirm the TLP classification (default: **TLP:RED**).
+3. The system compiles the dossier from the template
+   (`templates/reports/lea_dossier.md.j2`), including:
+   - Cover sheet with case identifiers and analyst certification
+   - Indicator declarations table with values, types, and first-seen dates
+   - Entity summary with risk scores
+   - Evidence exhibits with per-artifact SHA-256 hashes
+   - Case history timeline
+   - An integrity manifest listing every artifact hash and an aggregate hash
+4. The completed dossier appears in the Report Library for download.
+
+### Chain-of-custody verification
+
+The LEA dossier implements a **two-tier chain-of-custody** model:
+
+- **Per-record hashes**: Each evidence artifact (screenshot, document, log)
+  carries its own SHA-256 hash, computed at ingestion time and embedded in the
+  evidence manifest.
+- **Aggregate hash**: A top-level SHA-256 is computed over the sorted set of
+  all per-record hashes. This provides tamper evidence for the entire bundle —
+  if any single artifact is modified, the aggregate hash changes.
+
+To verify: compare the aggregate hash in the dossier footer against the
+independently computed hash of all listed artifact hashes, sorted
+lexicographically then concatenated and SHA-256'd.
+
+### TLP guidance for LEA packages
+
+LEA dossiers default to **TLP:RED** (named recipients only). Treat the
+dossier as restricted to your investigative team. Do not distribute beyond
+the named agency without written consent.
 
 i4g is a volunteer-led nonprofit initiative. We appreciate your partnership in bringing scammers to justice and protecting vulnerable communities.

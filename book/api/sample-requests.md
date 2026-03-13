@@ -194,3 +194,117 @@ Errors conform to the following envelope:
 ```
 
 Include the correlation ID when escalating issues to the engineering team.
+
+---
+
+## Impact Dashboard Endpoints
+
+### Fetch KPI cards
+
+```bash
+curl -H "Authorization: Bearer $TOKEN" \
+  "https://core.example.com/impact/dashboard?period=30d"
+```
+
+The response includes KPI cards with trend direction and change text:
+
+```json
+{
+  "kpis": [
+    {
+      "label": "Total Cases",
+      "value": "142",
+      "trend": "up",
+      "change": "+18 (+14.5%)"
+    },
+    {
+      "label": "Total Loss",
+      "value": "$1,250,000",
+      "trend": "up",
+      "change": "+$200,000 (+19.0%)"
+    }
+  ],
+  "periodLabel": "30d"
+}
+```
+
+### Loss by taxonomy
+
+```bash
+curl -H "Authorization: Bearer $TOKEN" \
+  "https://core.example.com/impact/loss-by-taxonomy"
+```
+
+### Pipeline funnel
+
+```bash
+curl -H "Authorization: Bearer $TOKEN" \
+  "https://core.example.com/impact/pipeline-funnel"
+```
+
+---
+
+## Campaign Intelligence Endpoints
+
+### List threat campaigns
+
+```bash
+curl -H "Authorization: Bearer $TOKEN" \
+  "https://core.example.com/intelligence/campaigns?limit=10&offset=0"
+```
+
+### Campaign detail
+
+```bash
+curl -H "Authorization: Bearer $TOKEN" \
+  "https://core.example.com/intelligence/campaigns/camp-001"
+```
+
+### Manage a campaign (rename)
+
+```bash
+curl -X POST -H "Authorization: Bearer $TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{"action": "rename", "params": {"name": "Updated Campaign Name"}}' \
+  "https://core.example.com/intelligence/campaigns/camp-001/manage"
+```
+
+### LEA referral suggestions
+
+```bash
+curl -H "Authorization: Bearer $TOKEN" \
+  "https://core.example.com/intelligence/lea-suggestions?limit=5"
+```
+
+---
+
+## Report Generation Endpoints
+
+### Generate a report
+
+```bash
+curl -X POST -H "Authorization: Bearer $TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{"template": "executive_summary", "scope": {"date_range": "2025-05-01/2025-06-01"}, "options": {"tlp": "TLP:AMBER"}}' \
+  "https://core.example.com/reports/generate"
+```
+
+Response:
+
+```json
+{ "reportId": "a1b2c3d4-...", "status": "queued", "tlp": "TLP:AMBER" }
+```
+
+### List generated reports
+
+```bash
+curl -H "Authorization: Bearer $TOKEN" \
+  "https://core.example.com/reports/library?limit=20"
+```
+
+### Download a report
+
+```bash
+curl -H "Authorization: Bearer $TOKEN" -O \
+  "https://core.example.com/reports/a1b2c3d4-.../download"
+```
