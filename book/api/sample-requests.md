@@ -133,6 +133,52 @@ X-API-KEY: <api_key>
 }
 ```
 
+## Intelligence Endpoints
+
+### Search Entities
+
+```bash
+curl -H "X-API-KEY: dev-analyst-token" \
+  "http://localhost:8000/intelligence/entities?entity_type=crypto_wallet&limit=10&order_by=loss_sum&descending=true"
+```
+
+### Entity Detail
+
+```bash
+curl -H "X-API-KEY: dev-analyst-token" \
+  "http://localhost:8000/intelligence/entities/crypto_wallet/0xABCDEF1234567890"
+```
+
+### Entity Sparkline
+
+```bash
+curl -H "X-API-KEY: dev-analyst-token" \
+  "http://localhost:8000/intelligence/entities/crypto_wallet/0xABCDEF1234567890/activity"
+```
+
+### List Indicators (with Category Filter)
+
+```bash
+curl -H "X-API-KEY: dev-analyst-token" \
+  "http://localhost:8000/intelligence/indicators?category=bank&limit=20"
+```
+
+### Dashboard Widgets
+
+```bash
+curl -H "X-API-KEY: dev-analyst-token" \
+  "http://localhost:8000/intelligence/dashboard"
+```
+
+### Export Indicators as STIX 2.1
+
+```bash
+curl -H "X-API-KEY: dev-analyst-token" \
+  "http://localhost:8000/exports/indicators?fmt=stix" -o indicators_stix.json
+```
+
+---
+
 ## Error Handling
 
 Errors conform to the following envelope:

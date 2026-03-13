@@ -50,3 +50,26 @@ The following were removed by D79:
    accepts both casings when `populate_by_name=True`.
 4. **Query parameters:** Defined as function parameters — always snake_case in
    the URL. Frontend maps camelCase values to snake_case params explicitly.
+
+## Intelligence & Export Models (Sprint 2)
+
+The intelligence and export endpoints follow the same `CamelModel` convention.
+Key field mappings:
+
+| Python Field (snake_case) | JSON / SDK Field (camelCase) | Model              |
+| ------------------------- | ---------------------------- | ------------------ |
+| `entity_type`             | `entityType`                 | Entity list/detail |
+| `canonical_value`         | `canonicalValue`             | Entity list/detail |
+| `case_count`              | `caseCount`                  | Entity stats       |
+| `loss_sum`                | `lossSum`                    | Entity stats       |
+| `first_seen`              | `firstSeen`                  | Entity / Indicator |
+| `last_seen`               | `lastSeen`                   | Entity / Indicator |
+| `indicator_value`         | `indicatorValue`             | Indicator          |
+| `confidence_score`        | `confidenceScore`            | Indicator          |
+| `campaign_name`           | `campaignName`               | Campaign stats     |
+| `risk_score`              | `riskScore`                  | Campaign stats     |
+| `total_entities`          | `totalEntities`              | Platform KPIs      |
+| `total_indicators`        | `totalIndicators`            | Platform KPIs      |
+| `active_campaigns`        | `activeCampaigns`            | Platform KPIs      |
+
+No manual translation is needed — all models inherit from `CamelModel`.

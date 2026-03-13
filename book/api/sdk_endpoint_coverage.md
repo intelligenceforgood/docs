@@ -29,6 +29,22 @@ The platform client wraps the default SDK and overrides methods where the core b
 
 **Total: 9 methods**
 
+### Intelligence & Export Methods (Sprint 2)
+
+| SDK Method                                | HTTP Route                                            | Notes                                                     |
+| ----------------------------------------- | ----------------------------------------------------- | --------------------------------------------------------- |
+| `getEntities(params)`                     | `GET /intelligence/entities`                          | Filters: `entity_type`, `min_loss`, `order_by`, `limit`   |
+| `getEntity(type, value)`                  | `GET /intelligence/entities/{type}/{value}`           | 403 for `researcher` role                                 |
+| `getEntityActivity(type, value)`          | `GET /intelligence/entities/{type}/{value}/activity`  | Returns sparkline buckets                                 |
+| `getEntityNeighbors(type, value, params)` | `GET /intelligence/entities/{type}/{value}/neighbors` | 1-hop co-occurrence graph                                 |
+| `getIndicators(params)`                   | `GET /intelligence/indicators`                        | Filters: `category`, `min_confidence`, `limit`            |
+| `getIndicator(id)`                        | `GET /intelligence/indicators/{id}`                   | 403 for `researcher` role                                 |
+| `getDashboardWidgets()`                   | `GET /intelligence/dashboard`                         | Aggregated entity, indicator, campaign, and platform KPIs |
+| `exportEntities(params)`                  | `GET /exports/entities`                               | `fmt=csv\|xlsx`, bank masking for non-analyst roles       |
+| `exportIndicators(params)`                | `GET /exports/indicators`                             | `fmt=csv\|xlsx\|stix`, STIX 2.1 bundle support            |
+
+**Total: 9 methods (18 cumulative)**
+
 ### Not Covered by SDK (require direct `fetch` or server actions)
 
 | Category           | Endpoint                                         | Status                                          |
