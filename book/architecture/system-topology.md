@@ -154,7 +154,7 @@ flowchart TB
 
 - **Analyst Console (Next.js)** — secure portal for volunteers and LEOs behind IAP; all traffic proxied through the Core API so PII stays masked.
 - **Core API (core-svc)** — 19 API routers covering intake, hybrid search, report generation, task status, taxonomy, and SSI investigation management (history, wallets, evidence, playbooks); enforces tokenization and RBAC.
-- **Cloud Run Jobs (7)** — background workers for ingestion, classification sweeping, intake processing, report generation, dossier assembly, account-list export, and data-retention purge.
+- **Cloud Run Jobs (8)** — background workers for ingestion, classification sweeping, intake processing, report generation, dossier assembly, account-list export, data-retention purge, and analytics aggregation.
 - **SSI Cloud Run Service (ssi-svc)** — always-on service for scam-site investigation: browser automation, OSINT, and wallet extraction. Triggered by the gateway via `POST /trigger/investigate`.
 - **PII Vault (isolated project)** — separates canonical PII from case data in a dedicated GCP project with KMS-wrapped encryption; deterministic tokens keep searches useful without exposing identities.
 - **Data Stores** — Cloud SQL (PostgreSQL 15, IAM auth), three GCS buckets (evidence, reports, data-bundles), and Vertex AI Search for hybrid retrieval.
