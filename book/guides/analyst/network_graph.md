@@ -54,3 +54,43 @@ Click the download button to export the current graph view:
 - **SVG**: vector image for high-quality print or further editing.
 
 Exported images capture the current layout, zoom level, and filter state.
+
+## Temporal Animation
+
+The temporal slider lets you animate how the graph grew over time:
+
+1. Click the **Timeline** toggle in the graph toolbar.
+2. Use the date slider or **Play** button to step through time intervals.
+3. Nodes appear as they enter the dataset, with edges following.
+
+The animation uses each entity's `first_seen` timestamp. Snapshots are computed
+server-side via `GET /intelligence/graph/temporal` and cached for the current
+seed.
+
+## Community Clusters
+
+Louvain community detection automatically identifies dense subgraphs:
+
+1. Click **Clusters** in the graph toolbar.
+2. Nodes are color-coded by community. A cluster summary panel shows each
+   community's size, density, average risk score, and entity type breakdown.
+3. Adjust the **Resolution** slider to produce more (higher values) or fewer
+   clusters.
+
+The API endpoint `GET /intelligence/graph/clusters` returns the graph payload
+with an additional `clusters` array. Each cluster contains `id`, `size`,
+`members`, `density`, `avg_risk_score`, and `entity_types`.
+
+## Infrastructure Edges
+
+Infrastructure edges reveal shared hosting relationships between entities:
+
+- **Shared IP** — two entities resolve to the same IP address.
+- **Shared registrar** — domains registered through the same registrar.
+- **Shared hosting** — entities hosted on the same infrastructure provider.
+- **Shared case** — entities co-occurring across multiple cases.
+
+Infrastructure edges appear as dashed lines on the graph. They are computed
+by the infrastructure clustering job (runs every 6 hours by default) and
+stored in the `infrastructure_edges` table. Toggle infrastructure edges
+on/off using the **Infrastructure** checkbox in the graph filters.

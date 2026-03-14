@@ -19,10 +19,12 @@
     - [Taxonomy Explorer](guides/analyst/taxonomy_explorer.md)
     - [Geographic Heatmap](guides/analyst/geographic_heatmap.md)
     - [Timeline](guides/analyst/timeline.md)
+    - [Watchlist & Alerts](guides/analyst/watchlist.md)
   - [Reports](guides/user-guide-reports.md)
   - [Law Enforcement Guide](guides/law-enforcement.md)
 - Admin Guide
   - [CLI Guide](guides/admin/cli.md)
+  - [Scheduled Reports](guides/admin/scheduled_reports.md)
   - [Developer Setup](guides/developer-setup.md)
 - [Architecture](architecture/README.md)
   - [System Topology](architecture/system-topology.md)

@@ -114,3 +114,21 @@ The Impact Dashboard reads exclusively from these pre-computed tables, keeping
 analyst-facing queries fast and avoiding full-table scans on the transactional
 database. See `core/docs/design/threat_intelligence_analytics_tdd.md` for the
 full schema.
+
+### External enrichment sources (Sprint 5)
+
+Three enrichment pipelines feed additional data into the analytics layer:
+
+| Source                | Module                               | Trigger         | Output                            |
+| --------------------- | ------------------------------------ | --------------- | --------------------------------- |
+| Passive DNS           | `services/enrichment/passive_dns.py` | On-demand / API | Historical DNS records per domain |
+| ASN Lookup            | `services/enrichment/asn_lookup.py`  | On-demand / API | Network name, CIDR, ASN, country  |
+| Takedown Verification | `worker/jobs/takedown_check.py`      | Scheduled (12h) | `taken_down_at` on `entity_stats` |
+
+The **infrastructure clustering job** (`worker/jobs/infrastructure_clustering.py`,
+default every 6 hours) discovers shared-hosting relationships by computing
+entity co-occurrence across cases and writing edges to `infrastructure_edges`.
+
+The **watchlist check job** (`worker/jobs/watchlist_check.py`, default every
+30 minutes) monitors pinned entities for new case activity and loss threshold
+breaches, generating alerts in the `watchlist_alerts` table.

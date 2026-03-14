@@ -34,3 +34,39 @@ This guide is for people submitting scam reports or checking status. It focuses 
 
 - Use the in-app help link to contact support.
 - For urgent safety concerns, notify your liaison immediately; do not wait for a reply in-app.
+
+## Researcher Access
+
+Users with the **Researcher** role can access anonymized aggregate data for
+academic research and statistical analysis. PII is hashed and loss values are
+rounded.
+
+### Available Views
+
+- **Entity Explorer** — browse entities with PII fields replaced by
+  deterministic SHA-256 hash prefixes (16 characters). Entity types and
+  relationships are preserved.
+- **Impact Dashboard** — aggregate statistics (loss totals, victim counts,
+  trend charts) are available without PII exposure.
+- **Victim Analytics** — age range, country, and contact channel breakdowns
+  from intake records.
+
+### Exporting Data
+
+Use the researcher export endpoint to download anonymized datasets:
+
+```
+GET /exports/researcher/entities?format=csv
+GET /exports/researcher/entities?format=json
+```
+
+Exports include entity type, hashed canonical value, case count, and rounded
+loss amounts. Raw PII values are never included.
+
+### Limitations
+
+- Researchers cannot view individual case details or raw intake narratives.
+- Entity values are one-way hashed; the original values cannot be recovered
+  from exports.
+- Loss amounts are rounded to the nearest $1,000.
+- Access is read-only; researchers cannot modify cases, entities, or alerts.

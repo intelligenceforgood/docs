@@ -184,6 +184,60 @@ fields:
       - ANALYTICS_CAMPAIGN_RISK_WEIGHTS
       - ANALYTICS__CAMPAIGN_RISK_WEIGHTS
     description: Weighted factors for campaign risk score computation (PRD Section 7.5).
+  - path: analytics.watchlist_check_interval_minutes
+    section: analytics
+    type: int
+    default: 30
+    env_vars:
+      - I4G_ANALYTICS__WATCHLIST_CHECK_INTERVAL_MINUTES
+      - ANALYTICS_WATCHLIST_CHECK_INTERVAL_MINUTES
+      - ANALYTICS__WATCHLIST_CHECK_INTERVAL_MINUTES
+    description: How often the watchlist check job runs (minutes).
+  - path: analytics.infrastructure_clustering_interval_hours
+    section: analytics
+    type: int
+    default: 6
+    env_vars:
+      - I4G_ANALYTICS__INFRASTRUCTURE_CLUSTERING_INTERVAL_HOURS
+      - ANALYTICS_INFRASTRUCTURE_CLUSTERING_INTERVAL_HOURS
+      - ANALYTICS__INFRASTRUCTURE_CLUSTERING_INTERVAL_HOURS
+    description: How often the infrastructure clustering job runs (hours).
+  - path: analytics.scheduled_report_check_interval_minutes
+    section: analytics
+    type: int
+    default: 15
+    env_vars:
+      - I4G_ANALYTICS__SCHEDULED_REPORT_CHECK_INTERVAL_MINUTES
+      - ANALYTICS_SCHEDULED_REPORT_CHECK_INTERVAL_MINUTES
+      - ANALYTICS__SCHEDULED_REPORT_CHECK_INTERVAL_MINUTES
+    description: How often the scheduled reports job checks for due schedules (minutes).
+  - path: enrichment.securitytrails_api_key
+    section: enrichment
+    type: str
+    default: ""
+    env_vars:
+      - I4G_ENRICHMENT__SECURITYTRAILS_API_KEY
+      - ENRICHMENT_SECURITYTRAILS_API_KEY
+      - ENRICHMENT__SECURITYTRAILS_API_KEY
+    description: API key for SecurityTrails passive DNS lookups. Leave empty to disable.
+  - path: enrichment.takedown_check_interval_hours
+    section: enrichment
+    type: int
+    default: 12
+    env_vars:
+      - I4G_ENRICHMENT__TAKEDOWN_CHECK_INTERVAL_HOURS
+      - ENRICHMENT_TAKEDOWN_CHECK_INTERVAL_HOURS
+      - ENRICHMENT__TAKEDOWN_CHECK_INTERVAL_HOURS
+    description: How often the takedown verification job runs (hours).
+  - path: enrichment.takedown_max_urls_per_run
+    section: enrichment
+    type: int
+    default: 200
+    env_vars:
+      - I4G_ENRICHMENT__TAKEDOWN_MAX_URLS_PER_RUN
+      - ENRICHMENT_TAKEDOWN_MAX_URLS_PER_RUN
+      - ENRICHMENT__TAKEDOWN_MAX_URLS_PER_RUN
+    description: Maximum URL entities to check per takedown verification run.
   - path: api.base_url
     section: api
     type: str
