@@ -92,3 +92,23 @@ ssi ecx search domain <domain>
 ssi ecx search ip <ip>
 ssi ecx search crypto <address>
 ```
+
+## Analytics view (Sprint 6)
+
+With TIFAP Sprint 6, eCrimeX submission and enrichment data is visible in the analytics layer:
+
+### Submission metrics
+
+The Intelligence Dashboard surfaces eCrimeX contribution metrics:
+
+- **Submissions by status** — Count of auto-submitted, analyst-approved, and rejected submissions.
+- **Submission hit rate** — Percentage of SSI-submitted indicators that appear in subsequent eCX community queries, indicating contribution value.
+- **Submission volume trend** — Time-series of daily/weekly eCX submissions.
+
+### Enrichment impact
+
+eCrimeX enrichment results feed into TIFAP analytics:
+
+- **Community intelligence coverage** — Percentage of SSI investigations enriched by at least one eCX module (Phish, Malicious Domain, Malicious IP, Cryptocurrency).
+- **Indicator overlap** — Count of indicators found in both SSI investigations and eCX community data, surfaced in the Indicator Registry with an `ecrimex` source tag.
+- **Campaign correlation** — eCX-polled records that trigger SSI investigations are linked to threat campaigns in `campaign_stats`, visible in the Campaign detail view with eCX provenance.

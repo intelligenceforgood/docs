@@ -25,11 +25,13 @@
 - Admin Guide
   - [CLI Guide](guides/admin/cli.md)
   - [Scheduled Reports](guides/admin/scheduled_reports.md)
+  - [Partner Feed](guides/admin/partner_feed.md)
   - [Developer Setup](guides/developer-setup.md)
 - [Architecture](architecture/README.md)
   - [System Topology](architecture/system-topology.md)
   - [Data Pipelines](architecture/data-pipeline.md)
   - [Security Model](architecture/security-model.md)
+  - [Threat Intelligence](architecture/threat-intelligence.md)
 - [Configuration](config/settings.md)
   - [SLO Definitions](config/slo_definitions.md)
 - [API Guide](api/README.md)

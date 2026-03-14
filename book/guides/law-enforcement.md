@@ -87,4 +87,35 @@ LEA dossiers default to **TLP:RED** (named recipients only). Treat the
 dossier as restricted to your investigative team. Do not distribute beyond
 the named agency without written consent.
 
+## LEA Referral Tracking (Sprint 6)
+
+Analysts can now log law enforcement referrals directly on case records,
+creating a structured audit trail from investigation to agency intake.
+
+### Recording a referral
+
+1. Open a case detail page and select **Log LEA Referral**.
+2. Fill in the agency name, referral date, and external case number (if known).
+3. The system records the referral via `POST /cases/{id}/lea-referral` and
+   stamps the case with referral metadata.
+
+### Viewing referral status
+
+- **Case detail**: The referral section shows the agency, date, and status.
+- **Campaign detail**: The campaign view aggregates referral status across
+  member cases, showing which cases have been referred and to which agencies.
+- **API**: `GET /cases/{id}/lea-referral` returns the current referral record.
+
+### Blockchain enrichment in dossiers
+
+Sprint 6 added blockchain analytics enrichment. When a case contains wallet
+entities, the LEA dossier now includes:
+
+- **Vendor risk label** — Risk classification from the configured blockchain
+  analytics vendor (Chainalysis, Elliptic, or TRM Labs).
+- **Transaction volume** — Total transaction value associated with the wallet.
+- **Exchange attribution** — Known exchange or service linked to the wallet.
+- **Wallet cluster edges** — Related wallets identified through on-chain
+  clustering, visible in the network graph section of the dossier.
+
 i4g is a volunteer-led nonprofit initiative. We appreciate your partnership in bringing scammers to justice and protecting vulnerable communities.

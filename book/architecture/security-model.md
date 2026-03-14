@@ -123,3 +123,30 @@ flowchart TB
 - Victims stay protected while their cases move forward.
 - Partners and donors see a compliant, auditable path from intake to court-ready evidence.
 - The architecture scales without relaxing privacy guarantees.
+
+## Analytics & Partner Feed Security (Sprint 6)
+
+### Researcher Role Restrictions
+
+Researcher-role users receive HTTP 403 for case detail, entity detail, and export endpoints. Aggregate views (dashboard KPIs, indicator counts) are accessible. This prevents PII exposure while allowing statistical analysis.
+
+### TLP Enforcement
+
+The partner indicator feed API accepts a `tlp` query parameter (default: `TLP:AMBER`). Indicators are tagged with the requested TLP level. Server-side TLP classification per indicator is a future enhancement.
+
+### Export Audit Logging
+
+All export operations (CSV, XLSX, STIX, PDF reports) are logged to the `audit_log` table with actor, format, filter parameters, and result counts. Partner feed accesses are logged separately to `partner_feed_audit`.
+
+### Partner API Authentication
+
+Partner organizations authenticate via `X-Partner-API-Key` header. Keys are stored as SHA-256 hashes — raw keys are never persisted. Each key has:
+
+- Per-key rate limiting (`rate_limit_per_minute`)
+- Expiration control (`expires_at`)
+- Activation toggle (`is_active`)
+- Full audit trail (`partner_feed_audit`)
+
+### PII Anonymization in Analytics
+
+Analytics aggregation tables (`entity_stats`, `indicator_stats`) contain only canonical values and aggregate statistics. When records are purged, entity values are replaced with SHA-256 hashes (S1-28 anonymization strategy). The partner feed API exposes only indicator categories, types, and aggregate counts — no PII fields.

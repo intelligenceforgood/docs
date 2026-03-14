@@ -95,6 +95,14 @@ The platform client wraps the default SDK and overrides methods where the core b
 
 **Total: ~40+ endpoints not in SDK**
 
+### Sprint 6 Additions (Not Yet in SDK)
+
+| Section          | Endpoint                        | Description                |
+| ---------------- | ------------------------------- | -------------------------- |
+| **LEA Referral** | `POST /cases/{id}/lea-referral` | Create/update LEA referral |
+| **LEA Referral** | `GET /cases/{id}/lea-referral`  | Get LEA referral status    |
+| **Partner Feed** | `GET /feeds/indicators`         | Paginated indicator feed   |
+
 ## Extending Coverage
 
 When adding new SDK methods, follow the existing pattern in `ui/packages/sdk/src/index.ts`:

@@ -247,6 +247,48 @@ fields:
       - ENRICHMENT_TAKEDOWN_MAX_URLS_PER_RUN
       - ENRICHMENT__TAKEDOWN_MAX_URLS_PER_RUN
     description: Maximum URL entities to check per takedown verification run.
+  - path: enrichment.blockchain_vendor
+    section: enrichment
+    type: str
+    default: mock
+    env_vars:
+      - I4G_ENRICHMENT__BLOCKCHAIN_VENDOR
+    description: "Blockchain analytics vendor: chainalysis, trm, elliptic, or mock."
+  - path: enrichment.blockchain_api_key
+    section: enrichment
+    type: str
+    default: ""
+    env_vars:
+      - I4G_ENRICHMENT__BLOCKCHAIN_API_KEY
+    description: API key for the configured blockchain analytics vendor.
+  - path: partner_feed.enabled
+    section: partner_feed
+    type: bool
+    default: false
+    env_vars:
+      - I4G_PARTNER_FEED__ENABLED
+    description: Enable or disable the partner indicator feed API.
+  - path: partner_feed.rate_limit_per_minute
+    section: partner_feed
+    type: int
+    default: 60
+    env_vars:
+      - I4G_PARTNER_FEED__RATE_LIMIT_PER_MINUTE
+    description: Default per-key rate limit for partner feed API.
+  - path: partner_feed.default_page_size
+    section: partner_feed
+    type: int
+    default: 50
+    env_vars:
+      - I4G_PARTNER_FEED__DEFAULT_PAGE_SIZE
+    description: Default page size for partner indicator feed responses.
+  - path: partner_feed.max_page_size
+    section: partner_feed
+    type: int
+    default: 500
+    env_vars:
+      - I4G_PARTNER_FEED__MAX_PAGE_SIZE
+    description: Maximum page size for partner indicator feed responses.
   - path: api.base_url
     section: api
     type: str
