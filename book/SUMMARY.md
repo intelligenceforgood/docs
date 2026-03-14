@@ -15,6 +15,10 @@
     - [Impact Dashboard](guides/analyst/impact_dashboard.md)
     - [Entity Explorer](guides/analyst/entity_explorer.md)
     - [Indicator Registry](guides/analyst/indicator_registry.md)
+    - [Network Graph](guides/analyst/network_graph.md)
+    - [Taxonomy Explorer](guides/analyst/taxonomy_explorer.md)
+    - [Geographic Heatmap](guides/analyst/geographic_heatmap.md)
+    - [Timeline](guides/analyst/timeline.md)
   - [Reports](guides/user-guide-reports.md)
   - [Law Enforcement Guide](guides/law-enforcement.md)
 - Admin Guide

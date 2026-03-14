@@ -308,3 +308,75 @@ curl -H "Authorization: Bearer $TOKEN" \
 curl -H "Authorization: Bearer $TOKEN" -O \
   "https://core.example.com/reports/a1b2c3d4-.../download"
 ```
+
+---
+
+## Graph Endpoints (Sprint 4)
+
+### Get entity graph
+
+```bash
+curl -H "Authorization: Bearer $TOKEN" \
+  "https://core.example.com/intelligence/graph?seed=wallet:0xABC&hops=2"
+```
+
+### Export graph as PNG
+
+```bash
+curl -H "Authorization: Bearer $TOKEN" -o graph.png \
+  "https://core.example.com/intelligence/graph/export?seed=wallet:0xABC&hops=2&format=png"
+```
+
+---
+
+## Taxonomy Endpoints (Sprint 4)
+
+### Sankey flow data
+
+```bash
+curl -H "Authorization: Bearer $TOKEN" \
+  "https://core.example.com/impact/taxonomy/sankey?period=90d"
+```
+
+### Heatmap grid
+
+```bash
+curl -H "Authorization: Bearer $TOKEN" \
+  "https://core.example.com/impact/taxonomy/heatmap?period=90d&granularity=week"
+```
+
+### Trend time-series
+
+```bash
+curl -H "Authorization: Bearer $TOKEN" \
+  "https://core.example.com/impact/taxonomy/trend?period=year&category=Crypto%20Fraud"
+```
+
+---
+
+## Geography Endpoints (Sprint 4)
+
+### Country summary
+
+```bash
+curl -H "Authorization: Bearer $TOKEN" \
+  "https://core.example.com/impact/geography?period=90d"
+```
+
+### Country detail
+
+```bash
+curl -H "Authorization: Bearer $TOKEN" \
+  "https://core.example.com/impact/geography/US?period=90d&limit=50"
+```
+
+---
+
+## Timeline Endpoint (Sprint 4)
+
+### Activity timeline
+
+```bash
+curl -H "Authorization: Bearer $TOKEN" \
+  "https://core.example.com/intelligence/timeline?period=90d&granularity=week"
+```

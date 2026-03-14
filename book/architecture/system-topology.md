@@ -159,6 +159,8 @@ flowchart TB
 - **PII Vault (isolated project)** — separates canonical PII from case data in a dedicated GCP project with KMS-wrapped encryption; deterministic tokens keep searches useful without exposing identities.
 - **Data Stores** — Cloud SQL (PostgreSQL 15, IAM auth), three GCS buckets (evidence, reports, data-bundles), and Vertex AI Search for hybrid retrieval.
 - **AI Services** — Vertex AI Gemini 2.0 for classification, entity extraction, and report generation; Vertex AI Search for semantic + keyword hybrid search.
+- **GraphService** — server-side graph traversal engine (`src/i4g/services/graph_service.py`) for building entity relationship subgraphs via BFS with optional NetworkX spring layout for large graphs (>500 nodes).
+- **Analytics Aggregation Job** — Cloud Run job that computes `entity_stats`, `analytics_kpis`, and `analytics_kpis_monthly` materialized views; feeds the Timeline, Taxonomy Explorer, and Geographic Heatmap.
 - **Platform Ops** — Secret Manager for credentials, Cloud Logging with correlation IDs, Cloud Monitoring with alerting thresholds, and Artifact Registry for the 7 container images.
 - **CI/CD** — GitHub Actions with Workload Identity Federation (no long-lived keys) pushing images to Artifact Registry.
 

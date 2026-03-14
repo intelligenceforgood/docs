@@ -54,6 +54,10 @@ The sidebar gives you access to these sections:
 
 - Entity Explorer — browse and drill into threat entities: [Entity Explorer](entity_explorer.md)
 - Indicator Registry — categorized indicator catalog with STIX export: [Indicator Registry](indicator_registry.md)
+- Network Graph — explore entity relationships visually: [Network Graph](network_graph.md)
+- Taxonomy Explorer — Sankey, heatmap, and trend views: [Taxonomy Explorer](taxonomy_explorer.md)
+- Geographic Heatmap — country-level fraud analysis: [Geographic Heatmap](geographic_heatmap.md)
+- Timeline — multi-track activity timeline: [Timeline](timeline.md)
 - Search tab usage, filters, and saved searches: [Search Guide](search.md)
 - Discovery tab and Vertex AI exploration: [Discovery Guide](discovery.md)
 - Evidence Dossiers workflow: [Dossiers Guide](dossiers.md)
