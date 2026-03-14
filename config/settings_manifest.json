@@ -280,6 +280,18 @@
       "description": "How often the scheduled reports job checks for due schedules (minutes)."
     },
     {
+      "path": "analytics.scheduled_report_max_consecutive_failures",
+      "section": "analytics",
+      "type": "int",
+      "default": 3,
+      "env_vars": [
+        "I4G_ANALYTICS__SCHEDULED_REPORT_MAX_CONSECUTIVE_FAILURES",
+        "ANALYTICS_SCHEDULED_REPORT_MAX_CONSECUTIVE_FAILURES",
+        "ANALYTICS__SCHEDULED_REPORT_MAX_CONSECUTIVE_FAILURES"
+      ],
+      "description": "Number of consecutive failures before a scheduled report is auto-deactivated."
+    },
+    {
       "path": "enrichment.securitytrails_api_key",
       "section": "enrichment",
       "type": "str",

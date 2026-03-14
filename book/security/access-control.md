@@ -15,14 +15,15 @@ If you see a "You don't have access" error after signing in, ask an admin to add
 
 Every user is assigned one of four application roles. Your role determines which features you can use.
 
-| Role                              | What you can do                                                                                 |
-| --------------------------------- | ----------------------------------------------------------------------------------------------- |
-| **User**                          | View public case summaries. This is the default role assigned on your first sign-in.            |
-| **Analyst**                       | Search, review, and annotate cases. Generate dossiers and reports. Access the Discovery module. |
-| **LEO** (Law Enforcement Officer) | Everything an analyst can do, plus LEO-specific report formats and workflows.                   |
-| **Admin**                         | Everything above, plus user management, campaigns, and bulk operations.                         |
+| Role                              | What you can do                                                                                             |
+| --------------------------------- | ----------------------------------------------------------------------------------------------------------- |
+| **Researcher**                    | View aggregate dashboards and anonymized exports. Cannot access individual case, review, or entity details. |
+| **User**                          | View public case summaries. This is the default role assigned on your first sign-in.                        |
+| **Analyst**                       | Search, review, and annotate cases. Generate dossiers and reports. Access the Discovery module.             |
+| **LEO** (Law Enforcement Officer) | Everything an analyst can do, plus LEO-specific report formats and workflows.                               |
+| **Admin**                         | Everything above, plus user management, campaigns, and bulk operations.                                     |
 
-Roles follow a hierarchy: `user → analyst → leo → admin`. Higher roles inherit all capabilities of lower roles.
+Roles follow a hierarchy: `researcher → user → analyst → leo → admin`. Higher roles inherit all capabilities of lower roles.
 
 ## Requesting a role change
 
@@ -52,3 +53,25 @@ When the analyst console makes server-side API calls on your behalf, the API cor
 - [Authentication](../api/authentication.md) — technical details on how API authentication works.
 - [Secrets & Credentials Reference](secrets-reference.md) — how secrets are stored and rotated.
 - The full IAM design document lives in `core/docs/design/iam.md`.
+
+## Anonymization strategy
+
+The platform uses two distinct anonymization approaches for different purposes:
+
+### 1. Data retention anonymization (aggregation purge)
+
+When entity stats are purged past the retention window, PII values are replaced with irreversible **SHA-256 hashes**. This preserves aggregate analytics (case counts, loss sums, trends) while destroying the original PII. This runs as part of the aggregation job and is controlled by the `I4G_ANALYTICS__ENTITY_RETENTION_DAYS` setting.
+
+- **Purpose:** Data minimization after retention period expires.
+- **Method:** `hashlib.sha256(canonical_value)` — one-way, irreversible.
+- **Scope:** All entity stats older than the retention threshold.
+
+### 2. Researcher access control (role-based blocking)
+
+Researcher-role users are blocked from accessing individual case, review, entity, and indicator detail endpoints (HTTP 403). They can view aggregate dashboards and use the anonymized researcher export endpoint (`/exports/researcher/entities`), which redacts the last four characters of entity values and rounds loss figures.
+
+- **Purpose:** Prevent PII exposure to users who only need aggregate data.
+- **Method:** Role check at API layer; list endpoints show partially redacted values; detail endpoints return 403.
+- **Scope:** All detail-level API endpoints.
+
+These two mechanisms serve complementary goals — retention compliance vs. access control — and are intentionally kept as separate implementations.
