@@ -40,7 +40,7 @@ flowchart TB
             SSISvc(["SSI Service (ssi-svc)<br/>browser · OSINT · wallets"]):::service
         end
 
-        subgraph Jobs["⏱️ Cloud Run Jobs"]
+        subgraph Jobs["⏱️ Cloud Run Jobs (14)"]
             direction LR
             Ingest["ingest-bootstrap<br/>OCR · normalize · embed"]:::job
             Sweeper["classification-sweeper<br/>re-tag cases · 5 min"]:::job
@@ -48,6 +48,12 @@ flowchart TB
             Report["generate-reports<br/>PDF · hash · sign"]:::job
             Dossier["dossier-queue<br/>aggregate evidence"]:::job
             Purge["retention-purge<br/>90-day delete · daily"]:::job
+            AnalyticsJob["analytics-aggregation<br/>stats · KPIs · risk scores"]:::job
+            LinkageJob["linkage-extract<br/>LLM indicator matching"]:::job
+            WatchlistJob["watchlist-check<br/>entity monitoring"]:::job
+            ClusteringJob["infrastructure-clustering<br/>shared hosting edges"]:::job
+            TakedownJob["takedown-check<br/>URL reachability"]:::job
+            SchedReportsJob["scheduled-reports<br/>recurring generation"]:::job
         end
 
         subgraph Sched["🕐 Cloud Scheduler"]
@@ -126,6 +132,14 @@ flowchart TB
     Purge -- "delete" --> DB
     Purge -- "delete" --> Evidence
 
+    AnalyticsJob -- "refresh stats" --> DB
+    LinkageJob -- "indicator links" --> DB
+    LinkageJob -- "LLM extraction" --> Gemini
+    WatchlistJob -- "check entities" --> DB
+    ClusteringJob -- "write edges" --> DB
+    TakedownJob -- "verify URLs" --> DB
+    SchedReportsJob -- "trigger reports" --> DB
+
     SSISvc -- "write scans · wallets" --> DB
     SSISvc -- "store evidence" --> Evidence
     SSISvc -- "OSINT · classify" --> Gemini
@@ -151,14 +165,14 @@ flowchart TB
 
 - **Analyst Console (Next.js)** — secure portal for volunteers and LEOs behind IAP; all traffic proxied through the Core API so PII stays masked.
 - **Core API (core-svc)** — 19 API routers covering intake, hybrid search, report generation, task status, taxonomy, and SSI investigation management (history, wallets, evidence, playbooks); enforces tokenization and RBAC.
-- **Cloud Run Jobs (7)** — background workers for ingestion, classification sweeping, intake processing, report generation, dossier assembly, data-retention purge, and analytics aggregation.
+- **Cloud Run Jobs (14)** — background workers for ingestion, classification sweeping, intake processing, report generation, dossier assembly, data-retention purge, analytics aggregation, linkage extraction, watchlist monitoring, infrastructure clustering, takedown detection, and scheduled reports. See [Job Architecture](job-architecture.md) for the full inventory.
 - **SSI Cloud Run Service (ssi-svc)** — always-on service for scam-site investigation: browser automation, OSINT, and wallet extraction. Triggered by the gateway via `POST /trigger/investigate`.
 - **PII Vault (isolated project)** — separates canonical PII from case data in a dedicated GCP project with KMS-wrapped encryption; deterministic tokens keep searches useful without exposing identities.
 - **Data Stores** — Cloud SQL (PostgreSQL 15, IAM auth), three GCS buckets (evidence, reports, data-bundles), and Vertex AI Search for hybrid retrieval.
 - **AI Services** — Vertex AI Gemini 2.0 for classification, entity extraction, and report generation; Vertex AI Search for semantic + keyword hybrid search.
 - **GraphService** — server-side graph traversal engine (`src/i4g/services/graph_service.py`) for building entity relationship subgraphs via BFS with optional NetworkX spring layout for large graphs (>500 nodes).
 - **Analytics Aggregation Job** — Cloud Run job that computes `entity_stats`, `analytics_kpis`, and `analytics_kpis_monthly` materialized views; feeds the Timeline, Taxonomy Explorer, and Geographic Heatmap.
-- **Platform Ops** — Secret Manager for credentials, Cloud Logging with correlation IDs, Cloud Monitoring with alerting thresholds, and Artifact Registry for the 7 container images.
+- **Platform Ops** — Secret Manager for credentials, Cloud Logging with correlation IDs, Cloud Monitoring with alerting thresholds, and Artifact Registry for the 8 container images.
 - **CI/CD** — GitHub Actions with Workload Identity Federation (no long-lived keys) pushing images to Artifact Registry.
 
 ## Why it matters

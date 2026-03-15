@@ -32,6 +32,8 @@
   - [Data Pipelines](architecture/data-pipeline.md)
   - [Security Model](architecture/security-model.md)
   - [Threat Intelligence](architecture/threat-intelligence.md)
+  - [Job Architecture](architecture/job-architecture.md)
+  - [SSI Architecture](architecture/ssi-architecture.md)
 - [Configuration](config/settings.md)
   - [SLO Definitions](config/slo_definitions.md)
 - [API Guide](api/README.md)

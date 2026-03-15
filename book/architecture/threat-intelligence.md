@@ -14,16 +14,63 @@ TIFAP provides real-time fraud intelligence through five interconnected subsyste
 
 ## Data Flow
 
-```
-Intake → Ingestion → Entity Extraction → Indicator Registry
-                                      ↓
-                              Analytics Aggregation
-                                      ↓
-                         Entity Stats / Indicator Stats
-                                      ↓
-                     Campaign Detection → Campaign Stats
-                                      ↓
-                            Platform KPIs
+```mermaid
+%%{init: {'theme':'base', 'themeVariables': {'fontSize':'14px', 'fontFamily':'system-ui, sans-serif'}, 'flowchart': {'curve':'basis', 'padding':16}}}%%
+flowchart LR
+    classDef ingest   fill:#e3f2fd,stroke:#1565c0,stroke-width:2px,color:#0d47a1
+    classDef compute  fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#bf360c
+    classDef store    fill:#e0f2f1,stroke:#00695c,stroke-width:2px,color:#004d40
+    classDef api      fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px,color:#1b5e20
+    classDef ext      fill:#f3e5f5,stroke:#6a1b9a,stroke-width:2px,color:#4a148c
+
+    Intake["Intake<br/>case submissions"]:::ingest
+    Ingestion["Ingestion<br/>entity extraction"]:::ingest
+
+    Intake --> Ingestion
+    Ingestion --> EntityRegistry["Entity Registry<br/>persons · orgs · wallets"]:::store
+    Ingestion --> IndicatorRegistry["Indicator Registry<br/>URLs · IPs · domains"]:::store
+
+    subgraph Analytics["⏱️ Analytics Jobs"]
+        Aggregation["analytics-aggregation<br/>stats · KPIs · risk"]:::compute
+        Linkage["linkage-extract<br/>LLM indicator matching"]:::compute
+        Clustering["infrastructure-clustering<br/>shared hosting edges"]:::compute
+        Watchlist["watchlist-check<br/>entity monitoring"]:::compute
+        Takedown["takedown-check<br/>URL reachability"]:::compute
+    end
+
+    EntityRegistry --> Aggregation
+    IndicatorRegistry --> Aggregation
+    IndicatorRegistry --> Linkage
+    EntityRegistry --> Clustering
+    EntityRegistry --> Watchlist
+    IndicatorRegistry --> Takedown
+
+    Aggregation --> EntityStats["entity_stats"]:::store
+    Aggregation --> IndicatorStats["indicator_stats"]:::store
+    Aggregation --> CampaignStats["campaign_stats"]:::store
+    Aggregation --> PlatformKPIs["platform_kpis"]:::store
+    Clustering --> InfraEdges["infrastructure_edges"]:::store
+
+    subgraph APIs["⚡ API Endpoints"]
+        IntelAPI["Intelligence API<br/>entity explorer · indicators"]:::api
+        ImpactAPI["Impact API<br/>dashboard · KPIs"]:::api
+        GraphAPI["Graph Service<br/>relationship traversal"]:::api
+        PartnerFeed["Partner Feed<br/>indicator sharing"]:::api
+    end
+
+    EntityStats --> IntelAPI & ImpactAPI & GraphAPI
+    IndicatorStats --> IntelAPI & PartnerFeed
+    CampaignStats --> IntelAPI & ImpactAPI
+    PlatformKPIs --> ImpactAPI
+    InfraEdges --> GraphAPI
+
+    subgraph Enrichment["🌍 External Enrichments"]
+        PassiveDNS["Passive DNS"]:::ext
+        ASN["ASN Lookup"]:::ext
+        Blockchain["Blockchain Analytics"]:::ext
+    end
+
+    Enrichment --> EntityRegistry
 ```
 
 ## Key Components
