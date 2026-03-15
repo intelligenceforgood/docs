@@ -27,7 +27,8 @@
   - [Scheduled Reports](guides/admin/scheduled_reports.md)
   - [Partner Feed](guides/admin/partner_feed.md)
   - [Developer Setup](guides/developer-setup.md)
-- [Architecture](architecture/README.md)
+- Architecture
+  - [Overview](architecture/README.md)
   - [System Topology](architecture/system-topology.md)
   - [Data Pipelines](architecture/data-pipeline.md)
   - [Security Model](architecture/security-model.md)
