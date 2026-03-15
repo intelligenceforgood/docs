@@ -14,6 +14,11 @@ TIFAP provides real-time fraud intelligence through five interconnected subsyste
 
 ## Data Flow
 
+![Threat Intelligence Data Flow](../assets/architecture/threat_intelligence.svg)
+
+<details>
+<summary>Mermaid source (click to expand)</summary>
+
 ```mermaid
 %%{init: {'theme':'base', 'themeVariables': {'fontSize':'14px', 'fontFamily':'system-ui, sans-serif'}, 'flowchart': {'curve':'basis', 'padding':16}}}%%
 flowchart LR
@@ -72,6 +77,8 @@ flowchart LR
 
     Enrichment --> EntityRegistry
 ```
+
+</details>
 
 ## Key Components
 

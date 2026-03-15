@@ -4,6 +4,11 @@ The Scam Site Investigator (SSI) is an always-on Cloud Run service that automate
 
 ## Investigation Flow
 
+![SSI Architecture](../assets/architecture/ssi_architecture.svg)
+
+<details>
+<summary>Mermaid source (click to expand)</summary>
+
 ```mermaid
 %%{init: {'theme':'base', 'themeVariables': {'fontSize':'14px', 'fontFamily':'system-ui, sans-serif'}, 'flowchart': {'curve':'basis', 'padding':16}}}%%
 flowchart TB
@@ -85,6 +90,8 @@ flowchart TB
     DB -- "share indicators" --> ECX
     CoreAPI -- "query cases" --> DB
 ```
+
+</details>
 
 ## Key Components
 

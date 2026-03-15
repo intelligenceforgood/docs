@@ -6,6 +6,11 @@ Cloud Run Jobs handle batch processing, analytics computation, and data lifecycl
 
 The platform runs **14 background jobs** across **5 Docker images**. Most analytics and maintenance jobs share the `ingest-job` image for cost efficiency; only four jobs have dedicated images (ingestion, intake, report, dossier).
 
+![Job Architecture](../assets/architecture/job_architecture.svg)
+
+<details>
+<summary>Mermaid source (click to expand)</summary>
+
 ```mermaid
 %%{init: {'theme':'base', 'themeVariables': {'fontSize':'14px', 'fontFamily':'system-ui, sans-serif'}, 'flowchart': {'curve':'basis', 'padding':16}}}%%
 flowchart LR
@@ -77,6 +82,8 @@ flowchart LR
     Clustering --> DB
     Takedown --> DB
 ```
+
+</details>
 
 ## Job Inventory
 
