@@ -1,4 +1,4 @@
-# Data Pipeline
+# Data Pipelines
 
 How evidence moves from upload to a signed, verifiable dossier.
 
