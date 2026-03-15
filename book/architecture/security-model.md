@@ -150,3 +150,5 @@ Partner organizations authenticate via `X-Partner-API-Key` header. Keys are stor
 ### PII Anonymization in Analytics
 
 Analytics aggregation tables (`entity_stats`, `indicator_stats`) contain only canonical values and aggregate statistics. When records are purged, entity values are replaced with SHA-256 hashes (S1-28 anonymization strategy). The partner feed API exposes only indicator categories, types, and aggregate counts — no PII fields.
+
+For the end-to-end evidence flow showing where tokenization and encryption occur, see [Data Pipelines](data-pipeline.md). For threat analytics built on these safeguards, see [Threat Intelligence](threat-intelligence.md).

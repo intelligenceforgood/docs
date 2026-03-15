@@ -132,3 +132,5 @@ entity co-occurrence across cases and writing edges to `infrastructure_edges`.
 The **watchlist check job** (`worker/jobs/watchlist_check.py`, default every
 30 minutes) monitors pinned entities for new case activity and loss threshold
 breaches, generating alerts in the `watchlist_alerts` table.
+
+For job schedules and Docker image mapping, see [Job Architecture](job-architecture.md). For PII safeguards applied during ingestion, see [Security Model](security-model.md).
