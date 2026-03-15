@@ -88,9 +88,6 @@ The platform client wraps the default SDK and overrides methods where the core b
 | **Campaigns**      | `GET /campaigns`                                 | List campaigns                                  |
 | **Campaigns**      | `POST /campaigns`                                | Create campaign                                 |
 | **Campaigns**      | `PATCH /campaigns/{id}`                          | Update campaign                                 |
-| **Account List**   | `POST /account-list/extract`                     | Extract accounts                                |
-| **Account List**   | `GET /account-list/artifacts/{file}`             | Download artifact                               |
-| **Account List**   | `GET /account-list/runs`                         | List runs                                       |
 | **Discovery**      | `GET /discovery/search`                          | Discovery search                                |
 
 **Total: ~40+ endpoints not in SDK**

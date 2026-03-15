@@ -28,7 +28,6 @@ The sidebar gives you access to these sections:
 | **Campaigns**              | Create and manage active campaigns that group cases by tactical signals.                                                          |
 | **Analytics**              | Charts and trend metrics for operational reporting.                                                                               |
 | **Taxonomy**               | Browse the multi-axis fraud classification taxonomy used across the platform.                                                     |
-| **Accounts**               | Account list extraction and search.                                                                                               |
 | **Entity Explorer**        | Browse, search, and drill into threat entities with co-occurrence graphs.                                                         |
 | **Indicator Registry**     | Categorized indicator catalog with bulk actions and STIX export.                                                                  |
 | **Intelligence Dashboard** | Widget-based overview of entity, indicator, campaign, and platform KPIs.                                                          |

@@ -29,8 +29,7 @@ dicts (`Dict[str, Any]`) rather than typed CamelModel instances:
 | 1   | `ui/apps/web/src/lib/platform-client.ts`                | `fetchCoreSearch` (request body)                                    | Client→server query params          |
 | 2   | `ui/packages/sdk/src/index.ts`                          | `normalizeDossierRecord`, `normalizeDownloads`                      | Dossier list returns raw dicts      |
 | 3   | `ui/apps/web/src/lib/server/reviews-service.helpers.ts` | `mapHistoryEvent`, `mapSavedSearch`, `mapHybridSearchSchemaPayload` | Events/searches are raw store dicts |
-| 4   | `ui/apps/web/src/lib/server/account-list-service.ts`    | `buildRunPayload`                                                   | Client→server request body          |
-| 5   | `ui/apps/web/src/lib/search-links.ts`                   | `buildSearchHref`                                                   | URL param building (dual-tolerance) |
+| 4   | `ui/apps/web/src/lib/search-links.ts`                   | `buildSearchHref`                                                   | URL param building (dual-tolerance) |
 
 ### Eliminated Translation Points
 
