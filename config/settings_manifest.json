@@ -1824,6 +1824,54 @@
         "FEEDBACK__SHEET_ID"
       ],
       "description": "Google Sheets spreadsheet ID for feedback storage. When empty, feedback is logged to stdout. Must be set in cloud environments."
+    },
+    {
+      "path": "auto_investigate.enabled",
+      "section": "auto_investigate",
+      "type": "bool",
+      "default": false,
+      "env_vars": [
+        "I4G_AUTO_INVESTIGATE__ENABLED",
+        "AUTO_INVESTIGATE_ENABLED",
+        "AUTO_INVESTIGATE__ENABLED"
+      ],
+      "description": "Enable automatic investigation of case URLs."
+    },
+    {
+      "path": "auto_investigate.staleness_days",
+      "section": "auto_investigate",
+      "type": "int",
+      "default": 30,
+      "env_vars": [
+        "I4G_AUTO_INVESTIGATE__STALENESS_DAYS",
+        "AUTO_INVESTIGATE_STALENESS_DAYS",
+        "AUTO_INVESTIGATE__STALENESS_DAYS"
+      ],
+      "description": "Scans older than this many days are considered stale and eligible for re-scan."
+    },
+    {
+      "path": "auto_investigate.max_concurrent",
+      "section": "auto_investigate",
+      "type": "int",
+      "default": 3,
+      "env_vars": [
+        "I4G_AUTO_INVESTIGATE__MAX_CONCURRENT",
+        "AUTO_INVESTIGATE_MAX_CONCURRENT",
+        "AUTO_INVESTIGATE__MAX_CONCURRENT"
+      ],
+      "description": "Maximum concurrent auto-investigations."
+    },
+    {
+      "path": "auto_investigate.domain_blocklist",
+      "section": "auto_investigate",
+      "type": "list",
+      "default": [],
+      "env_vars": [
+        "I4G_AUTO_INVESTIGATE__DOMAIN_BLOCKLIST",
+        "AUTO_INVESTIGATE_DOMAIN_BLOCKLIST",
+        "AUTO_INVESTIGATE__DOMAIN_BLOCKLIST"
+      ],
+      "description": "Domains to exclude from automatic investigation."
     }
   ]
 }
