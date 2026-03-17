@@ -139,7 +139,7 @@ To speed things up:
 Investigation results are stored in SQLite (local) or PostgreSQL (dev/prod). To manage local storage:
 
 - Delete old evidence directories under `data/evidence/`.
-- The SQLite database is at `data/ssi.db` — back up and recreate if needed.
+- SSI shares core's database (`core/data/i4g_store.db` locally, Cloud SQL in cloud). Back up and recreate via `i4g bootstrap local reset` if needed.
 
 ## Getting help
 

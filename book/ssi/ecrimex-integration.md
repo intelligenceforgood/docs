@@ -51,7 +51,7 @@ See [ssi/docs/submission_governance.md](https://github.com/intelligenceforgood/s
 
 ## Polling (Phase 3)
 
-When `SSI_ECX__POLLING_ENABLED=true`, SSI polls eCX for new records using cursor-based delta polling (only fetches records newer than the last poll). This runs as a Cloud Run Job on a Cloud Scheduler cadence or ad-hoc via CLI:
+When `SSI_ECX__POLLING_ENABLED=true`, SSI polls eCX for new records using cursor-based delta polling (only fetches records newer than the last poll). This runs as the `ssi-ecx-poller` Cloud Run Job on a Cloud Scheduler cadence or ad-hoc via CLI:
 
 ```bash
 ssi ecx poll                      # Full cycle (all configured modules)
