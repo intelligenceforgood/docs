@@ -26,6 +26,7 @@
   - [CLI Guide](guides/admin/cli.md)
   - [Scheduled Reports](guides/admin/scheduled_reports.md)
   - [Partner Feed](guides/admin/partner_feed.md)
+  - [Auto-Investigation](guides/auto-investigation.md)
   - [Developer Setup](guides/developer-setup.md)
 - Architecture
   - [Overview](architecture/README.md)
@@ -35,6 +36,7 @@
   - [Threat Intelligence](architecture/threat-intelligence.md)
   - [Job Architecture](architecture/job-architecture.md)
   - [SSI Architecture](architecture/ssi-architecture.md)
+  - [Evidence Storage](architecture/evidence-storage.md)
 - [Configuration](config/settings.md)
   - [SLO Definitions](config/slo_definitions.md)
 - [API Guide](api/README.md)
