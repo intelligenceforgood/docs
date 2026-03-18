@@ -20,7 +20,6 @@ rates exceed these budgets over rolling windows.
 | ----------------- | ---------- | ---------- | ---------- | ------------- |
 | Search / List     | < 500 ms   | < 2 s      | < 5 s      | 28 days       |
 | Case Detail       | < 300 ms   | < 1 s      | < 3 s      | 28 days       |
-| Detokenize        | < 200 ms   | < 1 s      | < 2 s      | 28 days       |
 | LLM-backed (RAG)  | < 2 s      | < 5 s      | < 10 s     | 28 days       |
 | Dashboard widgets | < 1 s      | < 3 s      | < 5 s      | 28 days       |
 
@@ -42,12 +41,12 @@ rates exceed these budgets over rolling windows.
 | Dossier generation latency | p95 < 10 min per dossier                |
 | Ingestion throughput       | ≥ 100 records / hour in steady state    |
 
-## PII Vault Access
+## Contact Decryption Access
 
-| Metric                          | Target                         |
-| ------------------------------- | ------------------------------ |
-| Detokenization calls / user / h | ≤ 10 (alert above threshold)   |
-| Unusual-access alerts / day     | < 5 (investigate if sustained) |
+| Metric                              | Target                         |
+| ----------------------------------- | ------------------------------ |
+| Contact decryption calls / user / h | ≤ 10 (alert above threshold)   |
+| Unusual-access alerts / day         | < 5 (investigate if sustained) |
 
 ## Mobile (Future)
 
@@ -73,12 +72,12 @@ SLO monitoring is implemented via:
 
 ### Key Structured Log Fields
 
-| Field        | Type   | Purpose                                                                         |
-| ------------ | ------ | ------------------------------------------------------------------------------- |
-| `alert`      | `bool` | `true` for alert-worthy events                                                  |
-| `alert_type` | `str`  | Category: `pii_access`, `ingestion_failure`, `dossier_stuck`, `dossier_failure` |
-| `severity`   | `str`  | `warning` or `critical`                                                         |
-| `component`  | `str`  | Emitting service component                                                      |
+| Field        | Type   | Purpose                                                                                     |
+| ------------ | ------ | ------------------------------------------------------------------------------------------- |
+| `alert`      | `bool` | `true` for alert-worthy events                                                              |
+| `alert_type` | `str`  | Category: `contact_decrypt_access`, `ingestion_failure`, `dossier_stuck`, `dossier_failure` |
+| `severity`   | `str`  | `warning` or `critical`                                                                     |
+| `component`  | `str`  | Emitting service component                                                                  |
 
 ---
 

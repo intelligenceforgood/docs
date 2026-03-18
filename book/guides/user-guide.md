@@ -17,7 +17,7 @@ This guide is for people submitting scam reports or checking status. It focuses 
 ### Tips for better triage
 
 - Include the scammer handle, wallet address, links, or phone numbers if available.
-- Redact unrelated personal info; we tokenize PII on ingest, but less noise speeds up review.
+- Redact unrelated personal info; we encrypt contact fields on ingest, but less noise speeds up review.
 
 ## Track status
 
@@ -25,10 +25,10 @@ This guide is for people submitting scam reports or checking status. It focuses 
 - Statuses you might see: `received`, `in review`, `needs more info`, `accepted`, `closed`.
 - If we request more info, reply in the thread or attach new evidence.
 
-## Privacy and tokens
+## Privacy and redaction
 
-- Sensitive fields are tokenized (converted to `AAA-XXXXXXXX`) in the analyst view.
-- Detokenization is limited to admins and only done when necessary to continue the investigation.
+- Sensitive contact fields are encrypted at rest and redacted (`[VICTIM_EMAIL]`, `[VICTIM_PHONE]`) in the analyst view.
+- Decryption is limited to authorized roles and only done when necessary to continue the investigation.
 
 ## Getting help
 

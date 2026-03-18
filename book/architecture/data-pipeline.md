@@ -22,7 +22,7 @@ flowchart LR
     subgraph S1["① Submit & Protect"]
         Upload(["API Upload<br/>chats · screenshots · receipts"]):::intake
         Normalize["Normalize<br/>language detect · dedup"]:::intake
-        TokenPII["Tokenize PII<br/>regex + LLM-assisted<br/>SSN · email · phone · card"]:::secure
+        EncryptPII["Encrypt Contact Fields<br/>Fernet · reporter name<br/>email · phone · handle"]:::secure
     end
 
     subgraph S2["② Extract & Enrich"]
@@ -33,8 +33,7 @@ flowchart LR
     end
 
     subgraph S3["③ Store Safely"]
-        VaultDB[("PII Vault<br/>isolated Cloud SQL<br/>KMS-encrypted")]:::secure
-        CaseDB[("Case DB · PG 15<br/>structured metadata<br/>SQL dual-write")]:::store
+        CaseDB[("Case DB · PG 15<br/>structured metadata<br/>encrypted contact fields")]:::store
         RawBucket[("GCS<br/>raw evidence<br/>versioned")]:::storage
         CleanBucket[("GCS<br/>redacted copies<br/>masked")]:::storage
     end
@@ -57,10 +56,9 @@ flowchart LR
     end
 
     Upload --> Normalize
-    Normalize --> TokenPII
+    Normalize --> EncryptPII
 
-    TokenPII -- "PII tokens" --> VaultDB
-    TokenPII -- "masked data" --> CaseDB
+    EncryptPII -- "encrypted fields" --> CaseDB
     Upload -- "raw files" --> RawBucket
 
     Normalize -- "text" --> OCR
@@ -90,9 +88,9 @@ flowchart LR
 
 ## Stages at a glance
 
-1. **Submit & protect** — Users upload chats, screenshots, or receipts. The API normalizes content, detects language, deduplicates, and immediately tokenizes PII (regex + LLM-assisted detection of SSN, email, phone, card numbers) so only masked data flows downstream.
+1. **Submit & protect** — Users upload chats, screenshots, or receipts. The API normalizes content, detects language, deduplicates, and encrypts victim contact fields (Fernet) so only redacted data flows downstream.
 2. **Extract & enrich** — Document AI performs OCR; entity extraction finds wallets, emails, phones, and sentiment. The Gemini classifier applies the 5-axis taxonomy (scam intent, channel, social engineering, action, persona) with confidence thresholds. Related cases are linked by recurring accounts and campaign patterns.
-3. **Store safely** — Canonical PII is encrypted (AES-256-GCM) and locked in the vault (isolated GCP project); case metadata lands in Cloud SQL with SQL dual-write; evidence files go to versioned GCS buckets (raw + redacted copies).
+3. **Store safely** — Victim contact fields are Fernet-encrypted at rest; case metadata lands in Cloud SQL; evidence files go to versioned GCS buckets (raw + redacted copies).
 4. **Search & triage** — Embeddings are generated and indexed in Vertex AI Search for hybrid retrieval (semantic + keyword). SQL filters provide date, status, and type facets. Analysts search without exposing identities.
 5. **Report & sign** — The report generator assembles findings from case data and redacted evidence into a dossier PDF, signs it with a SHA-256 hash manifest and timestamp, and publishes via controlled links.
 6. **Feedback loop** — Analyst corrections and outcome signals feed back into the classifier, improving precision over time.

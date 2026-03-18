@@ -2,8 +2,8 @@
 
 This book shows how the platform works—what happens to evidence, how AI and humans combine, and how privacy is enforced. It is written for donors, partners, and end users who want confidence without deep technical detail. Engineering specifics live in the core repository.
 
-- **[System Topology](system-topology.md)**: The major building blocks (user/analyst app, API, tokenization vault, evidence stores) and how they connect.
-- **[Data Pipelines](data-pipeline.md)**: The journey from upload → tokenization → hybrid search → signed dossier.
+- **[System Topology](system-topology.md)**: The major building blocks (user/analyst app, API, encrypted PII fields, evidence stores) and how they connect.
+- **[Data Pipelines](data-pipeline.md)**: The journey from upload → encryption → hybrid search → signed dossier.
 - **[Security Model](security-model.md)**: The safeguards (masking, encryption, access approvals, auditing) that keep users safe.
 - **[Threat Intelligence](threat-intelligence.md)**: The TIFAP analytics pipeline — entity stats, campaign intelligence, graph service, and external enrichments.
 - **[Job Architecture](job-architecture.md)**: The 14 Cloud Run background jobs — inventory, Docker image mapping, scheduling, and data dependencies.

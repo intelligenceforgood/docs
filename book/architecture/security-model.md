@@ -15,7 +15,6 @@ flowchart TB
     classDef auth      fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#bf360c
     classDef service   fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px,color:#1b5e20
     classDef data      fill:#e0f2f1,stroke:#00695c,stroke-width:2px,color:#004d40
-    classDef vault     fill:#ffebee,stroke:#c62828,stroke-width:2px,color:#b71c1c
     classDef monitor   fill:#efebe9,stroke:#5d4037,stroke-width:2px,color:#3e2723
     classDef kms       fill:#fce4ec,stroke:#ad1457,stroke-width:2px,color:#880e4f
     classDef role      fill:#f3e5f5,stroke:#6a1b9a,stroke-width:2px,color:#4a148c
@@ -54,17 +53,10 @@ flowchart TB
         VectorStore["Vertex AI Search<br/>read-only for analysts"]:::data
     end
 
-    subgraph VaultZone["🛡️ PII Vault · isolated project"]
-        Tokenizer["Tokenization Engine<br/>regex + LLM-assisted<br/>SSN · email · phone · card · DOB"]:::vault
-        VaultDB[("vault_db<br/>token_id · case_id<br/>pii_type · encrypted_value")]:::vault
-        KMS["Cloud KMS<br/>AES-256-GCM<br/>90-day key rotation"]:::kms
-        VaultSecrets["Secret Manager<br/>tokenization-pepper<br/>pii-tokenization-key"]:::vault
-    end
-
     subgraph AuditZone["📊 Audit & Monitoring"]
         AuditLog["Audit Log<br/>every PII access logged<br/>correlation IDs"]:::monitor
-        Alerts["Alert Policies<br/>vault anomalies<br/>failed auth"]:::monitor
-        Metrics["Log-Based Metrics<br/>pii_access_alert<br/>ingestion_failure"]:::monitor
+        Alerts["Alert Policies<br/>unusual access<br/>failed auth"]:::monitor
+        Metrics["Log-Based Metrics<br/>contact_decrypt_alert<br/>ingestion_failure"]:::monitor
     end
 
     Victim -- "① HTTPS" --> LB
@@ -93,15 +85,11 @@ flowchart TB
     Workers -- "⑥ IAM auth" --> CaseDB
     Workers -- "⑥ write" --> Evidence
 
-    API -- "⑦ tokenize on upload" --> Tokenizer
-    Workers -- "⑦ tokenize" --> Tokenizer
-    Tokenizer -- "encrypt" --> KMS
-    Tokenizer -- "store tokens" --> VaultDB
-    Tokenizer -. "secrets" .-> VaultSecrets
+    API -- "⑦ encrypt contact fields" --> CaseDB
+    Workers -- "⑦ encrypt" --> CaseDB
 
-    API -. "⑧ detokenize<br/>(approval required)" .-> Tokenizer
+    API -. "⑧ decrypt contacts<br/>(analyst role required)" .-> CaseDB
 
-    Tokenizer -- "log access" --> AuditLog
     API -- "structured logs" --> AuditLog
     AuditLog --> Metrics
     Metrics --> Alerts
@@ -111,12 +99,12 @@ flowchart TB
 
 ## Core safeguards
 
-- **Immediate masking:** PII is tokenized on upload using regex patterns and LLM-assisted detection (SSN, email, phone, credit card, address, DOB). Analysts and most systems see tokens like `<PII:SSN:7a8f2e>`, not raw identifiers.
-- **Separated stores:** Canonical PII lives in an isolated GCP project (`i4g-pii-vault`) with its own Cloud SQL instance and KMS keys. Case data, vectors, and reports live in the main project with scoped IAM access.
-- **Approvals for reveal:** Detokenization requires explicit approvals (or subpoena) and is fully audited with correlation IDs.
+- **Immediate protection:** Victim contact fields (reporter name, email, phone, handle) are Fernet-encrypted at intake time and stored as ciphertext in the main database. Analysts see redaction markers (`[VICTIM_EMAIL]`, `[VICTIM_PHONE]`) unless they explicitly request decryption via the contact endpoint.
+- **No separate vault:** Encrypted fields live in the same Cloud SQL instance as case data, eliminating cross-project complexity. The encryption key (`I4G_CRYPTO__PII_KEY`) is stored in Secret Manager.
+- **Audited decryption:** Decrypting victim contact information requires analyst role and is fully audit-logged with correlation IDs via `GET /intakes/{id}/contact`.
 - **Encryption everywhere:** TLS 1.3 in transit; AES-256-GCM at rest with KMS-wrapped keys rotated every 90 days. Signed dossiers include SHA-256 hash manifests for verification.
 - **Least privilege:** Four RBAC roles (user, analyst, admin, leo) limit visibility. Row-level security scopes queries by `assigned_to`. Cloud SQL uses IAM auth — no stored passwords. Seven service accounts follow least-privilege bindings.
-- **Proactive monitoring:** Log-based metrics trigger alerts on unusual vault access, failed authentication, ingestion failures, and signature mismatches.
+- **Proactive monitoring:** Log-based metrics trigger alerts on unusual contact decryption access, failed authentication, ingestion failures, and signature mismatches.
 
 ## Why it matters
 
@@ -151,4 +139,4 @@ Partner organizations authenticate via `X-Partner-API-Key` header. Keys are stor
 
 Analytics aggregation tables (`entity_stats`, `indicator_stats`) contain only canonical values and aggregate statistics. When records are purged, entity values are replaced with SHA-256 hashes (S1-28 anonymization strategy). The partner feed API exposes only indicator categories, types, and aggregate counts — no PII fields.
 
-For the end-to-end evidence flow showing where tokenization and encryption occur, see [Data Pipelines](data-pipeline.md). For threat analytics built on these safeguards, see [Threat Intelligence](threat-intelligence.md).
+For the end-to-end evidence flow showing where encryption occurs, see [Data Pipelines](data-pipeline.md). For threat analytics built on these safeguards, see [Threat Intelligence](threat-intelligence.md).

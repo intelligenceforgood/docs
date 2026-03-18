@@ -186,8 +186,8 @@ Errors conform to the following envelope:
 ```json
 {
   "error": {
-    "code": "pii_access_denied",
-    "message": "PII rehydration requires admin approval",
+    "code": "contact_access_denied",
+    "message": "Victim contact decryption requires analyst role",
     "correlation_id": "7f5f8b0c-4af9-4d0a-9aef-52cefc3dfa1f"
   }
 }

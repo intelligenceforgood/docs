@@ -37,7 +37,7 @@ The following were removed by D79:
 
 - `normalizeVerificationArtifact` — backend `VerifyArtifact` now serialises as camelCase
 - `normalizeDossierVerification` — backend `DossierVerifyResponse` now serialises as camelCase
-- `detokenizeResponseSchema` snake_case keys — schema updated to camelCase
+- `detokenizeResponseSchema` snake_case keys — removed (endpoint retired)
 - `caseDetailSchema` `graph_nodes`/`graph_links` — updated to `graphNodes`/`graphLinks`
 
 ## Guidelines for New Endpoints

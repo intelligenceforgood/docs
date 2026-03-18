@@ -6,7 +6,7 @@ The platform orchestrates several workflows end-to-end. Each use case maps to in
 
 1. User engages with the guided intake form.
 2. Evidence (text, screenshots, receipts) is uploaded and scanned for safety issues.
-3. PII is tokenized immediately; structured entities and semantic embeddings are generated.
+3. Contact fields are encrypted immediately; structured entities and semantic embeddings are generated.
 4. The system issues a case ID and provides next steps or educational resources.
 
 ## Analyst Review

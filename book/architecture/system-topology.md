@@ -17,7 +17,6 @@ flowchart TB
     classDef db        fill:#e0f2f1,stroke:#00695c,stroke-width:2px,color:#004d40
     classDef storage   fill:#f3e5f5,stroke:#6a1b9a,stroke-width:2px,color:#4a148c
     classDef ai        fill:#fce4ec,stroke:#ad1457,stroke-width:2px,color:#880e4f
-    classDef vault     fill:#ffebee,stroke:#c62828,stroke-width:2px,color:#b71c1c
     classDef platform  fill:#efebe9,stroke:#5d4037,stroke-width:2px,color:#3e2723
     classDef cicd      fill:#e0f7fa,stroke:#00838f,stroke-width:2px,color:#006064
 
@@ -82,13 +81,6 @@ flowchart TB
 
     end
 
-    subgraph Vault["🛡️ PII Vault (isolated project)"]
-        VaultDB[("Cloud SQL · PG 15<br/>vault_db · IAM auth")]:::vault
-        KMS["Cloud KMS<br/>AES-256-GCM · 90-day rotation"]:::vault
-        VaultSecrets["Secrets<br/>pepper · pii-key"]:::vault
-        VaultSvc(["PII Vault Service<br/>tokenize · detokenize"]):::vault
-    end
-
     subgraph CICD["🔄 CI / CD"]
         GHA["GitHub Actions<br/>WIF · sa-infra"]:::cicd
     end
@@ -106,7 +98,6 @@ flowchart TB
     API -- "signed URLs" --> Evidence
     API -- "semantic + keyword" --> Vertex
     API -- "inference" --> Gemini
-    API -- "tokenize PII" --> VaultSvc
 
     SchedSweep -. "trigger" .-> Sweeper
     SchedPurge -. "trigger" .-> Purge
@@ -115,11 +106,9 @@ flowchart TB
     Ingest -- "store raw" --> Evidence
     Ingest -- "embed" --> Vertex
     Ingest -- "OCR · classify" --> Gemini
-    Ingest -- "tokenize" --> VaultSvc
 
     Report -- "read cases" --> DB
     Report -- "publish PDF" --> Reports
-    Report -- "detokenize" --> VaultSvc
 
     Dossier -- "aggregate" --> DB
     Dossier -- "bundle" --> Reports
@@ -145,10 +134,6 @@ flowchart TB
     SSISvc -- "OSINT · classify" --> Gemini
     API -- "POST /trigger/investigate" --> SSISvc
 
-    VaultSvc -- "encrypt / decrypt" --> KMS
-    VaultSvc -- "read / write tokens" --> VaultDB
-    VaultSvc -. "secrets" .-> VaultSecrets
-
     Secrets -. "credentials" .-> API
     Secrets -. "credentials" .-> Console
     Logging -. "logs" .-> API
@@ -163,11 +148,11 @@ flowchart TB
 
 ## What's in the platform
 
-- **Analyst Console (Next.js)** — secure portal for volunteers and LEOs behind IAP; all traffic proxied through the Core API so PII stays masked.
-- **Core API (core-svc)** — 19 API routers covering intake, hybrid search, report generation, task status, taxonomy, and SSI investigation management (history, wallets, evidence, playbooks); enforces tokenization and RBAC.
-- **Cloud Run Jobs (14)** — background workers for ingestion, classification sweeping, intake processing, report generation, dossier assembly, data-retention purge, analytics aggregation, linkage extraction, watchlist monitoring, infrastructure clustering, takedown detection, and scheduled reports. See [Job Architecture](job-architecture.md) for the full inventory.
+- **Analyst Console (Next.js)** — secure portal for volunteers and LEOs behind IAP; all traffic proxied through the Core API so PII stays redacted.
+- **Core API (core-svc)** — 19 API routers covering intake, hybrid search, report generation, task status, taxonomy, and SSI investigation management (history, wallets, evidence, playbooks); enforces encryption and RBAC.
+- **Cloud Run Jobs (13)** — background workers for ingestion, classification sweeping, intake processing, report generation, dossier assembly, data-retention purge, analytics aggregation, linkage extraction, watchlist monitoring, infrastructure clustering, takedown detection, and scheduled reports. See [Job Architecture](job-architecture.md) for the full inventory.
 - **SSI Cloud Run Service (ssi-svc)** — always-on service for scam-site investigation: browser automation, OSINT, and wallet extraction. Triggered by the gateway via `POST /trigger/investigate`.
-- **PII Vault (isolated project)** — separates canonical PII from case data in a dedicated GCP project with KMS-wrapped encryption; deterministic tokens keep searches useful without exposing identities.
+- **PII Protection** — victim contact fields are Fernet-encrypted at rest; decryption is audit-logged and restricted to authorized roles. See `core/docs/design/pii_vault.md`.
 - **Data Stores** — Cloud SQL (PostgreSQL 15, IAM auth), three GCS buckets (evidence, reports, data-bundles), and Vertex AI Search for hybrid retrieval.
 - **AI Services** — Vertex AI Gemini 2.0 for classification, entity extraction, and report generation; Vertex AI Search for semantic + keyword hybrid search.
 - **GraphService** — server-side graph traversal engine (`src/i4g/services/graph_service.py`) for building entity relationship subgraphs via BFS with optional NetworkX spring layout for large graphs (>500 nodes).
@@ -177,6 +162,6 @@ flowchart TB
 
 ## Why it matters
 
-- **Safety by design:** PII is isolated in a separate GCP project; analysts work on masked data.
+- **Safety by design:** PII contact fields are encrypted at rest; analysts work on redacted data.
 - **Evidence-ready:** Every case flows toward a signed dossier that law enforcement can verify.
 - **Resilient & scalable:** Serverless services scale 0→10 for campaigns or surges without a large ops team.

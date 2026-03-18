@@ -5,7 +5,7 @@ audit-ready notes.
 
 ![Analyst console – home/queue](../../assets/screenshots/analyst-dashboard.png)
 
-![Analyst case detail – tokenized entities](../../assets/screenshots/analyst-case-detail.png)
+![Analyst case detail – redacted entities](../../assets/screenshots/analyst-case-detail.png)
 
 ## Access Requirements
 
@@ -37,7 +37,7 @@ The sidebar gives you access to these sections:
 1. Open [app.intelligenceforgood.org](https://app.intelligenceforgood.org).
 2. Review the **Dashboard** for summary metrics, alerts, and the activity feed.
 3. Navigate to **Cases** and open a top-priority case to review the synopsis (classification badges, timeline, artifacts).
-4. Inspect evidence. PII appears as masked tokens (`AAA-XXXXXXXX`). If context is unclear, request detokenization from
+4. Inspect evidence. Victim contact fields are redacted (`[VICTIM_EMAIL]`, `[VICTIM_PHONE]`). If the original value is needed, request decryption from
    an admin via secure channel.
 5. Classification badges reflect the multi-axis taxonomy:
    - Intent (e.g., Romance, Investment, Imposter)

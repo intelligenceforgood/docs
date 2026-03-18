@@ -4,7 +4,7 @@ Cloud Run Jobs handle batch processing, analytics computation, and data lifecycl
 
 ## Overview
 
-The platform runs **14 background jobs** across **5 Docker images**. Most analytics and maintenance jobs share the `ingest-job` image for cost efficiency; only four jobs have dedicated images (ingestion, intake, report, dossier).
+The platform runs **13 background jobs** across **5 Docker images**. Most analytics and maintenance jobs share the `ingest-job` image for cost efficiency; only four jobs have dedicated images (ingestion, intake, report, dossier).
 
 ![Job Architecture](../assets/architecture/job_architecture.svg)
 
@@ -25,7 +25,6 @@ flowchart LR
         Ingest["ingest<br/>OCR · normalize · embed"]:::job
         Sweeper["classification-sweeper<br/>re-tag cases · 5 min"]:::job
         Retry["ingest-retry<br/>failed batch retry"]:::job
-        PII["pii-backfill<br/>tokenize existing PII"]:::job
         Purge["retention-purge<br/>soft-delete · hard-purge"]:::job
         Analytics["analytics-aggregation<br/>stats · KPIs · risk"]:::job
         Linkage["linkage-extract<br/>LLM indicator matching"]:::job
@@ -102,18 +101,17 @@ flowchart LR
 | **Takedown Check**            | `i4g jobs takedown-check`            | `ingest-job`  | Every 12 hours | Verify URL reachability, detect site takedowns        |
 | **Scheduled Reports**         | `i4g jobs scheduled-reports`         | `ingest-job`  | Cadence-based  | Trigger recurring report generation                   |
 | **Ingest Retry**              | `i4g jobs ingest-retry`              | `ingest-job`  | On-demand      | Retry failed ingestion batches                        |
-| **PII Backfill**              | `i4g jobs pii-backfill`              | `ingest-job`  | On-demand      | Tokenize existing PII in StructuredStore              |
 
 ## Docker Image Mapping
 
 Five distinct images are built via `scripts/build_image.sh`:
 
-| Image         | Dockerfile                      | Jobs Included                                                                                                                 |
-| :------------ | :------------------------------ | :---------------------------------------------------------------------------------------------------------------------------- |
-| `ingest-job`  | `docker/ingest-job.Dockerfile`  | Ingest, Sweeper, Retry, PII Backfill, Retention Purge, Analytics, Linkage, Watchlist, Clustering, Takedown, Scheduled Reports |
-| `intake-job`  | `docker/intake-job.Dockerfile`  | Intake Worker                                                                                                                 |
-| `report-job`  | `docker/report-job.Dockerfile`  | Report Generator                                                                                                              |
-| `dossier-job` | `docker/dossier-job.Dockerfile` | Dossier Processor                                                                                                             |
+| Image         | Dockerfile                      | Jobs Included                                                                                                   |
+| :------------ | :------------------------------ | :-------------------------------------------------------------------------------------------------------------- |
+| `ingest-job`  | `docker/ingest-job.Dockerfile`  | Ingest, Sweeper, Retry, Retention Purge, Analytics, Linkage, Watchlist, Clustering, Takedown, Scheduled Reports |
+| `intake-job`  | `docker/intake-job.Dockerfile`  | Intake Worker                                                                                                   |
+| `report-job`  | `docker/report-job.Dockerfile`  | Report Generator                                                                                                |
+| `dossier-job` | `docker/dossier-job.Dockerfile` | Dossier Processor                                                                                               |
 
 > The `ingest-job` image includes `tesseract-ocr` and is the largest; all TIFAP analytics jobs reuse it to avoid duplicating dependencies.
 

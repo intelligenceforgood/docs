@@ -25,9 +25,8 @@ The platform client wraps the default SDK and overrides methods where the core b
 | `getAnalyticsOverview()`      | `GET /analytics/overview`                 | Direct pass-through                                                                                       |
 | `listDossiers(params)`        | `GET /reports/dossiers`                   | Direct pass-through                                                                                       |
 | `verifyDossier(planId)`       | `POST /reports/dossiers/{plan_id}/verify` | Direct pass-through                                                                                       |
-| `detokenize(token)`           | `POST /tokenization/detokenize`           | Direct pass-through                                                                                       |
 
-**Total: 9 methods**
+**Total: 8 methods**
 
 ### Intelligence & Export Methods (Sprint 2)
 
@@ -81,8 +80,6 @@ The platform client wraps the default SDK and overrides methods where the core b
 | **Reports**        | `GET /reports/dossiers/{id}/signature_manifest`  | Signature manifest                              |
 | **Reports**        | `GET /reports/dossiers/{id}/download/{artifact}` | Download artifact                               |
 | **Reports**        | `POST /reports/generate`                         | Trigger report                                  |
-| **Tokenization**   | `POST /tokenization/tokenize`                    | Tokenize PII                                    |
-| **Tokenization**   | `GET /tokenization/health`                       | Health check                                    |
 | **Tasks**          | `GET /tasks/{id}`                                | Poll task status                                |
 | **Tasks**          | `POST /tasks/{id}/update`                        | Update task status                              |
 | **Campaigns**      | `GET /campaigns`                                 | List campaigns                                  |

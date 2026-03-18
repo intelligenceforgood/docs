@@ -12,49 +12,31 @@ by the i4g platform across all environments.
 
 ## Quick Reference
 
-| Secret                                               | Type               | Where Stored                      | Environments | Services                                        |
-| ---------------------------------------------------- | ------------------ | --------------------------------- | ------------ | ----------------------------------------------- |
-| [tokenization-pepper](#tokenization-pepper)          | HMAC pepper        | Secret Manager (PII Vault)        | dev, prod    | Core API, ingest job, report job, vault service |
-| [pii-tokenization-key](#pii-tokenization-key)        | Encryption key     | Secret Manager (PII Vault)        | dev, prod    | Core API, ingest job, report job, vault service |
-| [api-key](#api-key)                                  | API key            | Secret Manager (App)              | dev, prod    | Console, intake job                             |
-| [IAP OAuth clients](#iap-oauth-clients)              | OAuth credential   | Terraform tfvars / Secret Manager | dev, prod    | Load balancer backends                          |
-| [i4g-vault-encrypt (KMS)](#kms-vault-encryption-key) | KMS key            | Cloud KMS (PII Vault)             | dev, prod    | Vault service, app SA, ingest SA, report SA     |
-| [Dev API tokens](#dev-api-tokens)                    | Hardcoded tokens   | Source code                       | local, dev   | Core API auth                                   |
-| [Azure migration secrets](#azure-migration-secrets)  | Connection strings | Secret Manager (App)              | dev only     | Migration scripts                               |
+| Secret                                              | Type               | Where Stored                      | Environments | Services                         |
+| --------------------------------------------------- | ------------------ | --------------------------------- | ------------ | -------------------------------- |
+| [crypto-pii-key](#crypto-pii-key)                   | Fernet key         | Secret Manager (App)              | dev, prod    | Core API, ingest job, intake job |
+| [api-key](#api-key)                                 | API key            | Secret Manager (App)              | dev, prod    | Console, intake job              |
+| [IAP OAuth clients](#iap-oauth-clients)             | OAuth credential   | Terraform tfvars / Secret Manager | dev, prod    | Load balancer backends           |
+| [Dev API tokens](#dev-api-tokens)                   | Hardcoded tokens   | Source code                       | local, dev   | Core API auth                    |
+| [Azure migration secrets](#azure-migration-secrets) | Connection strings | Secret Manager (App)              | dev only     | Migration scripts                |
 
 ---
 
 ## Active Secrets
 
-### tokenization-pepper
+### crypto-pii-key
 
-|                         |                                                                                                                                                                                  |
-| ----------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Purpose**             | Deterministic HMAC pepper for PII tokenization. Ensures hash consistency so the same PII value always produces the same token, enabling deduplication without storing plaintext. |
-| **Type**                | Cryptographic pepper (random byte string)                                                                                                                                        |
-| **Secret Manager path** | `projects/i4g-pii-vault-dev/secrets/tokenization-pepper` (dev)                                                                                                                   |
-|                         | `projects/i4g-pii-vault-prod/secrets/tokenization-pepper` (prod)                                                                                                                 |
-| **Terraform resource**  | `module "tokenization_pepper"` in `infra/environments/pii-vault/*/main.tf`                                                                                                       |
-| **Env var name**        | `I4G_PII__PEPPER`                                                                                                                                                                |
-| **Settings field**      | `PIISettings.pepper` in `core/src/i4g/settings/config.py`                                                                                                                        |
-| **Injected into**       | Core API service (core-svc), ingest job, report job, vault Cloud Run service                                                                                                     |
-| **Rotation**            | Rotating this value invalidates all existing PII tokens. Coordinate with a full re-tokenization if rotated.                                                                      |
-| **Local dev**           | Not required — PII tokenization uses a hardcoded fallback when `I4G_ENV=local`.                                                                                                  |
-
-### pii-tokenization-key
-
-|                         |                                                                                                                                    |
-| ----------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
-| **Purpose**             | Symmetric encryption key for field-level PII encryption in the vault. Used alongside KMS envelope encryption for defense-in-depth. |
-| **Type**                | Encryption key (AES-compatible byte string)                                                                                        |
-| **Secret Manager path** | `projects/i4g-pii-vault-dev/secrets/pii-tokenization-key` (dev)                                                                    |
-|                         | `projects/i4g-pii-vault-prod/secrets/pii-tokenization-key` (prod)                                                                  |
-| **Terraform resource**  | `module "tokenization_secret"` in `infra/environments/pii-vault/*/main.tf`                                                         |
-| **Env var name**        | `I4G_CRYPTO__PII_KEY`                                                                                                              |
-| **Settings field**      | `CryptoSettings.pii_key` in `core/src/i4g/settings/config.py`                                                                      |
-| **Injected into**       | Core API service (core-svc), ingest job, report job, vault Cloud Run service                                                       |
-| **Rotation**            | Rotating this key makes existing encrypted PII unreadable. Migrate data before rotating.                                           |
-| **Local dev**           | Not required — the vault uses a local SQLite fallback with no encryption.                                                          |
+|                         |                                                                                                                                 |
+| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
+| **Purpose**             | Fernet symmetric key for encrypting victim contact fields (reporter name, email, phone, handle) in intake records.              |
+| **Type**                | Fernet key (URL-safe base64-encoded 32-byte key)                                                                                |
+| **Secret Manager path** | `projects/i4g-dev/secrets/crypto-pii-key` (dev)                                                                                 |
+|                         | `projects/i4g-prod/secrets/crypto-pii-key` (prod)                                                                               |
+| **Env var name**        | `I4G_CRYPTO__PII_KEY`                                                                                                           |
+| **Settings field**      | `CryptoSettings.pii_key` in `core/src/i4g/settings/config.py`                                                                   |
+| **Injected into**       | Core API service (core-svc), ingest job, intake job                                                                             |
+| **Rotation**            | Generate a new Fernet key, re-encrypt existing contact fields, then swap the secret version. Old ciphertexts become unreadable. |
+| **Local dev**           | Not required — intake encryption uses a hardcoded fallback when `I4G_ENV=local`.                                                |
 
 ### api-key
 
@@ -102,19 +84,6 @@ gcloud secrets versions access latest --secret=api-key --project=i4g-dev
 | **Console env var** | `I4G_IAP_CLIENT_ID` — the API's OAuth client_id, set on the console service so it can mint IAP identity tokens for server-to-server calls                                     |
 | **How to create**   | Run `infra/bootstrap/create_iap_oauth.sh` or create manually in the [Google Cloud Console > APIs & Services > Credentials](https://console.cloud.google.com/apis/credentials) |
 | **Security note**   | Dev client secrets are currently committed in plaintext. This is tracked as a known issue. Rotate if the repo is made public.                                                 |
-
-### KMS Vault Encryption Key
-
-|                        |                                                                                                                                                                                              |
-| ---------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Purpose**            | Cloud KMS envelope encryption key for PII data at rest. The vault service encrypts data with a data encryption key (DEK), then wraps the DEK with this key encryption key (KEK).             |
-| **Type**               | Symmetric KMS key (Google-managed)                                                                                                                                                           |
-| **Key ring**           | `i4g-vault-ring` in `i4g-pii-vault-{dev,prod}` projects                                                                                                                                      |
-| **Key name**           | `i4g-vault-encrypt`                                                                                                                                                                          |
-| **Terraform resource** | `google_kms_crypto_key.vault_key` in `infra/environments/pii-vault/*/main.tf`                                                                                                                |
-| **Rotation**           | 90 days (automatic, managed by Cloud KMS)                                                                                                                                                    |
-| **Authorized SAs**     | `sa-vault`, `sa-app@i4g-{env}`, `sa-ingest@i4g-{env}`, `sa-report@i4g-{env}`                                                                                                                 |
-| **Note**               | Prod currently only grants `sa-app` access. If report/ingest jobs need vault secrets in prod, add their SAs to `authorized_callers` in `infra/environments/pii-vault/prod/terraform.tfvars`. |
 
 ---
 
@@ -186,15 +155,14 @@ gcloud secrets delete ingest-db-password --project=i4g-dev --quiet
 All Cloud SQL databases use **IAM authentication** — no passwords are stored
 or rotated.
 
-| Database       | Cloud SQL Instance                               | Project             | DB Name    | Auth                                                  |
-| -------------- | ------------------------------------------------ | ------------------- | ---------- | ----------------------------------------------------- |
-| App DB (dev)   | `i4g-dev:us-central1:i4g-dev-db`                 | `i4g-dev`           | `i4g_db`   | IAM (`sa-app`, `sa-ingest`, `sa-intake`, `sa-report`) |
-| Vault DB (dev) | `i4g-pii-vault-dev:us-central1:i4g-vault-dev-db` | `i4g-pii-vault-dev` | `vault_db` | IAM (`sa-vault`, `sa-app`)                            |
-| App DB (prod)  | `i4g-prod:us-central1:i4g-prod-db`               | `i4g-prod`          | `i4g_db`   | IAM (`sa-app`)                                        |
+| Database      | Cloud SQL Instance                 | Project    | DB Name  | Auth                                                  |
+| ------------- | ---------------------------------- | ---------- | -------- | ----------------------------------------------------- |
+| App DB (dev)  | `i4g-dev:us-central1:i4g-dev-db`   | `i4g-dev`  | `i4g_db` | IAM (`sa-app`, `sa-ingest`, `sa-intake`, `sa-report`) |
+| App DB (prod) | `i4g-prod:us-central1:i4g-prod-db` | `i4g-prod` | `i4g_db` | IAM (`sa-app`)                                        |
 
-> `StorageSettings.cloudsql_password` and `PIISettings.cloudsql_password`
-> fields exist in the Settings model but default to `None` and are unused.
-> They are legacy placeholders from before IAM auth was enabled.
+> `StorageSettings.cloudsql_password` fields exist in the Settings model
+> but default to `None` and are unused. They are legacy placeholders from
+> before IAM auth was enabled.
 
 ---
 
@@ -233,8 +201,8 @@ For local development (`I4G_ENV=local`), no cloud secrets are needed:
 
 1. **API auth is disabled** — `settings.identity.disable_auth` is forced `True`,
    so all API calls succeed without a token.
-2. **PII tokenization uses fallbacks** — local mode uses a hardcoded pepper and
-   skips encryption.
+2. **PII encryption uses fallbacks** — local mode uses a hardcoded Fernet key
+   for intake contact field encryption.
 3. **UI uses `.env.local`** — copy `ui/apps/web/.env.example` to `.env.local`
    and set `I4G_API_KEY=dev-analyst-token`.
 
@@ -244,8 +212,8 @@ If you need to test Secret Manager integration locally:
 # Authenticate with GCP
 gcloud auth application-default login
 
-# Set the vault project for SM lookups
-export I4G_SECRETS__PROJECT=i4g-pii-vault-dev
+# Set the project for SM lookups
+export I4G_SECRETS__PROJECT=i4g-dev
 export I4G_SECRETS__USE_SECRET_MANAGER=true
 ```
 

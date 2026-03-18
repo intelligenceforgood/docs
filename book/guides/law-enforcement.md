@@ -26,7 +26,7 @@ Each report follows a standardized template derived from the production PRD:
 ## Requesting Additional Information
 
 1. Email the liaison (above) from an official domain with subject line `Case <ID> – Additional Evidence Request`.
-2. Specify the exact materials required (e.g., original chat logs, tokenized PII rehydration, crypto transaction traces).
+2. Specify the exact materials required (e.g., original chat logs, encrypted contact field decryption, crypto transaction traces).
 3. Attach the signed request form or subpoena when applicable.
 4. Expect a response within 2 business days. Urgent cases should also trigger the secure hotline.
 

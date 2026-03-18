@@ -37,15 +37,14 @@ def admin_endpoint():
 
 ### Auth Coverage
 
-| Route group                    | Auth requirement          |
-| ------------------------------ | ------------------------- |
-| `/accounts/me`                 | `require_token`           |
-| `/accounts/*` (CRUD)           | `require_role("admin")`   |
-| `/campaigns/*` (create/update) | `require_role("admin")`   |
-| `/tasks/*` (update)            | `require_role("admin")`   |
-| `/tokenization/detokenize`     | `require_role("analyst")` |
-| `/reviews/*`, `/intakes/*`     | `require_token`           |
-| Other read endpoints           | `require_token`           |
+| Route group                    | Auth requirement        |
+| ------------------------------ | ----------------------- |
+| `/accounts/me`                 | `require_token`         |
+| `/accounts/*` (CRUD)           | `require_role("admin")` |
+| `/campaigns/*` (create/update) | `require_role("admin")` |
+| `/tasks/*` (update)            | `require_role("admin")` |
+| `/reviews/*`, `/intakes/*`     | `require_token`         |
+| Other read endpoints           | `require_token`         |
 
 ## Roles
 
