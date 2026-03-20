@@ -22,7 +22,7 @@
     - [Watchlist & Alerts](guides/analyst/watchlist.md)
   - [Reports](guides/user-guide-reports.md)
   - [Law Enforcement Guide](guides/law-enforcement.md)
-- Admin Guide
+- [Admin Guide](guides/admin/index.md)
   - [CLI Guide](guides/admin/cli.md)
   - [Scheduled Reports](guides/admin/scheduled_reports.md)
   - [Partner Feed](guides/admin/partner_feed.md)
