@@ -4,7 +4,7 @@ Cloud Run Jobs handle batch processing, analytics computation, and data lifecycl
 
 ## Overview
 
-The platform runs **13 background jobs** across **5 Docker images**. Most analytics and maintenance jobs share the `ingest-job` image for cost efficiency; only four jobs have dedicated images (ingestion, intake, report, dossier).
+The platform runs **14 background jobs** across **5 Docker images**. Most analytics and maintenance jobs share the `ingest-job` image for cost efficiency; four core jobs have dedicated images (ingestion, intake, report, dossier), and the SSI eCrimeX poller runs on the `ssi-svc` image.
 
 ![Job Architecture](../assets/architecture/job_architecture.svg)
 
@@ -101,6 +101,7 @@ flowchart LR
 | **Takedown Check**            | `i4g jobs takedown-check`            | `ingest-job`  | Every 12 hours | Verify URL reachability, detect site takedowns        |
 | **Scheduled Reports**         | `i4g jobs scheduled-reports`         | `ingest-job`  | Cadence-based  | Trigger recurring report generation                   |
 | **Ingest Retry**              | `i4g jobs ingest-retry`              | `ingest-job`  | On-demand      | Retry failed ingestion batches                        |
+| **SSI eCrimeX Poller**        | `ssi ecx poll`                       | `ssi-svc`     | `*/15 * * * *` | Poll eCrimeX for new scam intelligence and sync to DB |
 
 ## Docker Image Mapping
 
@@ -112,6 +113,7 @@ Five distinct images are built via `scripts/build_image.sh`:
 | `intake-job`  | `docker/intake-job.Dockerfile`  | Intake Worker                                                                                                   |
 | `report-job`  | `docker/report-job.Dockerfile`  | Report Generator                                                                                                |
 | `dossier-job` | `docker/dossier-job.Dockerfile` | Dossier Processor                                                                                               |
+| `ssi-svc`     | `docker/ssi-svc.Dockerfile`     | SSI eCrimeX Poller (includes Playwright + Chromium)                                                             |
 
 > The `ingest-job` image includes `tesseract-ocr` and is the largest; all TIFAP analytics jobs reuse it to avoid duplicating dependencies.
 
@@ -121,6 +123,7 @@ Jobs are triggered by Cloud Scheduler or on-demand via the CLI. The scheduler cr
 
 | Schedule         | Job                       | Notes                                                                      |
 | :--------------- | :------------------------ | :------------------------------------------------------------------------- |
+| `*/15 * * * *`   | SSI eCrimeX Poller        | Every 15 minutes                                                           |
 | `*/5 * * * *`    | Classification Sweeper    | Every 5 minutes                                                            |
 | `0 3 * * * UTC`  | Retention Purge           | Daily at 03:00 UTC                                                         |
 | Every 4 hours    | Analytics Aggregation     | Configurable via `I4G_ANALYTICS__REFRESH_INTERVAL_MINUTES`                 |

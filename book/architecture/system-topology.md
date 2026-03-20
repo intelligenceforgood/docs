@@ -149,9 +149,9 @@ flowchart TB
 ## What's in the platform
 
 - **Analyst Console (Next.js)** — secure portal for volunteers and LEOs behind IAP; all traffic proxied through the Core API so PII stays redacted.
-- **Core API (core-svc)** — 19 API routers covering intake, hybrid search, report generation, task status, taxonomy, and SSI investigation management (history, wallets, evidence, playbooks); enforces encryption and RBAC.
-- **Cloud Run Jobs (13)** — background workers for ingestion, classification sweeping, intake processing, report generation, dossier assembly, data-retention purge, analytics aggregation, linkage extraction, watchlist monitoring, infrastructure clustering, takedown detection, and scheduled reports. See [Job Architecture](job-architecture.md) for the full inventory.
-- **SSI Cloud Run Service (ssi-svc)** — always-on service for scam-site investigation: browser automation, OSINT, and wallet extraction. Triggered by the gateway via `POST /trigger/investigate`.
+- **Core API (core-svc)** — 22+ API routers covering intake, hybrid search, report generation, task status, taxonomy, and SSI investigation management (history, wallets, evidence, playbooks, live events); enforces encryption and RBAC. Cases are referred to as _reviews_ in the API (routes under `/reviews/`); the UI calls them _cases_.
+- **Cloud Run Jobs (14)** — background workers for ingestion, classification sweeping, intake processing, report generation, dossier assembly, data-retention purge, analytics aggregation, linkage extraction, watchlist monitoring, infrastructure clustering, takedown detection, scheduled reports, and eCrimeX polling (ssi-ecx-poller). See [Job Architecture](job-architecture.md) for the full inventory.
+- **SSI Cloud Run Service (ssi-svc)** — always-on service for scam-site investigation: browser automation, OSINT, and wallet extraction. Analysts trigger investigations via `POST /investigations/ssi` on core-svc; core dispatches to ssi-svc at `POST /trigger/investigate`.
 - **PII Protection** — victim contact fields are Fernet-encrypted at rest; decryption is audit-logged and restricted to authorized roles. See `core/docs/design/pii_vault.md`.
 - **Data Stores** — Cloud SQL (PostgreSQL 15, IAM auth), three GCS buckets (evidence, reports, data-bundles), and Vertex AI Search for hybrid retrieval.
 - **AI Services** — Vertex AI Gemini 2.0 for classification, entity extraction, and report generation; Vertex AI Search for semantic + keyword hybrid search.

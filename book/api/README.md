@@ -34,3 +34,28 @@ The gateway serves all SSI (Scam Site Investigator) endpoints. There is no separ
 | `GET/POST/PUT/DELETE` | `/playbooks/ssi`                                | Playbook CRUD                                              |
 | `POST`                | `/playbooks/ssi/test-match`                     | Test URL against playbook patterns                         |
 | `GET`                 | `/tasks/{task_id}`                              | Poll investigation progress                                |
+
+## Threat Intelligence & Analytics (Q1 2026)
+
+TIFAP analytics and campaign governance endpoints added in Q1 2026:
+
+| Method | Path                           | Description                                        |
+| ------ | ------------------------------ | -------------------------------------------------- |
+| `GET`  | `/intelligence/entities`       | Entity explorer — search persons, orgs, wallets    |
+| `GET`  | `/intelligence/entities/{id}`  | Entity detail with risk score and case links       |
+| `GET`  | `/intelligence/indicators`     | Indicator registry — URLs, IPs, domains            |
+| `GET`  | `/intelligence/campaigns`      | Campaign list with taxonomy rollup and risk scores |
+| `GET`  | `/intelligence/campaigns/{id}` | Campaign detail with member cases and timeline     |
+| `GET`  | `/intelligence/graph`          | Entity relationship graph (BFS traversal)          |
+| `GET`  | `/impact/dashboard`            | Platform KPIs and loss-by-taxonomy dashboard       |
+| `GET`  | `/campaigns`                   | Threat campaign management (governance CRUD)       |
+| `GET`  | `/exports/researcher/entities` | Anonymized researcher export (aggregate only)      |
+
+## PII Vault Endpoints (Q1 2026)
+
+| Method | Path                    | Description                                             |
+| ------ | ----------------------- | ------------------------------------------------------- |
+| `GET`  | `/intakes/{id}/contact` | Decrypt victim contact fields (analyst role required)   |
+| `GET`  | `/accounts/me`          | Resolve current user identity from forwarded IAP header |
+
+For complete parameter schemas and response types, use the interactive Swagger UI at `/docs` or see [core/docs/api_reference.md](https://github.com/intelligenceforgood/core/blob/main/docs/api_reference.md).

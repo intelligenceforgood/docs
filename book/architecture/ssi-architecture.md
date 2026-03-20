@@ -21,7 +21,7 @@ flowchart TB
 
     subgraph Trigger["🔗 Investigation Trigger"]
         CLI["ssi investigate<br/>CLI command"]:::trigger
-        API["Core API<br/>POST /trigger/investigate"]:::trigger
+        API["Core API<br/>POST /investigations/ssi"]:::trigger
     end
 
     subgraph SSI["🕵️ SSI Service (ssi-svc)"]
@@ -109,16 +109,16 @@ flowchart TB
 
 SSI writes directly to the shared database — it does **not** go through the Core API for data persistence. This design keeps investigation latency low and avoids circular API dependencies.
 
-| Integration Point             | Direction      | Mechanism                                                                               |
-| :---------------------------- | :------------- | :-------------------------------------------------------------------------------------- |
-| **Case creation**             | SSI → DB       | `ScanStore.create_case_record()` writes cases with wallet indicators and OSINT entities |
-| **Evidence storage**          | SSI → GCS      | Screenshots, DOM snapshots, and session logs stored in the shared evidence bucket       |
-| **Investigation trigger**     | Core API → SSI | `POST /trigger/investigate` on the SSI service endpoint                                 |
-| **Case ↔ investigation link** | Core DB        | `case_investigations` join table — one case can have many investigations and vice versa |
-| **Auto-investigation**        | Core → SSI     | `auto_investigate` job finds case URLs, deduplicates, and triggers SSI via HTTP         |
-| **URL deduplication**         | Core DB        | `site_scans.normalized_url` with staleness window prevents redundant scans              |
-| **eCrimeX sharing**           | DB → ECX       | Extracted indicators are shared via the eCrimeX integration pipeline                    |
-| **Analytics refresh**         | DB → Analytics | Entity stats from SSI-created cases feed into the aggregation pipeline                  |
+| Integration Point             | Direction      | Mechanism                                                                                                       |
+| :---------------------------- | :------------- | :-------------------------------------------------------------------------------------------------------------- |
+| **Case creation**             | SSI → DB       | `ScanStore.create_case_record()` writes cases with wallet indicators and OSINT entities                         |
+| **Evidence storage**          | SSI → GCS      | Screenshots, DOM snapshots, and session logs stored in the shared evidence bucket                               |
+| **Investigation trigger**     | Core API → SSI | Analysts call core-svc at `POST /investigations/ssi`; core dispatches to ssi-svc at `POST /trigger/investigate` |
+| **Case ↔ investigation link** | Core DB        | `case_investigations` join table — one case can have many investigations and vice versa                         |
+| **Auto-investigation**        | Core → SSI     | `auto_investigate` job finds case URLs, deduplicates, and triggers SSI via HTTP                                 |
+| **URL deduplication**         | Core DB        | `site_scans.normalized_url` with staleness window prevents redundant scans                                      |
+| **eCrimeX sharing**           | DB → ECX       | Extracted indicators are shared via the eCrimeX integration pipeline                                            |
+| **Analytics refresh**         | DB → Analytics | Entity stats from SSI-created cases feed into the aggregation pipeline                                          |
 
 ### Case ↔ Investigation Linking
 

@@ -97,7 +97,7 @@ flowchart LR
 
 ### Analytics aggregation (Sprint 3)
 
-A periodic job (`analytics_aggregation.py`, default every 15 minutes)
+A periodic job (`analytics_aggregation.py`, scheduled every 4 hours)
 materializes raw data into four aggregate tables used by the Impact Dashboard
 and Campaign Intelligence views:
 
