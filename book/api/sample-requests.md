@@ -311,7 +311,7 @@ curl -H "Authorization: Bearer $TOKEN" -O \
 
 ---
 
-## Graph Endpoints (Sprint 4)
+## Graph Endpoints
 
 ### Get entity graph
 
@@ -329,7 +329,7 @@ curl -H "Authorization: Bearer $TOKEN" -o graph.png \
 
 ---
 
-## Taxonomy Endpoints (Sprint 4)
+## Taxonomy Endpoints
 
 ### Sankey flow data
 
@@ -354,7 +354,7 @@ curl -H "Authorization: Bearer $TOKEN" \
 
 ---
 
-## Geography Endpoints (Sprint 4)
+## Geography Endpoints
 
 ### Country summary
 
@@ -372,7 +372,7 @@ curl -H "Authorization: Bearer $TOKEN" \
 
 ---
 
-## Timeline Endpoint (Sprint 4)
+## Timeline Endpoint
 
 ### Activity timeline
 

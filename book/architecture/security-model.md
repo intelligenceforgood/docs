@@ -112,7 +112,7 @@ flowchart TB
 - Partners and donors see a compliant, auditable path from intake to court-ready evidence.
 - The architecture scales without relaxing privacy guarantees.
 
-## Analytics & Partner Feed Security (Sprint 6)
+## Analytics & Partner Feed Security
 
 ### Researcher Role Restrictions
 

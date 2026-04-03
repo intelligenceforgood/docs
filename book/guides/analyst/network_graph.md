@@ -91,6 +91,6 @@ Infrastructure edges reveal shared hosting relationships between entities:
 - **Shared case** — entities co-occurring across multiple cases.
 
 Infrastructure edges appear as dashed lines on the graph. They are computed
-by the infrastructure clustering job (runs every 6 hours by default) and
-stored in the `infrastructure_edges` table. Toggle infrastructure edges
-on/off using the **Infrastructure** checkbox in the graph filters.
+periodically by a background job that analyzes shared-hosting patterns.
+Toggle infrastructure edges on/off using the **Infrastructure** checkbox
+in the graph filters.

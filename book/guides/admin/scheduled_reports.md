@@ -40,7 +40,8 @@ POST /intelligence/scheduled-reports
 | -------------------------------------------------------- | ------- | ------------------------------------------ |
 | `I4G_ANALYTICS__SCHEDULED_REPORT_CHECK_INTERVAL_MINUTES` | 15      | How often the job checks for due schedules |
 
-The scheduled reports job runs as part of the shared ingest-job Docker image.
+The scheduled reports job runs on a recurring schedule (Cloud Scheduler in
+dev/prod, or on-demand via the CLI locally).
 
 ## Managing Schedules
 
@@ -58,5 +59,3 @@ for audit purposes.
 | Wrong report content   | Check the `scope` JSON matches intended filters     |
 | Job not running        | Confirm Cloud Scheduler triggers are active         |
 | Duplicate reports      | Check `last_run_at` — the job is idempotent         |
-
-See `src/i4g/worker/jobs/scheduled_reports.py` for the full implementation.

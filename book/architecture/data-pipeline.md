@@ -95,7 +95,7 @@ flowchart LR
 5. **Report & sign** — The report generator assembles findings from case data and redacted evidence into a dossier PDF, signs it with a SHA-256 hash manifest and timestamp, and publishes via controlled links.
 6. **Feedback loop** — Analyst corrections and outcome signals feed back into the classifier, improving precision over time.
 
-### Analytics aggregation (Sprint 3)
+### Analytics aggregation
 
 A periodic job (`analytics_aggregation.py`, scheduled every 4 hours)
 materializes raw data into four aggregate tables used by the Impact Dashboard
@@ -113,7 +113,7 @@ analyst-facing queries fast and avoiding full-table scans on the transactional
 database. See `core/docs/design/threat_intelligence_analytics_tdd.md` for the
 full schema.
 
-### External enrichment sources (Sprint 5)
+### External enrichment sources
 
 Three enrichment pipelines feed additional data into the analytics layer:
 

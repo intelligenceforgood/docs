@@ -14,10 +14,26 @@ The main view displays a paginated table of entities sorted by total loss or cas
 | --------------- | -------------------------------------------------- |
 | **Entity Type** | Category badge (e.g., `crypto_wallet`, `email`).   |
 | **Value**       | The canonical identifier (masked for researchers). |
+| **Status**      | Lifecycle status (see below).                      |
 | **Case Count**  | Number of linked fraud cases.                      |
 | **Total Loss**  | Aggregate reported loss across all linked cases.   |
 | **First Seen**  | Earliest case association date.                    |
 | **Last Seen**   | Most recent case association date.                 |
+
+### Entity Lifecycle Statuses
+
+Each entity carries a lifecycle status that reflects its current threat level:
+
+| Status        | Meaning                                                                           |
+| ------------- | --------------------------------------------------------------------------------- |
+| **Active**    | Appeared in a case within the last 14 days.                                       |
+| **Declining** | No new case activity for 14–29 days.                                              |
+| **Dormant**   | No new case activity for 30+ days.                                                |
+| **Resolved**  | All linked cases are closed — the entity is no longer under review.               |
+| **Flagged**   | Manually flagged by an analyst. This status is sticky and never auto-transitions. |
+
+Status transitions happen automatically during the analytics refresh cycle.
+The **Flagged** status is the exception — only an analyst can set or remove it.
 
 ## Searching and Filtering
 

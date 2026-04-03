@@ -18,14 +18,14 @@ using the **Add Entity** form (enter entity type and value).
 
 Open **Intelligence → Watchlist** to see all pinned entities. The table shows:
 
-| Column          | Description                                        |
-| --------------- | -------------------------------------------------- |
-| Entity Type     | wallet, email, domain, ip_address, etc.            |
-| Value           | The canonical entity value                         |
-| Alert Threshold | USD amount that triggers a loss alert              |
-| Case Count      | Current number of linked cases (from entity_stats) |
-| Created         | When the entity was pinned                         |
-| Note            | Free-text analyst note                             |
+| Column          | Description                             |
+| --------------- | --------------------------------------- |
+| Entity Type     | wallet, email, domain, ip_address, etc. |
+| Value           | The canonical entity value              |
+| Alert Threshold | USD amount that triggers a loss alert   |
+| Case Count      | Current number of linked cases          |
+| Created         | When the entity was pinned              |
+| Note            | Free-text analyst note                  |
 
 Use the row actions to **edit** the threshold/note or **remove** the entity.
 
@@ -55,4 +55,4 @@ bulk.
 | POST   | `/intelligence/watchlist/alerts/{id}/read` | Mark alert as read       |
 | POST   | `/intelligence/watchlist/alerts/read-all`  | Mark all alerts as read  |
 
-See `src/i4g/api/intelligence.py` for the full endpoint definitions.
+See the [API Guide](../../api/README.md) for the full endpoint reference.

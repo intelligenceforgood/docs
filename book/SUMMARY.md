@@ -14,6 +14,7 @@
     - [Threat Campaigns](guides/analyst/campaigns.md)
     - [Impact Dashboard](guides/analyst/impact_dashboard.md)
     - [Entity Explorer](guides/analyst/entity_explorer.md)
+    - [Threat Entity Types](guides/analyst/threat_entity_types.md)
     - [Indicator Registry](guides/analyst/indicator_registry.md)
     - [Network Graph](guides/analyst/network_graph.md)
     - [Taxonomy Explorer](guides/analyst/taxonomy_explorer.md)

@@ -7,11 +7,11 @@ and campaigns over time.
 
 Three tracks are displayed as horizontal bar charts:
 
-| Track      | Color | Data Source      |
-| ---------- | ----- | ---------------- |
-| Cases      | Blue  | `analytics_kpis` |
-| Indicators | Green | `analytics_kpis` |
-| Campaigns  | Amber | `analytics_kpis` |
+| Track      | Color | Description                        |
+| ---------- | ----- | ---------------------------------- |
+| Cases      | Blue  | New cases ingested per period      |
+| Indicators | Green | New indicators discovered          |
+| Campaigns  | Amber | Active threat campaigns per period |
 
 Each track shows period counts as vertical bars. Hover over a bar to see the
 exact count and period label.
@@ -34,8 +34,8 @@ Control the resolution of the bar chart:
 - **week**: one bar per week (default, good for 30d–90d)
 - **month**: one bar per month (best for quarter–year ranges)
 
-The API maps weekly data from `analytics_kpis` and monthly data from
-`analytics_kpis_monthly` based on your selection.
+The system provides weekly and monthly data depending on the granularity
+selected.
 
 ## Event Navigation
 

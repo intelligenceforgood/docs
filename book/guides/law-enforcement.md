@@ -44,7 +44,7 @@ Your feedback helps improve the system:
 - Do not forward reports to third parties without consent from Intelligence for Good or the user.
 - Notify the liaison immediately if you detect compromised credentials, phishing attempts, or other operational risks involving the shared data.
 
-## LEA Evidence Dossier (Sprint 3)
+## LEA Evidence Dossier
 
 Analysts can now generate a dedicated **LEA Evidence Dossier** from the Report
 Builder. The dossier is a structured package specifically designed for law
@@ -87,7 +87,7 @@ LEA dossiers default to **TLP:RED** (named recipients only). Treat the
 dossier as restricted to your investigative team. Do not distribute beyond
 the named agency without written consent.
 
-## LEA Referral Tracking (Sprint 6)
+## LEA Referral Tracking
 
 Analysts can now log law enforcement referrals directly on case records,
 creating a structured audit trail from investigation to agency intake.
@@ -108,7 +108,7 @@ creating a structured audit trail from investigation to agency intake.
 
 ### Blockchain enrichment in dossiers
 
-Sprint 6 added blockchain analytics enrichment. When a case contains wallet
+The platform includes blockchain analytics enrichment. When a case contains wallet
 entities, the LEA dossier now includes:
 
 - **Vendor risk label** — Risk classification from the configured blockchain

@@ -28,7 +28,7 @@ The platform client wraps the default SDK and overrides methods where the core b
 
 **Total: 8 methods**
 
-### Intelligence & Export Methods (Sprint 2)
+### Intelligence & Export Methods
 
 | SDK Method                                | HTTP Route                                            | Notes                                                     |
 | ----------------------------------------- | ----------------------------------------------------- | --------------------------------------------------------- |
@@ -89,7 +89,7 @@ The platform client wraps the default SDK and overrides methods where the core b
 
 **Total: ~40+ endpoints not in SDK**
 
-### Sprint 6 Additions (Not Yet in SDK)
+### Recent Additions (Not Yet in SDK)
 
 | Section          | Endpoint                        | Description                |
 | ---------------- | ------------------------------- | -------------------------- |

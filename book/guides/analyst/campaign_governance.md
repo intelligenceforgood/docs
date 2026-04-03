@@ -44,10 +44,10 @@ When configuring a Campaign in the Analyst Console:
 
 1. **Browse campaigns:** The Campaigns page shows a card grid with campaign name, description, and linked governance taxonomy IDs.
 2. **Create a campaign:** Click **New Campaign**, enter the Name and Description.
-3. **Governance Assignment:** The taxonomy selector is displayed but currently disabled pending the multi-axis taxonomy UI update. Once enabled, you will select high-level governance categories to link tactical detections to strategic reporting.
+3. **Governance Assignment:** Select high-level governance categories from the taxonomy selector to link tactical detections to strategic reporting.
 4. **Save:** Your campaign is now live and visible in the campaign list.
 
-## Threat Campaign Intelligence (Sprint 3)
+## Threat Campaign Intelligence
 
 In addition to manually created campaigns, the platform now auto-detects
 **Threat Campaigns** by clustering cases that share entity overlaps. These are

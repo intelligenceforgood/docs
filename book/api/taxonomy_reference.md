@@ -65,7 +65,7 @@ This document is auto-generated from the taxonomy definitions.
 | `PERSONA.MARKETPLACE` | Marketplace User | Facebook Marketplace, Craigslist user |
 | `PERSONA.CHARITY`     | Charity          | Red Cross, GoFundMe, etc.             |
 
-## Analytics Usage (Sprint 6)
+## Analytics Usage
 
 The taxonomy codes above drive several TIFAP analytics views:
 

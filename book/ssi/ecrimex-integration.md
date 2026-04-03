@@ -93,9 +93,9 @@ ssi ecx search ip <ip>
 ssi ecx search crypto <address>
 ```
 
-## Analytics view (Sprint 6)
+## Analytics View
 
-With TIFAP Sprint 6, eCrimeX submission and enrichment data is visible in the analytics layer:
+eCrimeX submission and enrichment data is visible in the analytics layer:
 
 ### Submission metrics
 

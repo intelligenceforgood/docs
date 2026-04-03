@@ -50,7 +50,7 @@ The following were removed by D79:
 4. **Query parameters:** Defined as function parameters — always snake_case in
    the URL. Frontend maps camelCase values to snake_case params explicitly.
 
-## Intelligence & Export Models (Sprint 2)
+## Intelligence & Export Models
 
 The intelligence and export endpoints follow the same `CamelModel` convention.
 Key field mappings:
