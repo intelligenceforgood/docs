@@ -12,13 +12,12 @@ by the i4g platform across all environments.
 
 ## Quick Reference
 
-| Secret                                              | Type               | Where Stored                      | Environments | Services                         |
-| --------------------------------------------------- | ------------------ | --------------------------------- | ------------ | -------------------------------- |
-| [crypto-pii-key](#crypto-pii-key)                   | Fernet key         | Secret Manager (App)              | dev, prod    | Core API, ingest job, intake job |
-| [api-key](#api-key)                                 | API key            | Secret Manager (App)              | dev, prod    | Console, intake job              |
-| [IAP OAuth clients](#iap-oauth-clients)             | OAuth credential   | Terraform tfvars / Secret Manager | dev, prod    | Load balancer backends           |
-| [Dev API tokens](#dev-api-tokens)                   | Hardcoded tokens   | Source code                       | local, dev   | Core API auth                    |
-| [Azure migration secrets](#azure-migration-secrets) | Connection strings | Secret Manager (App)              | dev only     | Migration scripts                |
+| Secret                                  | Type             | Where Stored                      | Environments | Services                         |
+| --------------------------------------- | ---------------- | --------------------------------- | ------------ | -------------------------------- |
+| [crypto-pii-key](#crypto-pii-key)       | Fernet key       | Secret Manager (App)              | dev, prod    | Core API, ingest job, intake job |
+| [api-key](#api-key)                     | API key          | Secret Manager (App)              | dev, prod    | Console, intake job              |
+| [IAP OAuth clients](#iap-oauth-clients) | OAuth credential | Terraform tfvars / Secret Manager | dev, prod    | Load balancer backends           |
+| [Dev API tokens](#dev-api-tokens)       | Hardcoded tokens | Source code                       | local, dev   | Core API auth                    |
 
 ---
 
@@ -110,24 +109,6 @@ tokens provide inner service-to-service authorization.
 
 ---
 
-## Azure Migration Secrets (Legacy)
-
-These secrets exist in Secret Manager for the one-time data migration from the
-legacy Azure infrastructure. They are not injected into any Cloud Run service
-or job.
-
-| Secret                            | SM Path                                                      | Terraform            | Purpose                                              | Status                     |
-| --------------------------------- | ------------------------------------------------------------ | -------------------- | ---------------------------------------------------- | -------------------------- |
-| `azure-sql-connection-string`     | `projects/i4g-dev/secrets/azure-sql-connection-string`       | Dev `main.tf` only   | Legacy Azure SQL database connection for data export | Stale — migration complete |
-| `azure-storage-connection-string` | `projects/i4g-{env}/secrets/azure-storage-connection-string` | Dev & prod `main.tf` | Azure Blob Storage for document migration            | Stale — migration complete |
-| `azure-search-admin-key`          | `projects/i4g-{env}/secrets/azure-search-admin-key`          | Dev & prod `main.tf` | Azure Cognitive Search admin key for index export    | Stale — migration complete |
-
-> **Cleanup:** These are tracked as D62 in the debt remediation plan (WS-8).
-> Confirm the `dtp/` Azure Functions are fully decommissioned before deleting
-> the Terraform resources and Secret Manager entries.
-
----
-
 ## Phantom Secrets (Safe to Delete)
 
 The following secrets exist in GCP Secret Manager but have **zero references**
@@ -161,7 +142,7 @@ or rotated.
 | App DB (prod) | `i4g-prod:us-central1:i4g-prod-db` | `i4g-prod` | `i4g_db` | IAM (`sa-app`)                                        |
 
 > `StorageSettings.cloudsql_password` fields exist in the Settings model
-> but default to `None` and are unused. They are legacy placeholders from
+> but default to `None` and are unused. They are placeholders from
 > before IAM auth was enabled.
 
 ---

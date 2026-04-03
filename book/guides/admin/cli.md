@@ -41,7 +41,6 @@ This ordering helps prevent accidental runs against production or someone else's
 - `i4g extract` – OCR and semantic extraction pipelines.
 - `i4g smoke` – dossiers, Vertex retrieval, Cloud Run smokes.
 - `i4g admin` – saved-search export/import/tagging, dossier build/process/pilot, RAG query helpers.
-- `i4g azure` – legacy Azure migration and export helpers.
 
 ## Guardrails
 

@@ -46,46 +46,46 @@ The platform client wraps the default SDK and overrides methods where the core b
 
 ### Not Covered by SDK (require direct `fetch` or server actions)
 
-| Category           | Endpoint                                         | Status                                          |
-| ------------------ | ------------------------------------------------ | ----------------------------------------------- |
-| **Search**         | `GET /reviews/search`                            | Legacy search; use `searchIntelligence` instead |
-| **Search**         | `GET /reviews/search/history`                    | History via server action or direct fetch       |
-| **Search**         | `GET /reviews/search/schema`                     | Schema via server action                        |
-| **Saved Searches** | `POST /reviews/search/saved`                     | Server action in `reviews-service.ts`           |
-| **Saved Searches** | `GET /reviews/search/saved`                      | Server action                                   |
-| **Saved Searches** | `DELETE /reviews/search/saved/{id}`              | Server action                                   |
-| **Saved Searches** | `PATCH /reviews/search/saved/{id}`               | Server action                                   |
-| **Saved Searches** | `POST /reviews/search/saved/{id}/share`          | Server action                                   |
-| **Saved Searches** | `GET /reviews/search/saved/{id}/export`          | Server action                                   |
-| **Saved Searches** | `POST /reviews/search/saved/import`              | Server action                                   |
-| **Saved Searches** | `POST /reviews/search/saved/bulk-tags`           | Server action                                   |
-| **Saved Searches** | `GET /reviews/search/tag-presets`                | Server action                                   |
-| **Review Queue**   | `POST /reviews/`                                 | Enqueue case                                    |
-| **Review Queue**   | `GET /reviews/queue`                             | List queued cases                               |
-| **Review Queue**   | `POST /reviews/{id}/claim`                       | Claim review                                    |
-| **Review Queue**   | `POST /reviews/{id}/annotate`                    | Annotate review                                 |
-| **Review Queue**   | `POST /reviews/{id}/feedback`                    | Submit feedback                                 |
-| **Review Queue**   | `POST /reviews/{id}/decision`                    | Record decision                                 |
-| **Review Detail**  | `GET /reviews/{id}`                              | Get single review                               |
-| **Review Detail**  | `GET /reviews/case/{case_id}`                    | Reviews by case                                 |
-| **Review Detail**  | `GET /reviews/{id}/actions`                      | Action history                                  |
-| **Intake**         | `POST /intakes/`                                 | Submit intake                                   |
-| **Intake**         | `GET /intakes/`                                  | List intakes                                    |
-| **Intake**         | `GET /intakes/{id}`                              | Get intake                                      |
-| **Intake**         | `GET /intakes/jobs/{id}`                         | Get job status                                  |
-| **Intake**         | `POST /intakes/jobs/{id}`                        | Update job                                      |
-| **Intake**         | `POST /intakes/{id}/status`                      | Update status                                   |
-| **Intake**         | `POST /intakes/{id}/case`                        | Attach case                                     |
-| **Reports**        | `GET /reports/dossiers/{id}/drive_acl`           | Drive ACL                                       |
-| **Reports**        | `GET /reports/dossiers/{id}/signature_manifest`  | Signature manifest                              |
-| **Reports**        | `GET /reports/dossiers/{id}/download/{artifact}` | Download artifact                               |
-| **Reports**        | `POST /reports/generate`                         | Trigger report                                  |
-| **Tasks**          | `GET /tasks/{id}`                                | Poll task status                                |
-| **Tasks**          | `POST /tasks/{id}/update`                        | Update task status                              |
-| **Campaigns**      | `GET /campaigns`                                 | List campaigns                                  |
-| **Campaigns**      | `POST /campaigns`                                | Create campaign                                 |
-| **Campaigns**      | `PATCH /campaigns/{id}`                          | Update campaign                                 |
-| **Discovery**      | `GET /discovery/search`                          | Discovery search                                |
+| Category           | Endpoint                                         | Status                                       |
+| ------------------ | ------------------------------------------------ | -------------------------------------------- |
+| **Search**         | `GET /reviews/search`                            | Superseded; use `searchIntelligence` instead |
+| **Search**         | `GET /reviews/search/history`                    | History via server action or direct fetch    |
+| **Search**         | `GET /reviews/search/schema`                     | Schema via server action                     |
+| **Saved Searches** | `POST /reviews/search/saved`                     | Server action in `reviews-service.ts`        |
+| **Saved Searches** | `GET /reviews/search/saved`                      | Server action                                |
+| **Saved Searches** | `DELETE /reviews/search/saved/{id}`              | Server action                                |
+| **Saved Searches** | `PATCH /reviews/search/saved/{id}`               | Server action                                |
+| **Saved Searches** | `POST /reviews/search/saved/{id}/share`          | Server action                                |
+| **Saved Searches** | `GET /reviews/search/saved/{id}/export`          | Server action                                |
+| **Saved Searches** | `POST /reviews/search/saved/import`              | Server action                                |
+| **Saved Searches** | `POST /reviews/search/saved/bulk-tags`           | Server action                                |
+| **Saved Searches** | `GET /reviews/search/tag-presets`                | Server action                                |
+| **Review Queue**   | `POST /reviews/`                                 | Enqueue case                                 |
+| **Review Queue**   | `GET /reviews/queue`                             | List queued cases                            |
+| **Review Queue**   | `POST /reviews/{id}/claim`                       | Claim review                                 |
+| **Review Queue**   | `POST /reviews/{id}/annotate`                    | Annotate review                              |
+| **Review Queue**   | `POST /reviews/{id}/feedback`                    | Submit feedback                              |
+| **Review Queue**   | `POST /reviews/{id}/decision`                    | Record decision                              |
+| **Review Detail**  | `GET /reviews/{id}`                              | Get single review                            |
+| **Review Detail**  | `GET /reviews/case/{case_id}`                    | Reviews by case                              |
+| **Review Detail**  | `GET /reviews/{id}/actions`                      | Action history                               |
+| **Intake**         | `POST /intakes/`                                 | Submit intake                                |
+| **Intake**         | `GET /intakes/`                                  | List intakes                                 |
+| **Intake**         | `GET /intakes/{id}`                              | Get intake                                   |
+| **Intake**         | `GET /intakes/jobs/{id}`                         | Get job status                               |
+| **Intake**         | `POST /intakes/jobs/{id}`                        | Update job                                   |
+| **Intake**         | `POST /intakes/{id}/status`                      | Update status                                |
+| **Intake**         | `POST /intakes/{id}/case`                        | Attach case                                  |
+| **Reports**        | `GET /reports/dossiers/{id}/drive_acl`           | Drive ACL                                    |
+| **Reports**        | `GET /reports/dossiers/{id}/signature_manifest`  | Signature manifest                           |
+| **Reports**        | `GET /reports/dossiers/{id}/download/{artifact}` | Download artifact                            |
+| **Reports**        | `POST /reports/generate`                         | Trigger report                               |
+| **Tasks**          | `GET /tasks/{id}`                                | Poll task status                             |
+| **Tasks**          | `POST /tasks/{id}/update`                        | Update task status                           |
+| **Campaigns**      | `GET /campaigns`                                 | List campaigns                               |
+| **Campaigns**      | `POST /campaigns`                                | Create campaign                              |
+| **Campaigns**      | `PATCH /campaigns/{id}`                          | Update campaign                              |
+| **Discovery**      | `GET /discovery/search`                          | Discovery search                             |
 
 **Total: ~40+ endpoints not in SDK**
 

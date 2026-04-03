@@ -10,7 +10,7 @@ Documenting every knob keeps contributors from accidentally pointing laptop jobs
 
 Usage guidance for developers and sysadmins:
 
-1. Prefer the `I4G_*` env vars when exporting values; legacy aliases exist only for backwards compatibility.
+1. Use the `I4G_*` env vars when exporting values.
 2. When adding or changing a setting, update `src/i4g/settings/config.py`, extend `tests/unit/settings/`, and rerun `i4g settings export-manifest` (pass `--docs-repo ../docs` when the docs checkout is available) before committing.
 3. Store credentials in `.env.local` or Secret Manager rather than committing secrets here; laptop runs can source the file via `direnv` or the built-in dotenv loader.
 4. Keep `I4G_ENV=local` for sandbox testing; other values assume GCP services (Cloud SQL, Cloud Storage, Vertex AI) are reachable.

@@ -94,8 +94,8 @@ Manifests are generated automatically for new investigations and can be backfill
 The Core API resolves evidence locations using the following strategy (see `core/src/i4g/api/ssi_evidence.py`):
 
 1. **Explicit `gs://` URI** — If `evidence_path` starts with `gs://`, parse and use the bucket/key directly.
-2. **Sharded fallback** — Construct the GCS location from settings (`ssi_evidence_bucket` / `ssi_evidence_prefix`) using the sharded path `evidence_path(scan_id)`.
-3. **Flat fallback** — Try the legacy flat path `{prefix}/{scan_id}/` for pre-migration scans.
+2. **Sharded path** — Construct the GCS location from settings (`ssi_evidence_bucket` / `ssi_evidence_prefix`) using the sharded path `evidence_path(scan_id)`.
+3. **Flat fallback** — Try the flat path `{prefix}/{scan_id}/` for pre-sharding scans.
 4. **Local filesystem** — For local development, serve files directly from the filesystem path.
 
 ## Migration
