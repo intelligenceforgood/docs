@@ -1,246 +1,231 @@
 # Managing Engagements
 
-This page is for engagement managers — professors, program coordinators, and
-I4G staff who create, configure, and run engagements. It covers the full
-lifecycle from planning a competition to archiving results.
+Welcome, engagement manager! Whether you're a professor setting up a semester
+competition, a program coordinator running a multi-university exercise, or an
+I4G staff member organizing a law-enforcement operation — this guide walks you
+through every step from creating your first engagement to archiving the
+results.
 
 ## Before You Start
 
-You need the **manager** role (or higher) to create and manage engagements.
-If you do not have this role, contact your platform administrator.
+You need the **manager** role (or higher). If you don't see the
+**Engagements** link in the sidebar, ask your platform administrator for a
+role upgrade.
 
-## Accessing Engagement Management
+## Opening the Management Page
 
-Navigate to **Admin → Engagement Management** (or go directly to
-`/admin/engagements`). This page shows:
+Click **Engagements** in the left sidebar (or navigate directly to
+`/admin/engagements`). You'll land on the management page, which shows:
 
-- A count of total engagements, active engagements, and past engagements.
-- A **New Engagement** button to create one.
-- A **Compare Engagements** link (when past engagements exist).
-- A table listing all engagements with status, dates, and action buttons.
+- A summary bar with counts of total, active, and past engagements.
+- A **New Engagement** button in the top-right corner.
+- A **Compare Engagements** link (appears once you have past engagements).
+- A table of all engagements with status badges, dates, and quick-action
+  buttons.
 
 ## Creating an Engagement
 
-1. Click **New Engagement** on the management page.
-2. Fill in the form:
+1. Click **New Engagement**.
+1. Fill in the details:
 
-| Field           | Required | Description                                                              |
-| --------------- | -------- | ------------------------------------------------------------------------ |
-| **Name**        | Yes      | A descriptive name, e.g., "Spring 2026 — UAB" or "Q2 2026 LEA Exercise". |
-| **Description** | No       | Additional context: course number, partner organization, objectives.     |
-| **Starts At**   | No       | Scheduled start date. Informational — does not auto-activate.            |
-| **Ends At**     | No       | Scheduled end date. Displayed in the countdown on dashboard cards.       |
+| Field           | Required | What to enter                                                           |
+| --------------- | -------- | ----------------------------------------------------------------------- |
+| **Name**        | Yes      | A descriptive name, e.g. "Spring 2026 — UAB" or "Q2 2026 LEA Exercise". |
+| **Description** | No       | Course number, partner organization, objectives — anything helpful.     |
+| **Starts At**   | No       | Scheduled start date. Informational only — it won't auto-activate.      |
+| **Ends At**     | No       | Scheduled end date. Powers the countdown timer on the dashboard.        |
 
-3. Click **Create**. The engagement starts in `draft` status.
+1. Click **Create**. Your engagement starts in **draft** status — invisible
+   to analysts until you activate it.
 
-> **Naming convention:** Use a pattern like "[Season Year — Institution]" for
-> easy identification in dropdowns and comparison views.
+> **Tip — naming convention:** Stick to a pattern like
+> _"Season Year — Institution"_ so engagements sort neatly in dropdowns
+> and comparison views.
 
-## Assigning Cases to the Engagement
+## Assigning Cases
 
-Cases can be assigned in two ways:
+A competition is only as good as its case set. You have two ways to populate
+an engagement:
 
-### Bulk Assignment (Post-Hoc)
+### Option A: Bulk assignment (most common)
 
-1. On the engagement management page, click the **Assign Cases** action for
-   your engagement.
-2. Enter case IDs — paste a comma-separated or newline-separated list.
-3. Click **Assign**. You see a confirmation: _"Assigned N case(s)."_
+1. Find your engagement in the table and click **Assign Cases**.
+2. Paste case IDs (comma-separated or one per line).
+3. Click **Assign**. A confirmation banner shows how many cases were added.
 
-This is the most common method for competition setup: curate a set of cases
-from the existing corpus and assign them to the engagement.
+This is the go-to method: curate a case set from the existing corpus, then
+assign it in one shot.
 
-### During Ingestion
+### Option B: Tag cases during ingestion
 
-When running an ingestion job, set the `INGEST__ENGAGEMENT_ID` environment
-variable to the engagement's UUID. All cases created during that ingestion
-run are automatically tagged with the engagement.
+Set the `INGEST__ENGAGEMENT_ID` environment variable to the engagement UUID
+before running an ingestion job. Every case created during that run is
+automatically tagged.
 
-This is useful when a batch of new cases arrives specifically for a
-competition round.
+Handy when a fresh batch of cases arrives specifically for a competition
+round.
 
-### Removing Case Assignments
+### Removing cases
 
-To remove cases from an engagement:
+Click **Remove Cases** on the management page, enter the case IDs, and
+confirm. Removed cases stay in the system — they simply lose their engagement
+tag and become visible only in the "All Engagements" view.
 
-1. Use the **Remove Cases** action on the management page.
-2. Enter the case IDs to remove.
-3. Confirm. The cases' `engagement_id` is cleared (set to null). They remain
-   in the system but are no longer scoped to the engagement.
-
-> **Important:** A case can belong to at most one engagement. Assigning a case
-> to a new engagement removes it from its previous one.
+> **Good to know:** A case belongs to at most one engagement. If you assign a
+> case that's already in another engagement, it moves to the new one.
 
 ## Activating the Engagement
 
-When your case set is ready and participants are onboarded:
+Once your case set is ready and participants are onboarded:
 
-1. Click the **Activate** button (play icon) next to the engagement.
-2. The status changes from `draft` to `active`.
-3. The engagement now appears in the engagement selector for all participants.
+1. Click the **Activate** button (▶ play icon) next to the engagement.
+2. Status flips from `draft` → `active`.
+3. The engagement immediately appears in analysts' **Engagement Selector**
+   (the dropdown in the top-right corner of the console).
 
-### What Happens on Activation
+**What happens behind the scenes:**
 
-- Analysts assigned to the platform see the engagement in their selector
-  dropdown.
-- If it is their only active engagement, it is auto-selected.
-- The dashboard begins showing real-time progress metrics.
-- The leaderboard begins accumulating analyst performance data.
+- If an analyst has only one active engagement, it's auto-selected for them.
+- The dashboard starts showing real-time progress metrics.
+- The leaderboard begins tracking analyst performance.
 
 ## Monitoring Progress
 
-### Engagement Summary Card
+### Summary card
 
-When you select an active engagement, the dashboard shows a summary card with:
+Select an active engagement and the dashboard presents a summary card at a
+glance:
 
-- **Total Cases** — number of cases assigned.
-- **Reviewed** — how many have been reviewed.
-- **Remaining** — how many are unreviewed.
-- **Completion %** — progress bar.
-- **Days Remaining** — countdown to `ends_at` (if set).
-- **Analyst Count** — number of active analysts.
+| Metric             | What it tells you                            |
+| ------------------ | -------------------------------------------- |
+| **Total Cases**    | How many cases are in the engagement.        |
+| **Reviewed**       | Cases that have been reviewed at least once. |
+| **Remaining**      | Cases still awaiting review.                 |
+| **Completion %**   | Visual progress bar toward full coverage.    |
+| **Days Remaining** | Countdown to your end date (if one is set).  |
+| **Analyst Count**  | Number of analysts actively participating.   |
 
-### Real-Time Dashboard
+### Scoped dashboard
 
-All dashboard KPIs (total cases, loss amounts, detection velocity, etc.) are
-automatically scoped to the selected engagement. You see the engagement's
-metrics, not global platform metrics.
+All dashboard KPIs — total cases, loss amounts, detection velocity, indicator
+counts — are **automatically scoped** to the selected engagement. You're
+looking at _your_ competition's numbers, not the whole platform.
 
 ### Leaderboard
 
-Navigate to the engagement's leaderboard page to see ranked analyst
-performance:
+Click the **Leaderboard** icon (🏆 trophy) on any engagement row to see
+ranked analyst performance. The leaderboard shows each analyst's rank, cases
+reviewed, accuracy, risk score MAE, actions logged, and composite score.
+See [Leaderboard & Analytics](leaderboard.md) for the full scoring
+methodology.
 
-- View from the management table: click the **Leaderboard** (trophy icon)
-  next to any engagement.
-- The leaderboard shows each analyst's rank, cases reviewed, accuracy,
-  risk score MAE, actions logged, and composite score.
+### "All Engagements" mode
 
-### "All Engagements" Mode
-
-As a manager, you can select **All Engagements** from the engagement selector
-(globe icon). This removes the engagement filter and shows platform-wide data.
-Use this to monitor overall platform health or work with cases that are not
-assigned to any engagement.
+As a manager, you have one extra option in the engagement selector:
+**All Engagements** (🌏 globe icon). This removes the engagement filter and
+shows platform-wide data — useful for monitoring overall health or working
+with unassigned cases.
 
 ## Completing the Engagement
 
-When the competition or exercise ends:
+When the competition or exercise wraps up:
 
-1. Click the **Complete** button (checkmark icon) on the management page.
-2. The status changes from `active` to `completed`.
-3. Analysts see a read-only banner: _"This engagement has ended. Data is
+1. Click **Complete** (✓ checkmark icon) on the management page.
+2. Status changes to `completed`.
+3. Analysts see a yellow banner: _"This engagement has ended. Data is
    read-only."_
-4. Review submissions are disabled for the engagement's cases.
-5. Analytics and leaderboard data are frozen.
+4. Review submissions are disabled; analytics and leaderboard data are frozen.
 
-> **Note:** Lifecycle transitions are manual. The system does not automatically
-> complete an engagement when `ends_at` passes. This prevents interrupting a
-> competition that runs over schedule.
+> **No surprise cutoffs:** The platform never auto-completes an engagement
+> when the end date passes. Competitions sometimes run long, and an automatic
+> cutoff would disrupt active work. You decide when it's done.
 
-### Reverting a Completion
+### Oops — completed too early?
 
-If an engagement was completed prematurely, an admin can revert it to `draft`
-status. This re-enables submissions and removes the read-only banner.
+An admin can revert the engagement to `draft` status. This re-enables
+submissions and removes the read-only banner.
 
 ## Exporting Results
 
-From the leaderboard page, export the engagement's analytics and leaderboard:
+From the leaderboard page, two export options are available:
 
-- **Export CSV** — downloads a CSV file with columns: Rank, Analyst, Cases
-  Reviewed, Avg Review Time, Classification Accuracy, Risk Score MAE,
+- **Export CSV** — a spreadsheet-ready file with columns: Rank, Analyst,
+  Cases Reviewed, Avg Review Time, Classification Accuracy, Risk Score MAE,
   Actions Logged, Composite Score.
-- **Export JSON** — downloads a JSON file with the engagement summary
-  (case count, completion %, classification distribution) and full
-  leaderboard entries.
+- **Export JSON** — a structured file with the engagement summary _and_ the
+  full leaderboard. Great for programmatic processing or archival.
 
-Use these exports for:
-
-- Awards ceremonies and certificates.
-- Grant reporting and institutional metrics.
-- Post-engagement debriefs and improvement analysis.
-- Archival records.
+**Perfect for:**
+awards ceremonies, grant reporting, post-engagement debriefs, and
+institutional records.
 
 ## Archiving
 
-After results have been exported and presented:
+After results are exported and presented:
 
-1. An admin can archive the engagement (only admins can archive).
-2. Archived engagements are hidden from all non-admin views.
-3. Data is retained for historical queries and future reference.
+1. An **admin** clicks **Archive** (only admins can archive).
+2. The engagement disappears from non-admin views.
+3. All data is retained in the database for historical queries and BigQuery
+   exports.
 
-Archived engagements do not appear in the selector dropdown or the management
-table for non-admin users.
+## Running Multiple Engagements
 
-## Managing Multiple Engagements
+### Multi-university deployment
 
-### Multi-University Deployment
+Running competitions at several institutions simultaneously? Create a
+separate engagement for each — e.g. "Spring 2026 — UAB",
+"Spring 2026 — GWU", "Spring 2026 — CMU" — assign the appropriate case sets,
+activate them all, and use the [comparison view](comparison.md) to monitor
+everything side by side.
 
-For concurrent engagements across institutions:
+### Engagement selector behavior
 
-1. Create a separate engagement for each university/program (e.g.,
-   "Spring 2026 — UAB", "Spring 2026 — GWU", "Spring 2026 — CMU").
-2. Assign the appropriate case sets to each.
-3. Activate all engagements.
-4. Use the [comparison view](comparison.md) to monitor all engagements
-   side-by-side.
-
-### Engagement Selector Behavior for Managers
-
-- You can switch between all engagements via the selector.
-- Select "All Engagements" to see the full platform view.
-- The management page always shows all engagements regardless of your
-  current selector state.
+- You can switch freely between engagements using the selector.
+- The management page always shows _all_ engagements regardless of your
+  current selection.
 
 ## Tips for a Successful Engagement
 
-1. **Prepare cases before activating.** Create the engagement in `draft`
-   status, assign all cases, then activate. This prevents analysts from
-   seeing a half-populated case set.
-
-2. **Set clear dates.** Even though dates are informational, they appear in
-   the dashboard countdown and help analysts plan their work.
-
-3. **Use descriptive names.** Include the semester, year, and institution.
-   Future comparison views will surface these names.
-
-4. **Monitor weekly.** Check the completion percentage and leaderboard
-   mid-engagement. If progress is slow, you can adjust deadlines or
-   redistribute workload.
-
-5. **Export before archiving.** Once archived, the engagement data is
-   still queryable but the export UI is not accessible to non-admin users.
-
+1. **Prepare before you activate.** Build the engagement in `draft`, assign
+   all cases, then flip to `active`. Analysts won't see a half-populated
+   case queue.
+2. **Set clear dates.** Even though dates are informational, they power the
+   dashboard countdown and help analysts pace their work.
+3. **Use descriptive names.** Include semester, year, and institution.
+   These show up everywhere — dropdowns, comparison views, exports.
+4. **Check in weekly.** Monitor completion % and the leaderboard
+   mid-engagement. If progress stalls, redistribute workload or extend the
+   deadline.
+5. **Export before archiving.** The data survives archival, but the export
+   UI isn't accessible to non-admin users.
 6. **Communicate transitions.** Let participants know when you activate or
-   complete an engagement. The system shows banners, but a direct
-   communication reinforces expectations.
+   complete. The system shows banners, but a direct message reinforces
+   expectations.
 
 ## Frequently Asked Questions
 
 **Can I reassign a case from one engagement to another?**
-Yes. Remove the case from the original engagement, then assign it to the new
-one. The case's review history is preserved.
+Yes — remove it from the original, then assign it to the new one. Review
+history is preserved.
 
-**What happens to reviews if I remove a case from an engagement?**
-Reviews are attached to cases, not engagements. Removing a case from an
-engagement does not delete its reviews. The case simply becomes unscoped.
+**What happens to reviews if I remove a case?**
+Reviews belong to the case, not the engagement. The case simply becomes
+unscoped; its reviews remain intact.
 
 **Can I create an engagement without dates?**
-Yes. Start and end dates are optional. The engagement is still fully
-functional — you just won't see countdown metrics on the dashboard.
+Absolutely. Dates are optional. You just won't see the countdown timer on
+the dashboard.
 
 **Can I edit an active engagement?**
-Yes. You can change the name, description, and dates of an active engagement.
-You can also assign or remove cases while the engagement is active.
+Yes. You can update the name, description, and dates at any time. You can
+also add or remove cases while the engagement is live.
 
 **How many engagements can I create?**
-There is no hard limit. The selector shows active engagements first and groups
-past engagements in a separate section to keep the dropdown manageable.
-Completed engagements are auto-grouped; very old ones can be archived by an
-admin.
+No hard limit. The selector groups active engagements first and tucks past
+ones into a separate section to keep things tidy. Admins can archive old
+engagements that are no longer needed in the UI.
 
 **Is engagement scoping a security boundary?**
-No. Engagement scoping is a convenience filter that reduces noise. It is not
-an access control mechanism. Your role-based permissions determine what data
-you can access. An analyst scoped to one engagement cannot see other
-engagements' cases, but this is a filter — not a security wall.
+No — it's a convenience filter that keeps analysts focused. Your role-based
+permissions still control what data you can access. Think of it as a lens,
+not a wall.
