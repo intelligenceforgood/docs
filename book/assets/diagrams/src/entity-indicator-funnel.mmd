@@ -1,0 +1,14 @@
+%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#4A90D9', 'primaryTextColor': '#fff', 'lineColor': '#6B7280'}}}%%
+flowchart LR
+    A["📄 Raw Text\nin Evidence"] --> B["🔍 Extracted\nEntities"]
+    B --> C["✅ Promoted\nIndicators"]
+    C --> D["📤 Partner Feed\n& STIX Export"]
+
+    A -.->|"thousands"| B
+    B -.->|"hundreds"| C
+    C -.->|"curated"| D
+
+    style A fill:#F3F4F6,stroke:#6B7280,color:#1F2937
+    style B fill:#DBEAFE,stroke:#3B82F6,color:#1E3A5F
+    style C fill:#D1FAE5,stroke:#059669,color:#065F46
+    style D fill:#FDE68A,stroke:#D97706,color:#92400E

@@ -1,0 +1,12 @@
+%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#4A90D9', 'primaryTextColor': '#fff', 'primaryBorderColor': '#2C5F9E', 'lineColor': '#6B7280'}}}%%
+flowchart LR
+    A["Submitted"] --> B["Queued"]
+    B --> C["Under Review"]
+    C --> D["Classified"]
+    D --> E["Closed"]
+
+    style A fill:#93C5FD,stroke:#3B82F6,color:#1E3A5F
+    style B fill:#60A5FA,stroke:#2563EB,color:#fff
+    style C fill:#3B82F6,stroke:#1D4ED8,color:#fff
+    style D fill:#2563EB,stroke:#1E40AF,color:#fff
+    style E fill:#50C878,stroke:#2E8B57,color:#fff

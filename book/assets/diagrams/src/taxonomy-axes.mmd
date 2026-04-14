@@ -1,0 +1,47 @@
+%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#4A90D9', 'primaryTextColor': '#fff', 'lineColor': '#6B7280'}}}%%
+flowchart TB
+    subgraph Intent ["1. Intent"]
+        I1["Imposter"]
+        I2["Investment"]
+        I3["Romance"]
+        I4["Employment"]
+        I5["Shopping"]
+    end
+
+    subgraph Channel ["2. Channel"]
+        C1["Email"]
+        C2["SMS"]
+        C3["Chat"]
+        C4["Social"]
+        C5["Phone"]
+    end
+
+    subgraph Technique ["3. Technique"]
+        T1["Urgency"]
+        T2["Authority"]
+        T3["Trust Building"]
+        T4["Fear"]
+        T5["Scarcity"]
+    end
+
+    subgraph Action ["4. Action"]
+        A1["Send Money"]
+        A2["Gift Cards"]
+        A3["Crypto"]
+        A4["Credentials"]
+        A5["Provide PII"]
+    end
+
+    subgraph Persona ["5. Persona"]
+        P1["Government"]
+        P2["Bank"]
+        P3["Tech Support"]
+        P4["Romantic"]
+        P5["Employer"]
+    end
+
+    style Intent fill:#EFF6FF,stroke:#3B82F6,color:#1E3A5F
+    style Channel fill:#F0FDF4,stroke:#22C55E,color:#14532D
+    style Technique fill:#FFF7ED,stroke:#F97316,color:#7C2D12
+    style Action fill:#FDF2F8,stroke:#EC4899,color:#831843
+    style Persona fill:#F5F3FF,stroke:#8B5CF6,color:#4C1D95

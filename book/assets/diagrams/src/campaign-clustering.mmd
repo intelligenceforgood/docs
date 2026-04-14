@@ -1,0 +1,14 @@
+%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#4A90D9', 'primaryTextColor': '#fff', 'lineColor': '#6B7280'}}}%%
+flowchart TB
+    R1["🗒️ Case A\nRomance scam\n💰 wallet_xyz\n📧 scam@mail.com"] --> CAMP["🎯 Campaign\n'Crypto Romance\nWinter 2026'"]
+    R2["🗒️ Case B\nInvestment scam\n💰 wallet_xyz\n📱 +1-555-0100"] --> CAMP
+    R3["🗒️ Case C\nRomance scam\n📧 scam@mail.com\n📱 +1-555-0100"] --> CAMP
+
+    R1 ---|"shared wallet"| R2
+    R2 ---|"shared phone"| R3
+    R1 ---|"shared email"| R3
+
+    style R1 fill:#EFF6FF,stroke:#3B82F6,color:#1E3A5F
+    style R2 fill:#EFF6FF,stroke:#3B82F6,color:#1E3A5F
+    style R3 fill:#EFF6FF,stroke:#3B82F6,color:#1E3A5F
+    style CAMP fill:#FEF3C7,stroke:#D97706,color:#92400E

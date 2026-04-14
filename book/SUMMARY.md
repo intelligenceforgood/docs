@@ -1,70 +1,84 @@
 # Table of contents
 
 - [Welcome](README.md)
-- [Platform Overview](overview/platform-overview.md)
-  - [Personas & Journeys](overview/personas.md)
-  - [Use Cases](overview/use-cases.md)
-- [User Guides](guides/README.md)
-  - [User Guide](guides/user-guide.md)
-  - [Analyst Guide](guides/analyst/index.md)
-    - [Search Guide](guides/analyst/search.md)
-    - [Discovery Guide](guides/analyst/discovery.md)
-    - [Dossiers Guide](guides/analyst/dossiers.md)
-    - [Campaigns & Governance](guides/analyst/campaign_governance.md)
-    - [Threat Campaigns](guides/analyst/campaigns.md)
-    - [Impact Dashboard](guides/analyst/impact_dashboard.md)
-    - [Entity Explorer](guides/analyst/entity_explorer.md)
-    - [Threat Entity Types](guides/analyst/threat_entity_types.md)
-    - [Indicator Registry](guides/analyst/indicator_registry.md)
-    - [Network Graph](guides/analyst/network_graph.md)
-    - [Taxonomy Explorer](guides/analyst/taxonomy_explorer.md)
-    - [Geographic Heatmap](guides/analyst/geographic_heatmap.md)
-    - [Timeline](guides/analyst/timeline.md)
-    - [Watchlist & Alerts](guides/analyst/watchlist.md)
-  - [Reports](guides/user-guide-reports.md)
-  - [Engagements](guides/engagements/index.md)
-    - [Working in an Engagement](guides/engagements/working-in-engagement.md)
-    - [Managing Engagements](guides/engagements/managing-engagements.md)
-    - [Leaderboard & Analytics](guides/engagements/leaderboard.md)
-    - [Engagement Lifecycle](guides/engagements/lifecycle.md)
-    - [Cross-Engagement Comparison](guides/engagements/comparison.md)
-  - [Law Enforcement Guide](guides/law-enforcement.md)
-- [Admin Guide](guides/admin/index.md)
-  - [CLI Guide](guides/admin/cli.md)
-  - [Scheduled Reports](guides/admin/scheduled_reports.md)
-  - [Partner Feed](guides/admin/partner_feed.md)
-  - [Auto-Investigation](guides/auto-investigation.md)
-  - [Developer Setup](guides/developer-setup.md)
-- Architecture
-  - [Overview](architecture/README.md)
-  - [System Topology](architecture/system-topology.md)
-  - [Data Pipelines](architecture/data-pipeline.md)
-  - [Security Model](architecture/security-model.md)
-  - [Threat Intelligence](architecture/threat-intelligence.md)
-  - [Job Architecture](architecture/job-architecture.md)
-  - [SSI Architecture](architecture/ssi-architecture.md)
-  - [Evidence Storage](architecture/evidence-storage.md)
-- [Configuration](config/settings.md)
-  - [SLO Definitions](config/slo_definitions.md)
-- [API Guide](api/README.md)
-  - [Authentication](api/authentication.md)
-  - [Sample Workflows](api/sample-requests.md)
-  - [Taxonomy Reference](api/taxonomy_reference.md)
-  - [Field Name Translation](api/field_name_translation.md)
-  - [SDK Endpoint Coverage](api/sdk_endpoint_coverage.md)
-- [Scam Site Investigator](ssi/README.md)
-  - [Getting Started](ssi/getting-started.md)
-  - [Investigating Sites](ssi/investigating-sites.md)
-  - [Wallet Extraction](ssi/wallet-extraction.md)
-  - [Live Monitoring](ssi/live-monitoring.md)
-  - [Playbooks](ssi/playbooks.md)
-  - [Batch Investigations](ssi/batch-investigations.md)
-  - [Reports & Evidence](ssi/reports-evidence.md)
-  - [CLI Reference](ssi/cli-reference.md)
-  - [Configuration](ssi/configuration.md)
-  - [eCrimeX Integration](ssi/ecrimex-integration.md)
-  - [Troubleshooting](ssi/troubleshooting.md)
-- [Security & Compliance](security/README.md)
-  - [Access Control](security/access-control.md)
-  - [Secrets & Credentials Reference](security/secrets-reference.md)
-- [Contributing](contributing.md)
+
+## Getting Started
+
+- [Why i4g](getting-started/why-i4g.md)
+- [How It Works](getting-started/how-it-works.md)
+- [Find Your Role](getting-started/find-your-role.md)
+
+## Key Concepts
+
+- [Overview](key-concepts/README.md)
+- [Cases & Evidence](key-concepts/cases-and-evidence.md)
+- [Entities](key-concepts/entities.md)
+- [Threat Indicators](key-concepts/indicators.md)
+- [How Entities Are Extracted](key-concepts/entity-extraction.md)
+- [Fraud Taxonomy](key-concepts/fraud-taxonomy.md)
+- [Campaigns & Threat Networks](key-concepts/campaigns.md)
+- [Risk Scoring & Entity Lifecycle](key-concepts/risk-scoring.md)
+- [Engagements](key-concepts/engagements.md)
+- [Dossiers & Reports](key-concepts/dossiers-and-reports.md)
+- [Site Investigations](key-concepts/site-investigations.md)
+
+## Analyst Guide
+
+- [Start Here](analyst-guide/README.md)
+- [Console Tour](analyst-guide/console-tour.md)
+- [Daily Workflow](analyst-guide/daily-workflow.md)
+- [Reviewing Cases](analyst-guide/reviewing-cases.md)
+- [Search & Discovery](analyst-guide/search-and-discovery.md)
+- [Entity Explorer](analyst-guide/entity-explorer.md)
+- [Network Graph](analyst-guide/network-graph.md)
+- [Campaigns](analyst-guide/campaigns.md)
+- [Reports & Dossiers](analyst-guide/reports-and-dossiers.md)
+- [Investigating Sites](analyst-guide/investigating-sites.md)
+- [Live Monitoring](analyst-guide/live-monitoring.md)
+- [Watchlist & Alerts](analyst-guide/watchlist-and-alerts.md)
+- [Taxonomy Explorer](analyst-guide/taxonomy-explorer.md)
+- [Geographic Heatmap](analyst-guide/geographic-heatmap.md)
+- [Timeline](analyst-guide/timeline.md)
+- [Impact Dashboard](analyst-guide/impact-dashboard.md)
+- [Indicator Registry](analyst-guide/indicator-registry.md)
+
+## Engagement Guide
+
+- [Overview](engagement-guide/README.md)
+- [Working in an Engagement](engagement-guide/working-in-engagement.md)
+- [Managing Engagements](engagement-guide/managing-engagements.md)
+- [Leaderboard & Performance](engagement-guide/leaderboard.md)
+- [Engagement Lifecycle](engagement-guide/lifecycle.md)
+
+## Law Enforcement Guide
+
+- [Start Here](law-enforcement-guide/README.md)
+- [Working with Reports](law-enforcement-guide/working-with-reports.md)
+
+## User Guide
+
+- [Start Here](user-guide/README.md)
+- [Submitting a Report](user-guide/submitting-a-report.md)
+- [Following Up](user-guide/following-up.md)
+
+## Admin Guide
+
+- [Overview](admin-guide/README.md)
+- [User Management](admin-guide/user-management.md)
+- [Scheduled Reports](admin-guide/scheduled-reports.md)
+- [Partner Feed](admin-guide/partner-feed.md)
+- [Site Investigation Settings](admin-guide/site-investigation-config.md)
+- [Auto-Investigation](admin-guide/auto-investigation.md)
+
+## Security & Trust
+
+- [Overview](security/README.md)
+- [Access & Roles](security/access-and-roles.md)
+- [Report Authenticity](security/report-authenticity.md)
+
+## API Reference
+
+- [Overview](api/README.md)
+- [Authentication](api/authentication.md)
+- [Sample Workflows](api/sample-workflows.md)
+- [Taxonomy Codes](api/taxonomy-reference.md)

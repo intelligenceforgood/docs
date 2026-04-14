@@ -1,0 +1,24 @@
+%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#4A90D9', 'primaryTextColor': '#fff', 'lineColor': '#6B7280'}}}%%
+flowchart TB
+    R1["🗒️ Case A\nVictim reports\ncrypto scam"] --> W1["💰 wallet_abc"]
+    R1 --> E1["📧 scammer@mail.com"]
+
+    R2["🗒️ Case B\nVictim reports\nromance scam"] --> W1
+    R2 --> E1
+    R2 --> P1["📱 +1-555-0199"]
+
+    R3["🗒️ Case C\nVictim reports\njob scam"] --> P1
+    R3 --> D1["🌐 fake-jobs.example"]
+
+    W1 --> LINK["🔗 Linked through\nshared entities"]
+    E1 --> LINK
+    P1 --> LINK
+
+    style R1 fill:#EFF6FF,stroke:#3B82F6,color:#1E3A5F
+    style R2 fill:#EFF6FF,stroke:#3B82F6,color:#1E3A5F
+    style R3 fill:#EFF6FF,stroke:#3B82F6,color:#1E3A5F
+    style W1 fill:#FEF3C7,stroke:#D97706,color:#92400E
+    style E1 fill:#FEF3C7,stroke:#D97706,color:#92400E
+    style P1 fill:#FEF3C7,stroke:#D97706,color:#92400E
+    style D1 fill:#FEF3C7,stroke:#D97706,color:#92400E
+    style LINK fill:#D1FAE5,stroke:#059669,color:#065F46
