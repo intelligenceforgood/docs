@@ -38,7 +38,7 @@ PDF dossiers and evidence packages are digitally signed. The signature
 proves:
 
 - **Integrity** — the file hasn't been modified since generation
-- **Authenticity** — the report was produced by the i4g platform
+- **Authenticity** — the report was produced by the I4G platform
 - **Timestamp** — when the report was generated
 
 Recipients can verify signatures using the verification panel in the

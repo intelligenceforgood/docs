@@ -1,6 +1,6 @@
 # How It Works
 
-i4g processes fraud reports through a seven-stage pipeline: intake →
+I4G processes fraud reports through a seven-stage pipeline: intake →
 ingestion → extraction → linking → review → intelligence production →
 action.
 

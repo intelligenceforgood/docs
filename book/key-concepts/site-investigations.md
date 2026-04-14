@@ -89,7 +89,7 @@ Every investigation produces a structured evidence package:
 - DOM snapshots
 - Wallet extraction results
 
-All artifacts are timestamped and can be pushed to i4g core to create a
+All artifacts are timestamped and can be pushed to I4G core to create a
 case and store indicators.
 
 ## What you'll see in the Console

@@ -1,6 +1,6 @@
-# Welcome to i4g
+# Welcome to I4G
 
-i4g is a threat intelligence aggregation platform for online fraud. It
+I4G is a threat intelligence aggregation platform for online fraud. It
 transforms scattered victim reports into linked, classified intelligence
 for law enforcement and partner organizations.
 
@@ -8,7 +8,7 @@ for law enforcement and partner organizations.
 
 | I want to…                         | Go to                                                    |
 | ---------------------------------- | -------------------------------------------------------- |
-| **Understand what i4g is**         | [Why i4g](getting-started/why-i4g.md)                    |
+| **Understand what I4G is**         | [Why I4G](getting-started/why-i4g.md)                    |
 | **See the end-to-end flow**        | [How It Works](getting-started/how-it-works.md)          |
 | **Find my role**                   | [Find Your Role](getting-started/find-your-role.md)      |
 | **Learn the core terminology**     | [Key Concepts](key-concepts/README.md)                   |

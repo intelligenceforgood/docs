@@ -2,7 +2,7 @@
 
 An **engagement** is a structured program — typically a university capstone
 project or training exercise — where students and volunteers review fraud
-cases under supervision. Engagements are how i4g scales its analyst
+cases under supervision. Engagements are how I4G scales its analyst
 workforce while providing real-world cybersecurity experience.
 
 ## Why engagements exist

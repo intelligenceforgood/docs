@@ -2,7 +2,7 @@
 
 These pages cover the core ideas behind the platform — cases, entities,
 extraction, taxonomy, campaigns, and more. Each follows the same structure:
-**what it is → why it matters → how i4g uses it → what you see in the
+**what it is → why it matters → how I4G uses it → what you see in the
 Console**.
 
 {% hint style="info" %}

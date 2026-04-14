@@ -1,6 +1,6 @@
-# Why i4g
+# Why I4G
 
-i4g is a threat intelligence aggregation platform for online fraud. It
+I4G is a threat intelligence aggregation platform for online fraud. It
 ingests scattered victim reports, extracts structured threat entities,
 links related cases, and produces intelligence products for law
 enforcement and partner organizations.
@@ -14,7 +14,7 @@ as an isolated incident. Scammers exploit this by recycling
 infrastructure: the same email addresses, crypto wallets, phone numbers,
 and domains appear across dozens of independent reports.
 
-## What i4g does
+## What I4G does
 
 | Capability                  | Description                                                                                                   |
 | --------------------------- | ------------------------------------------------------------------------------------------------------------- |
@@ -23,7 +23,7 @@ and domains appear across dozens of independent reports.
 | **Analyst review at scale** | Structured engagement model for volunteers, students, and professionals to classify and investigate cases     |
 | **Actionable output**       | Signed dossiers, STIX 2.1 bundles, and structured exports for law enforcement and partners                    |
 
-## Who uses i4g
+## Who uses I4G
 
 | Role                        | Function                                              |
 | --------------------------- | ----------------------------------------------------- |

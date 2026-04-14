@@ -1,7 +1,7 @@
 # Cases & Evidence
 
 A **case** is a single fraud report submitted to the platform — the atomic
-unit of everything i4g does. Every analysis, entity extraction, campaign
+unit of everything I4G does. Every analysis, entity extraction, campaign
 link, and intelligence product traces back to one or more cases.
 
 ## What is a case?

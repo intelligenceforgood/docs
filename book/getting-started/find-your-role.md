@@ -47,7 +47,7 @@ platform settings.
 
 ## Integration partner
 
-Exchange threat intelligence programmatically via the i4g API.
+Exchange threat intelligence programmatically via the I4G API.
 
 [API Reference →](../api/README.md)
 
