@@ -44,14 +44,17 @@ Click an indicator row to open the detail panel showing:
 
 ## STIX Export
 
-The registry supports exporting indicators as a STIX 2.1 bundle for sharing with threat intelligence partners. Select **STIX** from the export format dropdown to generate a conformant bundle with `indicator` and `identity` SDOs.
+The registry supports exporting indicators as a STIX 2.1 bundle for
+sharing with threat intelligence partners. Select **STIX** from the
+export format dropdown to generate a bundle compatible with platforms
+like MISP and OpenCTI.
 
 ## Role Restrictions
 
 | Role       | Indicator List    | Indicator Detail |
 | ---------- | ----------------- | ---------------- |
-| Researcher | Anonymized values | Blocked (403)    |
-| User       | Full values       | Full access      |
+| Researcher | Last 4 chars only | Restricted       |
 | Analyst+   | Full values       | Full access      |
 
-Researchers see indicator values masked to `***` plus the last four characters. Detail views return a `403 Forbidden` response for the researcher role.
+Researchers see indicator values masked for privacy. Full detail
+views are restricted to analyst roles and above.
