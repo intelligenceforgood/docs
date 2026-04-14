@@ -3,7 +3,7 @@
 A visual walkthrough of the I4G Console layout and navigation. By the
 end of this page you will know where every tool lives in the sidebar.
 
-![Console sidebar](../assets/screenshots/console-sidebar.png)
+<img src="../assets/screenshots/console-sidebar.png" alt="Console sidebar" width="240">
 
 ## Sidebar navigation
 
