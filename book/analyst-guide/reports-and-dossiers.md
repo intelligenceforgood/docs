@@ -5,6 +5,8 @@ page covers the Report Builder, Report Library, and Evidence Dossiers.
 To understand what these products are and how they relate, see
 [Dossiers & Reports](../key-concepts/dossiers-and-reports.md).
 
+![Report Builder](../assets/screenshots/report-builder.png)
+
 ## Report Builder
 
 Navigate to **Reports → Builder** to create a new report.
@@ -46,6 +48,8 @@ Reports carry a TLP classification that controls distribution:
 Navigate to **Reports → Dossiers** to review signed evidence bundles
 before sharing with law enforcement partners.
 
+![Evidence dossiers](../assets/screenshots/analyst-dossiers.png)
+
 ### Browsing dossiers
 
 Filter by **Status** (completed, pending, leased, failed) and set
@@ -59,6 +63,8 @@ the number of rows to load. Each card shows:
 ### Verifying signatures
 
 Two verification options are available on each dossier card:
+
+![Dossier verification](../assets/screenshots/analyst-dossiers-verify.png)
 
 1. **Verify signatures** — the server checks artifact hashes against
    the signed manifest. Review the results: all verified, missing

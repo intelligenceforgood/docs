@@ -65,22 +65,13 @@ This document is auto-generated from the taxonomy definitions.
 | `PERSONA.MARKETPLACE` | Marketplace User | Facebook Marketplace, Craigslist user |
 | `PERSONA.CHARITY`     | Charity          | Red Cross, GoFundMe, etc.             |
 
-## Analytics Usage
+## Using taxonomy codes
 
-The taxonomy codes above drive several TIFAP analytics views:
+These codes appear throughout the platform — in case classification,
+campaign analysis, and exported reports. When submitting data via the
+API, use the code values (e.g., `INTENT.ROMANCE`) rather than labels.
 
-### Sankey flow visualization
-
-The Sankey chart maps **Intent → Channel → Action** flows. Each taxonomy code becomes a node; edge width represents case volume. Use the `/analytics/trends` endpoint with `group_by=intent,channel,action` to fetch flow data.
-
-### Heatmap
-
-The taxonomy heatmap crosses **Intent** (rows) against **Channel** (columns) with cell intensity representing case count. The aggregation job pre-computes these cross-tabulations in `campaign_stats`.
-
-### Trend views
-
-Time-series trend charts segment cases by any taxonomy axis (`intent`, `channel`, `technique`, `action`, `persona`). The `/analytics/trends` endpoint accepts a `taxonomy_axis` parameter to select the grouping dimension.
-
-### Campaign classification
-
-Each campaign links to one or more taxonomy codes via the `campaign_classifications` join table. The campaign detail view renders the associated taxonomy nodes with drill-down to the governance taxonomy tree.
+The [Fraud Taxonomy](../key-concepts/fraud-taxonomy.md) concept page
+explains how the 5-axis system works and why structured classification
+matters. The [Taxonomy Explorer](../analyst-guide/taxonomy-explorer.md)
+provides interactive visualizations of taxonomy distributions.

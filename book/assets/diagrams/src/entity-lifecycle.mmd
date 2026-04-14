@@ -1,0 +1,25 @@
+%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#4A90D9', 'primaryTextColor': '#fff', 'primaryBorderColor': '#2C5F9E', 'lineColor': '#6B7280'}}}%%
+stateDiagram-v2
+    [*] --> Active
+    Active --> Declining : No new cases 14 days
+    Declining --> Dormant : No new cases 30 days
+    Dormant --> Resolved : All cases closed
+    Active --> Resolved : All cases closed
+    Declining --> Active : New case linked
+
+    Active --> Flagged : Analyst override
+    Declining --> Flagged : Analyst override
+    Dormant --> Flagged : Analyst override
+    Flagged --> Active : Analyst removes flag
+
+    classDef active fill:#EF4444,stroke:#B91C1C,color:#fff
+    classDef declining fill:#F59E0B,stroke:#D97706,color:#fff
+    classDef dormant fill:#6B7280,stroke:#4B5563,color:#fff
+    classDef resolved fill:#50C878,stroke:#2E8B57,color:#fff
+    classDef flagged fill:#8B5CF6,stroke:#6D28D9,color:#fff
+
+    class Active active
+    class Declining declining
+    class Dormant dormant
+    class Resolved resolved
+    class Flagged flagged

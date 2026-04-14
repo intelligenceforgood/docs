@@ -5,6 +5,8 @@ that balances accuracy, throughput, and quality. Use it to recognize top
 performers, identify analysts who may need support, and generate reports
 for stakeholders.
 
+![Engagement leaderboard](../assets/screenshots/engagement-leaderboard.png)
+
 ## Accessing the Leaderboard
 
 1. Click **Engagements** in the sidebar to open the management page.

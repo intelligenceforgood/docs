@@ -2,6 +2,8 @@
 
 The Indicator Registry is a categorized, searchable catalog of fraud indicators extracted from intake narratives and linked to cases.
 
+![Indicator Registry](../assets/screenshots/indicator-registry.png)
+
 ## Accessing the Indicator Registry
 
 Open the analyst console and select **Indicator Registry** under the **Intelligence** section in the sidebar.

@@ -3,6 +3,8 @@
 The geographic heatmap shows where fraud cases originate, aggregated by victim
 country. Use it to identify geographic hotspots and drill into country-level details.
 
+![Geographic heatmap](../assets/screenshots/geographic-heatmap.png)
+
 ## Country Summary
 
 The main view displays:

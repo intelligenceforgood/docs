@@ -3,6 +3,8 @@
 The taxonomy explorer provides three complementary views of the fraud classification
 taxonomy: Sankey diagram, heatmap, and trend analysis.
 
+![Taxonomy Explorer — Sankey view](../assets/screenshots/taxonomy-sankey.png)
+
 ## Sankey Diagram
 
 The default view shows a flow diagram from categories to subcategories. Each

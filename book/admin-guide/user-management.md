@@ -3,6 +3,8 @@
 The user management page lets admins view all accounts, assign roles, and
 activate or deactivate users.
 
+![User management table](../assets/screenshots/admin-users.png)
+
 ## Opening User Management
 
 Click **Users** in the admin section of the left sidebar (or navigate to

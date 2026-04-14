@@ -9,8 +9,7 @@ From the **Cases** queue, click any row to open the case detail page.
 The detail page has several sections arranged around a central
 narrative panel.
 
-<!-- TODO: Replace with actual screenshot -->
-<!-- ![Case detail](../assets/screenshots/case-detail-entities.png) -->
+![Case detail](../assets/screenshots/case-detail-entities.png)
 
 ## Reading the narrative
 

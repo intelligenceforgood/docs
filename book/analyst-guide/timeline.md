@@ -3,6 +3,8 @@
 The timeline provides a multi-track activity view showing cases, indicators,
 and campaigns over time.
 
+![Timeline view](../assets/screenshots/timeline.png)
+
 ## Timeline Tracks
 
 Three tracks are displayed as horizontal bar charts:

@@ -3,6 +3,8 @@
 The Impact Dashboard gives you an at-a-glance view of the platform's
 effectiveness at detecting, classifying, and actioning fraud cases.
 
+![Impact Dashboard](../assets/screenshots/impact-dashboard.png)
+
 ## KPI cards
 
 The top row shows five key performance indicators with vs-prior-period trends:

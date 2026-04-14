@@ -10,8 +10,7 @@ extracted from fraud cases.
 Open **Intelligence → Entity Explorer** from the sidebar. The main
 view displays a paginated table sorted by total loss or case count.
 
-<!-- TODO: Replace with actual screenshot -->
-<!-- ![Entity Explorer list](../assets/screenshots/entity-explorer-list.png) -->
+![Entity Explorer list](../assets/screenshots/entity-explorer-list.png)
 
 Each row shows:
 
@@ -56,8 +55,7 @@ remove it.
 
 Click any row to open the entity detail panel.
 
-<!-- TODO: Replace with actual screenshot -->
-<!-- ![Entity detail](../assets/screenshots/entity-explorer-detail.png) -->
+![Entity detail](../assets/screenshots/entity-explorer-detail.png)
 
 The detail view includes:
 

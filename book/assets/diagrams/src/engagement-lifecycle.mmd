@@ -1,0 +1,10 @@
+%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#4A90D9', 'primaryTextColor': '#fff', 'primaryBorderColor': '#2C5F9E', 'lineColor': '#6B7280'}}}%%
+flowchart LR
+    A["Draft"] --> B["Active"]
+    B --> C["Completed"]
+    C --> D["Archived"]
+
+    style A fill:#93C5FD,stroke:#3B82F6,color:#1E3A5F
+    style B fill:#3B82F6,stroke:#1D4ED8,color:#fff
+    style C fill:#50C878,stroke:#2E8B57,color:#fff
+    style D fill:#6B7280,stroke:#4B5563,color:#fff

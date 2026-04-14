@@ -1,73 +1,58 @@
 # Authentication
 
-API access is tightly controlled because the platform processes highly sensitive PII. **The canonical IAM design lives in `core/docs/design/iam.md`;** this page covers API-specific auth concepts. For role definitions and requesting access, see [Access Control](../security/access-control.md).
+All API requests must be authenticated. This page covers how integration
+partners authenticate — for Console sign-in, see
+[Access & Roles](../security/access-and-roles.md).
 
-## Three-Layer Authentication
+## API key authentication
 
-### Layer 1: Infrastructure (IAP)
+Partner integrations authenticate using an API key provided by your I4G
+liaison. Include the key in every request:
 
-Cloud Run services sit behind a Global External Application Load Balancer with Google Identity-Aware Proxy (IAP) enabled. Users authenticate via Google Sign-In; IAP validates Google identity before traffic reaches Cloud Run. Only members of authorized Google Groups can pass through.
-
-### Layer 2: Application (JWT + API key)
-
-The FastAPI `require_token()` dependency validates credentials in priority order:
-
-| Method       | Header                          | When used                                          |
-| ------------ | ------------------------------- | -------------------------------------------------- |
-| IAP JWT      | `X-Goog-IAP-JWT-Assertion`      | Browser → LB → API (direct hit through IAP)        |
-| Bearer token | `Authorization: Bearer <token>` | Service-to-service calls (e.g., console SSR → API) |
-| API key      | `X-API-KEY`                     | Local development, CI, and background jobs         |
-
-The authenticated email is resolved to an application role via the `accounts` table. Unknown users are auto-provisioned with the `user` role on first request.
-
-### Layer 3: Forwarded user identity
-
-When the Next.js console makes server-side API calls, it authenticates as a service account. To preserve the real user's identity, the console extracts the user's email from the IAP assertion and forwards it via `X-I4G-Forwarded-User`. The API trusts this header only when the caller is a service account.
-
-```python
-# Route protection examples (see src/i4g/api/auth.py)
-@router.get("/protected", dependencies=[Depends(require_token)])
-def protected_endpoint():
-    ...
-
-@router.get("/admin-only", dependencies=[Depends(require_role("admin"))])
-def admin_endpoint():
-    ...
+```http
+X-API-KEY: <your-api-key>
 ```
 
-### Auth Coverage
+Your API key is scoped to your organization and carries the permissions
+of the role assigned to your integration account.
 
-| Route group                    | Auth requirement        |
-| ------------------------------ | ----------------------- |
-| `/accounts/me`                 | `require_token`         |
-| `/accounts/*` (CRUD)           | `require_role("admin")` |
-| `/campaigns/*` (create/update) | `require_role("admin")` |
-| `/tasks/*` (update)            | `require_role("admin")` |
-| `/reviews/*`, `/intakes/*`     | `require_token`         |
-| Other read endpoints           | `require_token`         |
+{% hint style="warning" %}
+Keep your API key confidential. Do not commit it to source control or
+share it in logs. If compromised, contact your liaison immediately for
+rotation.
+{% endhint %}
 
-## Roles
+## Bearer token authentication
 
-| Role      | Capabilities                                               |
-| --------- | ---------------------------------------------------------- |
-| `user`    | Read-only access to public case summaries (default)        |
-| `analyst` | Full case review, annotation, search, report generation    |
-| `leo`     | All analyst capabilities plus LEO-specific reports         |
-| `admin`   | All capabilities plus user management, campaigns, bulk ops |
+If your integration uses OAuth or receives a JWT from I4G's identity
+layer, pass it as a bearer token:
 
-Roles follow a hierarchy (`user < analyst < leo ≤ admin`). A `require_role("analyst")` check passes for analysts, LEOs, and admins.
+```http
+Authorization: Bearer <token>
+```
 
-## Local Development
+Your I4G liaison will confirm which method applies to your integration.
 
-Set `I4G_ENV=local` or `settings.identity.disable_auth=true` to bypass authentication entirely. The API returns a mock admin user (`local-dev`). The UI skips IAP token generation for localhost targets.
+## Roles and permissions
 
-## Service Accounts & Background Jobs
+API keys are tied to an application role that determines which endpoints
+you can access. See [Access & Roles](../security/access-and-roles.md)
+for the full role hierarchy. Common partner roles:
 
-- Background Cloud Run jobs (ingestion, report generation, account sync) run under dedicated service accounts with least-privilege IAM roles managed by Terraform.
-- The API key (`I4G_API__KEY`) is used for local development and CI environments.
+| Role        | Typical use case                                     |
+| ----------- | ---------------------------------------------------- |
+| **User**    | Submit reports and check status                      |
+| **Analyst** | Submit reports, query intelligence, download exports |
+| **LEO**     | All analyst access plus law enforcement reports      |
 
-## Future Enhancements
+## Error responses
 
-- **Non-Google identity options:** Evaluate passkeys or external IdPs for users without Google accounts.
-- **Hardware key support:** For administrators handling PII rehydration or law enforcement liaison duties.
-- **Device posture checks:** Pair IAP with BeyondCorp Enterprise for sensitive operations.
+| Status | Meaning                                                |
+| ------ | ------------------------------------------------------ |
+| `401`  | Missing or invalid credentials — check your API key    |
+| `403`  | Valid credentials but insufficient role for the action |
+
+## References
+
+1. [IAM Technical Design](https://github.com/intelligenceforgood/core/blob/main/docs/design/iam.md)
+   — full authentication architecture for developers.

@@ -11,8 +11,7 @@ Navigate to **Intelligence → Campaigns** to see the campaign list.
 Each card shows the campaign name, status, case count, and risk
 badge. Use the search field to filter by name or status.
 
-<!-- TODO: Replace with actual screenshot -->
-<!-- ![Campaign detail](../assets/screenshots/campaign-detail.png) -->
+![Campaign detail](../assets/screenshots/campaign-detail.png)
 
 Campaigns start as **detected** (auto-identified by the analytics
 pipeline) and transition to **confirmed** once an analyst reviews

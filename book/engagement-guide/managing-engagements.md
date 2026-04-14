@@ -4,6 +4,8 @@ This guide walks you through every step of running an engagement — from
 creating a draft to archiving the results. You need the **manager** role
 or higher.
 
+![Engagement management table](../assets/screenshots/engagement-management.png)
+
 ## Opening the Management Page
 
 Click **Engagements** in the left sidebar (or navigate to

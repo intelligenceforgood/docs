@@ -3,6 +3,8 @@
 You can submit a fraud report through the I4G web application. The process
 takes about 5–10 minutes.
 
+![Intake form](../assets/screenshots/user-intake.png)
+
 ## Before you start
 
 - Go to [app.intelligenceforgood.org](https://app.intelligenceforgood.org).

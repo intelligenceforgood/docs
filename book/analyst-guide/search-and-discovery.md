@@ -15,13 +15,14 @@ open-ended semantic exploration.
 
 Navigate to the **Search** page from the sidebar.
 
-<!-- TODO: Replace with actual screenshot -->
-<!-- ![Search page](../assets/screenshots/analyst-search.png) -->
+![Search page](../assets/screenshots/analyst-search.png)
 
 ### Applying filters
 
 Click the filter bar to add criteria. Applied filters appear as
 badges above the results. Available filters:
+
+![Search filter sidebar](../assets/screenshots/search-filters.png)
 
 | Filter             | What it does                                               |
 | ------------------ | ---------------------------------------------------------- |
@@ -56,15 +57,13 @@ Each result card shows:
 Search history is accessible alongside saved searches for quick
 re-runs.
 
-<!-- TODO: Replace with actual screenshot -->
-<!-- ![Saved searches](../assets/screenshots/analyst-search-drawer.png) -->
+![Saved searches](../assets/screenshots/analyst-search-drawer.png)
 
 ## Discovery
 
 Navigate to the **Discovery** page from the sidebar.
 
-<!-- TODO: Replace with actual screenshot -->
-<!-- ![Discovery page](../assets/screenshots/analyst-discovery.png) -->
+![Discovery page](../assets/screenshots/analyst-discovery.png)
 
 Discovery uses semantic understanding to surface cases that match
 the _meaning_ of your query, even when exact keywords differ. This

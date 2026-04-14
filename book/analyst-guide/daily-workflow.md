@@ -7,9 +7,13 @@ review evidence, classify, and take action.
 
 ### 1. Check the Dashboard
 
-Open the Console and review the **Dashboard**. The KPI cards show
-today's case volume, unresolved alerts, and active threats. Scan the
-activity feed for any overnight changes that need attention.
+Open the Console and review the **Dashboard**.
+
+![Analyst dashboard](../assets/screenshots/analyst-dashboard.png)
+
+The KPI cards show today's case volume, unresolved alerts, and active
+threats. Scan the activity feed for any overnight changes that need
+attention.
 
 ### 2. Open the case queue
 

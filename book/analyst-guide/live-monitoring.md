@@ -11,8 +11,7 @@ needs help.
 2. Open the investigation detail page and switch to the **Live
    Monitor** tab.
 
-<!-- TODO: Replace with actual screenshot -->
-<!-- ![Live monitoring](../assets/screenshots/ssi-live-monitor.png) -->
+![Live monitoring](../assets/screenshots/ssi-live-monitor.png)
 
 ## What you see
 

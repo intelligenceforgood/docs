@@ -9,7 +9,10 @@ site investigations, see
 
 1. Navigate to **SSI** from the sidebar.
 2. Paste the URL you want to investigate.
-3. Select a **scan type**:
+3. Select a **scan type** (see table below).
+4. Optionally enable **Push to Core** to create a case automatically
+   from the results.
+5. Click **Investigate**.
 
 | Scan type   | What happens                                      | Duration |
 | ----------- | ------------------------------------------------- | -------- |
@@ -17,12 +20,7 @@ site investigations, see
 | **Active**  | Passive + AI agent interacts with the site        | 2–5 min  |
 | **Full**    | Active + wallet extraction + fraud classification | 3–7 min  |
 
-4. Optionally enable **Push to Core** to create a case automatically
-   from the results.
-5. Click **Investigate**.
-
-<!-- TODO: Replace with actual screenshot -->
-<!-- ![SSI submit](../assets/screenshots/ssi-submit.png) -->
+![SSI submit](../assets/screenshots/ssi-submit.png)
 
 {% hint style="info" %}
 Start with a **Passive** scan to assess the target. If the results
@@ -75,8 +73,7 @@ time. See [Live Monitoring](live-monitoring.md) for details.
 
 ## Interpreting results
 
-<!-- TODO: Replace with actual screenshot -->
-<!-- ![SSI results](../assets/screenshots/ssi-results.png) -->
+![SSI results](../assets/screenshots/ssi-results.png)
 
 ### Key findings to look for
 
@@ -122,7 +119,9 @@ The wallet table on the results page shows:
 ### Wallet search (cross-investigation)
 
 Navigate to **SSI → Wallets** to search wallet addresses across all
-investigations. Filter by token, network, or address substring. This
+investigations.
+
+![SSI wallets](../assets/screenshots/ssi-wallets.png) Filter by token, network, or address substring. This
 view helps identify the same wallet appearing across multiple scam
 sites — a strong signal of linked
 [campaigns](../key-concepts/campaigns.md).
@@ -148,8 +147,7 @@ eCrimeX community automatically or queued for analyst review:
 From the submissions page you can approve, reject, or retract
 submissions.
 
-<!-- TODO: Replace with actual screenshot -->
-<!-- ![eCrimeX submissions](../assets/screenshots/ssi-ecx-submissions.png) -->
+![eCrimeX submissions](../assets/screenshots/ssi-ecx-submissions.png)
 
 ### Intelligence Feed
 
@@ -161,8 +159,7 @@ filters to narrow results.
 Qualifying records from the feed can trigger SSI investigations
 automatically and link into threat campaigns.
 
-<!-- TODO: Replace with actual screenshot -->
-<!-- ![eCrimeX feed](../assets/screenshots/ssi-ecx-feed.png) -->
+![eCrimeX feed](../assets/screenshots/ssi-ecx-feed.png)
 
 ### eCrimeX Dashboard
 
@@ -177,8 +174,7 @@ activity:
   eCrimeX data.
 - **Volume trends** — time-series of submissions and enrichments.
 
-<!-- TODO: Replace with actual screenshot -->
-<!-- ![eCrimeX dashboard](../assets/screenshots/ssi-ecx-dashboard.png) -->
+![eCrimeX dashboard](../assets/screenshots/ssi-ecx-dashboard.png)
 
 ## Browsing past investigations
 

@@ -5,8 +5,7 @@ The Network Graph visualizes
 interactive force-directed graph. Use it to explore how wallets,
 emails, phones, IPs, and domains connect across cases.
 
-<!-- TODO: Replace with actual screenshot -->
-<!-- ![Network Graph](../assets/screenshots/network-graph.png) -->
+![Network Graph](../assets/screenshots/network-graph.png)
 
 ## Seeding a graph
 

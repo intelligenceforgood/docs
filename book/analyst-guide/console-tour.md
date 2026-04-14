@@ -3,8 +3,7 @@
 A visual walkthrough of the I4G Console layout and navigation. By the
 end of this page you will know where every tool lives in the sidebar.
 
-<!-- TODO: Replace with actual screenshot once available -->
-<!-- ![Console sidebar](../assets/screenshots/console-sidebar.png) -->
+![Console sidebar](../assets/screenshots/console-sidebar.png)
 
 ## Sidebar navigation
 
@@ -33,8 +32,7 @@ Console into these sections:
 
 ## Dashboard
 
-<!-- TODO: Replace with actual screenshot -->
-<!-- ![Console dashboard](../assets/screenshots/console-dashboard.png) -->
+![Console dashboard](../assets/screenshots/console-dashboard.png)
 
 The Dashboard is your landing page. It shows:
 
