@@ -69,6 +69,11 @@ complete audit trail for every extraction decision.
 
 ## Handling obfuscation
 
+{% hint style="info" %}
+Obfuscation reversal is automatic. Analysts see the cleaned entity value
+with a link back to the original text.
+{% endhint %}
+
 Scammers know their contact details get flagged, so they disguise them:
 
 | Obfuscation technique      | Example                       | What the platform sees |

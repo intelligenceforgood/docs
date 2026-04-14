@@ -1,11 +1,14 @@
 # Key Concepts
 
-Master these ideas and you'll understand how i4g works — whether you're
-reviewing cases, managing engagements, or receiving intelligence reports.
+These pages cover the core ideas behind the platform — cases, entities,
+extraction, taxonomy, campaigns, and more. Each follows the same structure:
+**what it is → why it matters → how i4g uses it → what you see in the
+Console**.
 
-Each concept page follows the same structure: **what it is → why it matters
-→ how i4g uses it → what you'll see in the Console**. Read them in order
-for a complete foundation, or jump to any concept you want to understand.
+{% hint style="info" %}
+Pages are ordered by dependency. Read them top to bottom for a complete
+foundation, or jump to any concept directly.
+{% endhint %}
 
 ## Core concepts
 

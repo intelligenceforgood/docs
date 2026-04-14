@@ -1,77 +1,58 @@
 # Find Your Role
 
-i4g serves several distinct audiences. Pick the role that best describes
-you and follow the link to your personalized starting point.
+## Fraud analyst
 
-<!--
-TODO: Replace with assets/diagrams/find-your-role.svg when available.
--->
+Review cases, classify fraud types, investigate threat entities, produce
+intelligence. The analyst console is your primary workspace.
 
-## I am a…
-
-### Fraud analyst
-
-You review cases, classify fraud types, investigate threat entities, and
-produce intelligence. The analyst console is your primary workspace.
-
-**Start here →** [Analyst Guide](../analyst-guide/README.md)
-
-Before diving in, read the [Key Concepts](../key-concepts/README.md) section
-to understand the ideas (cases, entities, campaigns, taxonomy) that power
-your daily workflow.
+[Analyst Guide →](../analyst-guide/README.md)
 
 ---
 
-### University student or engagement participant
+## Engagement participant
 
-You're part of a university capstone program or structured engagement.
-You review cases just like analysts, but within a scoped engagement with
-a leaderboard and performance tracking.
+Part of a university capstone or structured engagement program. You review
+cases within a scoped engagement with leaderboard tracking and performance
+metrics.
 
-**Start here →** [Engagement Guide](../engagement-guide/README.md)
-
-You'll also want the [Analyst Guide](../analyst-guide/README.md) for
-Console navigation and case review techniques.
+[Engagement Guide →](../engagement-guide/README.md)
 
 ---
 
-### Law enforcement partner
+## Law enforcement partner
 
-You receive intelligence products — signed dossiers, indicator feeds, and
-STIX bundles — from i4g to support investigations and prosecutions.
+Receive intelligence products — signed dossiers, indicator feeds, STIX
+bundles — to support investigations and prosecutions.
 
-**Start here →** [Law Enforcement Guide](../law-enforcement-guide/README.md)
-
----
-
-### Victim or reporter
-
-You've experienced a scam and want to submit a report, or you're reporting
-on behalf of someone else.
-
-**Start here →** [User Guide](../user-guide/README.md)
+[Law Enforcement Guide →](../law-enforcement-guide/README.md)
 
 ---
 
-### Platform administrator
+## Reporter
 
-You manage users, configure engagements, set up partner feeds, and maintain
-platform settings through the Console.
+Submit a fraud report or report on behalf of someone else.
 
-**Start here →** [Admin Guide](../admin-guide/README.md)
-
----
-
-### Integration partner (API)
-
-Your organization integrates with i4g's API to exchange threat intelligence
-programmatically.
-
-**Start here →** [API Reference](../api/README.md)
+[User Guide →](../user-guide/README.md)
 
 ---
 
-## Not sure?
+## Platform administrator
 
-Start with [Why i4g](why-i4g.md) and [How It Works](how-it-works.md) to
-understand the platform, then come back to this page.
+Manage users, configure engagements, set up partner feeds, maintain
+platform settings.
+
+[Admin Guide →](../admin-guide/README.md)
+
+---
+
+## Integration partner
+
+Exchange threat intelligence programmatically via the i4g API.
+
+[API Reference →](../api/README.md)
+
+{% hint style="info" %}
+Analysts and engagement participants: read
+[Key Concepts](../key-concepts/README.md) first for the terminology used
+throughout the Console.
+{% endhint %}

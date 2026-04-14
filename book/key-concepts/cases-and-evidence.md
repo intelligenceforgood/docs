@@ -53,8 +53,10 @@ normalized, images are OCR'd, and structured data is parsed automatically.
 
 ## PII protection
 
-Cases contain sensitive personal information. The platform protects it at
-every layer:
+{% hint style="warning" %}
+Cases contain sensitive personal information. Access is role-based and
+every read is logged.
+{% endhint %}
 
 - **Encryption at rest** — all evidence and PII fields are encrypted in
   storage
