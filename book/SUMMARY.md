@@ -29,6 +29,7 @@
     - [Network Graph](analyst-guide/network-graph.md)
     - [Campaigns](analyst-guide/campaigns.md)
     - [Watchlist & Alerts](analyst-guide/watchlist-and-alerts.md)
+    - [Discoveries](analyst-guide/discoveries.md)
     - [Indicator Registry](analyst-guide/indicator-registry.md)
   - [Site Investigation](analyst-guide/site-investigation.md)
     - [Investigating Sites](analyst-guide/investigating-sites.md)
