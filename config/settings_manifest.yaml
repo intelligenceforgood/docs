@@ -964,7 +964,7 @@ fields:
   - path: phishdestroy.merklemap_tail.api_key
     section: phishdestroy
     type: str
-    default: ''
+    default: ""
     env_vars:
       - I4G_PHISHDESTROY__MERKLEMAP_TAIL__API_KEY
       - PHISHDESTROY_MERKLEMAP_TAIL_API_KEY
@@ -999,7 +999,7 @@ fields:
   - path: phishdestroy.merklemap_tail.enabled
     section: phishdestroy
     type: bool
-    default: 'false'
+    default: "false"
     env_vars:
       - I4G_PHISHDESTROY__MERKLEMAP_TAIL__ENABLED
       - PHISHDESTROY_MERKLEMAP_TAIL_ENABLED
@@ -1664,7 +1664,7 @@ fields:
   - path: phishdestroy.archive.archive_root
     section: phishdestroy
     type: str
-    default: ''
+    default: ""
     env_vars:
       - I4G_PHISHDESTROY__ARCHIVE__ARCHIVE_ROOT
       - PHISHDESTROY_ARCHIVE_ARCHIVE_ROOT
@@ -1691,9 +1691,18 @@ fields:
   - path: phishdestroy.archive.evidence_local_dir_override
     section: phishdestroy
     type: str
-    default: ''
+    default: ""
     env_vars:
       - I4G_PHISHDESTROY__ARCHIVE__EVIDENCE_LOCAL_DIR_OVERRIDE
       - PHISHDESTROY_ARCHIVE_EVIDENCE_LOCAL_DIR_OVERRIDE
       - PHISHDESTROY__ARCHIVE__EVIDENCE_LOCAL_DIR_OVERRIDE
     description: Optional override for the local-disk evidence blob root. Empty defers to storage.evidence_local_dir.
+  - path: phishdestroy.archive.parse_failure_rate_threshold
+    section: phishdestroy
+    type: float
+    default: 0.01
+    env_vars:
+      - I4G_PHISHDESTROY__ARCHIVE__PARSE_FAILURE_RATE_THRESHOLD
+      - PHISHDESTROY_ARCHIVE_PARSE_FAILURE_RATE_THRESHOLD
+      - PHISHDESTROY__ARCHIVE__PARSE_FAILURE_RATE_THRESHOLD
+    description: Sprint 2 §7 acceptance gate. The ingest-archive-all worker exits 3 when unknown_format_teams / total_teams exceeds this value. Range [0.0, 1.0].
