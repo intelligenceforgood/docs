@@ -58,6 +58,7 @@
   - [User Management](admin-guide/user-management.md)
   - [Scheduled Reports](admin-guide/scheduled-reports.md)
   - [Partner Feed](admin-guide/partner-feed.md)
+  - [PhishDestroy Collaboration](admin-guide/phishdestroy-collaboration-packet.md)
   - [Site Investigation Settings](admin-guide/site-investigation-config.md)
   - [Auto-Investigation](admin-guide/auto-investigation.md)
 
