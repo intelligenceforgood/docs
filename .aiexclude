@@ -1,0 +1,38 @@
+# Node.js and package manager artifacts
+node_modules/
+.npm/
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+npm-debug.log*
+yarn-error.log*
+
+# Build, distribution, and GitBook generated directories
+_book/
+_site/
+build/
+dist/
+
+# Images and visual assets (high token cost, no AI value)
+book/assets/
+*.svg
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.ico
+*.webp
+
+# Secrets and local environment files
+.env
+.env.local
+.env.*
+*.pem
+*.key
+
+# IDEs and OS files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+.git/
