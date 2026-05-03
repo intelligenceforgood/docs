@@ -1,6 +1,12 @@
-# Copilot Instructions for i4g/docs
+# Gemini Code Assist Context for i4g/docs
 
-**Unified Workspace Context:** This repository is part of the `i4g` multi-root workspace. Shared coding standards, routines, and platform context live in the `copilot/` repo. These instructions contain only repo-specific context.
+**Unified Workspace Context:** This repository is part of the `i4g` multi-root workspace. Shared coding standards, routines, and platform context live in the `gemini` repo's styles directory. These instructions contain only repo-specific context.
+
+## GCA Framework & Workflows
+
+- **Agent Mode Management:** Keep Agent Mode **OFF** for standard queries, isolated code reviews, and planning to conserve quota. Toggle **ON** strictly for autonomous multi-file execution or terminal tasks.
+- **Standardized Prompts:** Use the standard VSCode snippets (`gca-plan`, `gca-prd`, `gca-impl`, `gca-work`) to trigger routine workflows.
+- **Global Standards:** Broad coding conventions are referenced from `.gemini/styles/` (symlinked to the `gemini` repository).
 
 ## Purpose
 
@@ -11,12 +17,12 @@ This is the **GitBook documentation site** for end users of the I4G Platform —
 **Do NOT add developer-facing documentation to this repo.** This includes:
 
 - Architecture internals, API implementation details, infrastructure setup
-- Developer onboarding, Copilot workflow guides, coding standards
+- Developer onboarding, GCA workflow guides, coding standards
 - Debugging guides, deployment procedures, config manifests
 
 Developer documentation belongs in:
 
-- `copilot/docs/` — Copilot workflow guides and developer onboarding
+- `gemini/docs/` — GCA workflow guides and developer onboarding
 - `core/docs/` — API design notes, architecture internals
 - `infra/docs/` — Infrastructure setup
 
