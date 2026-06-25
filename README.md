@@ -1,7 +1,10 @@
 # Intelligence for Good Documentation
 
+[![Platform: I4G](https://img.shields.io/badge/Platform-I4G-navy.svg)](https://github.com/intelligenceforgood)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Docs Site](https://img.shields.io/badge/GitBook-Live-blueviolet.svg)](https://app.gitbook.com/o/Hg1e7Xd0z04S7CXWL3N0/s/wiZ96sabsxLxLwhsQmRz)
+[![Linting: Markdownlint](https://img.shields.io/badge/Linting-Markdownlint-brightgreen.svg)](package.json)
+[![Deployment: Git Sync](https://img.shields.io/badge/Deployment-Git%20Sync-informational.svg)](.gitbook.yaml)
 
 This repository backs the public documentation site for **Intelligence for Good (i4g)**. Content is authored in Markdown, published to [GitBook](https://www.gitbook.com/) via Git Sync, and also renders natively on GitHub.
 
